@@ -63,28 +63,28 @@ D=M             // D es el valor que está en la memoria en la posición 16, arr
 @SCREEN         // A es 16384 
 D=D-A           // El valor de D que es 16384 menos A que es 16384 toma un nuevo valor y D es 0 
 @READKEYBOARD   // Creo que es algo relacionado con el teclado
-D;JLE           // Si D es <= se termina el bucle
+D;JLE           // Si D es <= 0 entonces que haga un salto de linea
 @i              // A es 16
-M=M-1           // En la posición 16 se guardo el valor de 16384 entonces a este valor se le resta uno
-A=M             // A vale 16383
+M=M-1           // En la posición 16 se guarda el valor de la memoria menos 1, es decir 16485 menos 1 '''
+A=M             // A ahora es una posición menos
 M=0             // M es 0
-@READKEYBOARD   // Una etiqueta
-0;JMP           // Salta a 0
+@READKEYBOARD   // No sé qué es, pienso que lee el teclado o que A lo hace
+0;JMP           // Salta a la parte en la que se lee el teclado
 
-(KEYPRESSED)    // Etiqueta 
+(KEYPRESSED)    // Etiqueta cuando se presiona el teclado
 @i              // A es 16
-D=M             // D es lo que esta en la posición 16 es decir 16384
+D=M             // D es el valor que está en la posición 16, es decir 16485
 @KBD            // A es 24576
-D=D-A           // D es 24576 menos 16384, D es 8192
-@READKEYBOARD   // No se que es 
-D;JGE           // D es >= 0
+D=D-A           // 16485 - 24576
+@READKEYBOARD   // Una etiqueta, no tengo muy claro que hace
+D;JGE           // Si D es mayor o igual a 0 hace un salto
 @16             // A es 16
-A=M             // 
-M=-1            // 
-@i              // A es una posición
-M=M+1           // El valor de A es la posición de M mas 1
-@READKEYBOARD   // No tengo claro que es
-0;JMP           // Salta a A
+A=M             // A es lo que está en la posición 16, es decir 16385
+M=-1            // M es -1 
+@i              // A es 16
+M=M+1           // M es 0
+@READKEYBOARD   // Una etiqueta
+0;JMP           // Hace un salto 
 ~~~
 Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender por qué fallaron las hipótesis por lo que voy a observar los resultados línea por línea en la página.
 

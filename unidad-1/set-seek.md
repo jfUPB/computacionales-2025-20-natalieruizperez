@@ -132,13 +132,23 @@ Después de observar me dicuenta que tenía problemas conceptuales, las etiqueta
 
 ---
 #### Bitácora
-Identifica una instrucción que use la ALU y explica qué hace.
-¿Para qué sirve el registro PC?
-¿Cuál es la diferencia entre @i y @READKEYBOARD?
-Describe qué se necesita para leer el teclado y mostrar información en la pantalla.
-Identifica un bucle en el programa y explica su funcionamiento.
-Identifica una condición en el programa y explica su funcionamiento.
+##### Identifica una instrucción que use la ALU y explica qué hace.
+Una instrucción que usa la ALU sería D=D-A, porque hace una operación aritmética entre los registros D y A (resta). La ALU calcula el valor de D menos A y guarda el resultado en D.
 
+##### ¿Para qué sirve el registro PC?sirve para saber en qué línea del programa está el procesador.
+El registro PC sirve para saber en qué línea del programa está el procesador. 
+
+##### ¿Cuál es la diferencia entre @i y @READKEYBOARD?
+La diferencia entre @i y @READKEYBOARD es que el @i va a una dirección de la RAM, en cambio el @READKEYBOARD va a la posición en la que se dejó la etiqueta, dicha etiqueta puede ser cualquier palabra.
+
+##### Describe qué se necesita para leer el teclado y mostrar información en la pantalla.
+Para leer el teclado se necesita poner @KBD que contiene el valor de la tecla que se está presionando, si no se presiona ninguna el valor es 0. Para mostrar información en la pantalla, se escribe en la memoria teniendo en cuenta @SCREEN, o sea M[16384] y luego se le asigna un valor.
+
+##### Identifica un bucle en el programa y explica su funcionamiento.
+Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretando ninguna tecla, en el caso de ser presionada se interrumpe el bucle y va a (KEYPRESSED). Estos sirven para que el programa corra a menos que se preste una condición que lo interrumpa.
+
+##### Identifica una condición en el programa y explica su funcionamiento.
+Una condición en el programa sería si se está presionando una tecla, en el código de la actividad si se presiona una tecla se deja de ejecutar el programa, esto se hace para que no sea un bucle infinito y tenga un propósito.
 
 
 

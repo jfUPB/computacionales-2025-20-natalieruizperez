@@ -62,10 +62,10 @@ D;JNE           // Si D diferente de 0 que haga un salto
 D=M             // D es el valor que está en la memoria en la posición 16, arriba era 16384
 @SCREEN         // A es 16384 
 D=D-A           // El valor de D que es 16384 menos A que es 16384 toma un nuevo valor y D es 0 
-@READKEYBOARD   // Algo relacionadod con el teclado   --------------------------
-D;JLE           // No tengo claro qué podría ser
-@i              // A es una posición
-M=M-1           // M es la posición anterior al valor que tenía A anteriormente
+@READKEYBOARD   // Creo que es algo relacionado con el teclado
+D;JLE           // Si D es <= 0 entonces que haga un salto de linea
+@i              // A es 16
+M=M-1           // En la posición 16 se guarda el valor de la memoria menos 1, es decir 16485 menos 1 '''
 A=M             // A ahora es una posición menos
 M=0             // M es 0
 @READKEYBOARD   // No sé qué es, pienso que lee el teclado o que A lo hace

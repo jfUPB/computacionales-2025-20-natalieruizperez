@@ -91,43 +91,43 @@ Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo q
 ~~~
 @SCREEN         // A es 16384
 D=A             // D es 16384
-@i              // Al ponerlo en nand2tetris vi que aparece como @16, consultando entendí que como es una variable que no está definida la primera libre
-M=D             // En la posición 16 se guarda el número 16384
-(READKEYBOARD)
-@KBD
-D=M
-@KEYPRESSED
-D;JNE
-@i
-D=M
-@SCREEN
-D=D-A
-@READKEYBOARD
-D;JLE
-@i
-M=M-1
-A=M
-M=0
-@READKEYBOARD
-0;JMP
+@i              // A es 16 porque es una variable no asignada
+M=D             // En la posición 16 se va a guardar D que es 16384
+(READKEYBOARD)  // Etiqueta 
+@KBD            // A es 24576
+D=M             // D es el valor que está en la posición 24576
+@KEYPRESSED     // Etiqueta a la que se va si se presiona una tecla
+D;JNE           // Si D diferente de 0 que haga un salto a keypressed, lo que quiere decir que se está presionando una tecla
+@i              // A es 16
+D=M             // D es el valor que está en la memoria en la posición 16, arriba era 16384
+@SCREEN         // A es 16384 
+D=D-A           // El valor de D que es 16384 menos A que es 16384 toma un nuevo valor y D es 0 
+@READKEYBOARD   // Instrucción de ir a esa etiqueta
+D;JLE           // Si D es <= 0 entonces que haga un salto  a readykeyboard
+@i              // A es 16
+M=M-1           // En la posición 16 se guarda el valor de la memoria menos 1, es decir 16384 menos 1
+A=M             // A ahora es 16483
+M=0             // M es 0
+@READKEYBOARD   // Instruccion de ir a esa etiqueta 
+0;JMP           // Salta a el valor de a
 
-(KEYPRESSED)
-@i
-D=M
-@KBD
-D=D-A
-@READKEYBOARD
-D;JGE
-@16
-A=M
-M=-1
-@i
-M=M+1
-@READKEYBOARD
-0;JMP
+(KEYPRESSED)    // Etiqueta
+@i              // A es 16
+D=M             // D es el valor que está en la posición 16, es decir 16384
+@KBD            // A es 24576
+D=D-A           // 16384 - 24576
+@READKEYBOARD   // Instrucción de ir a la etiqueta
+D;JGE           // Si D es mayor o igual a 0 hace un salto a donde estaba la etiqueta
+@16             // A es 16
+A=M             // A es lo que está en la posición 16, 16384
+M=-1            // La posición 16384 es -1
+@i              // A es 16
+M=M+1           // M es 16384 + 1, es decir 16385
+@READKEYBOARD   // Posición en la que está la etiqueta
+0;JMP           // Hace un salto a la etiqueta
 ~~~
 
-
+Después de observar me dicuenta que el @READYKEABORD en realidad es una etiqueta que creamos para saber a que línea debe de saltar el código
 
 
 

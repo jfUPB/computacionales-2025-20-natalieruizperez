@@ -6,7 +6,7 @@
 #### 1. Reporta tus observaciones para cada experimento en tu bitácora de aprendizaje.
 ##### Experimento 1
 Ejecuta el programa en el simulador de la CPU Hack y observa cómo se comporta. ¿Qué sucede? ¿Qué valor se almacena en la dirección de memoria 16? ¿Por qué crees que es ese valor?
-Al ejecutar el programa se obtiene diversos resultados para cada una de las variables. En la dirección de la memoria 16 se guarda el valor de 3. Esto es porque le asignamos a A el valor de 16 y al escribir el código M es igual a una variable, la M se guardará la variable que le demos en el valor que haya tomado A. 
+Al ejecutar el programa se obtiene diversos resultados para cada una de las variables, según los registros A es 3, D es 7 y PC es 7, es decir la línea del código que se va a ejecutar. En la dirección de la memoria 16 se guarda el valor de 3. Esto es porque le asignamos a A el valor de 16 y al escribir el código M es igual a una variable, la M se guardará la variable que le demos en el valor que haya tomado A. 
 
 ¿Qué instrucciones se ejecutan en cada ciclo Fetch-Decode-Execute?
 ~~~
@@ -21,6 +21,7 @@ M=D   // La memoria guarda el resultado de D que es 3 en el valor que tiene A, e
 0;JMP // Salta al valor de A, es decir a END
 ~~~
 ¿Qué cambios observas en el contenido de la memoria y los registros?
+En la memoria en la posición número 16 se guarda el valor de 3, los demás valores son 0. Y los registros, de A, D y PC cambian cada vez que se realizan operaciones hasta que finalmente se tienen los resultados de A siendo 7, D siendo 3 y PC siendo 7.
 
 ---
 ##### Experimento 2

@@ -56,13 +56,13 @@ M=D             // En la posición 16 se va a guardar D que es 16384
 (READKEYBOARD)  // Etiqueta para leer el teclado
 @KBD            // A es 24576
 D=M             // D es el valor que está en la posición 24576
-@KEYPRESSED     // A
+@KEYPRESSED     // Creo que es como una variable
 D;JNE           // Si D diferente de 0 que haga un salto
-@i              // A es i
-D=M             // Pensaría que D sigue siendo i
-@SCREEN         // A es 16384
-D=D-A           // D es i - 16384 (sigo pensando que i es una posición pero no sé cuál podría ser)
-@READKEYBOARD   // Algo relacionadod con el teclado
+@i              // A es 16
+D=M             // D es el valor que está en la memoria en la posición 16, arriba era 16384
+@SCREEN         // A es 16384 
+D=D-A           // El valor de D que es 16384 menos A que es 16384 toma un nuevo valor y D es 0 
+@READKEYBOARD   // Algo relacionadod con el teclado   --------------------------
 D;JLE           // No tengo claro qué podría ser
 @i              // A es una posición
 M=M-1           // M es la posición anterior al valor que tenía A anteriormente

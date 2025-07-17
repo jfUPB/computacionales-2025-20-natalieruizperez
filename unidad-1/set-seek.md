@@ -51,13 +51,13 @@ Esto es lo que creo que va a suceder y después voy a analizar lo que realmente 
 ~~~
 @SCREEN         // A es 16384
 D=A             // D es 16384
-@i              // A es i, pienso que sería una posición pero no sé cuál
-M=D             // En la posición i se va a guardar D que es 16384
+@i              // A es 16 porque es una variable no asignada
+M=D             // En la posición 16 se va a guardar D que es 16384
 (READKEYBOARD)  // Etiqueta para leer el teclado
 @KBD            // A es 24576
-D=M             // D es M entonces pensaría que toma el valor de la posición en dónde se guardó la memoria, es decir i
-@KEYPRESSED     // Ahora estoy pensando que A podría ser una tecla presionada
-D;JNE           // No se me ocurre qué podría ser pero lo relaciono con 0;JMP
+D=M             // D es el valor que está en la posición 24576
+@KEYPRESSED     // A
+D;JNE           // Si D diferente de 0 que haga un salto
 @i              // A es i
 D=M             // Pensaría que D sigue siendo i
 @SCREEN         // A es 16384
@@ -87,6 +87,47 @@ M=M+1           // El valor de A es la posición de M mas 1
 0;JMP           // Salta a A
 ~~~
 Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender por qué fallaron las hipótesis por lo que voy a observar los resultados línea por línea en la página.
+
+~~~
+@SCREEN         // A es 16384
+D=A             // D es 16384
+@i              // Al ponerlo en nand2tetris vi que aparece como @16, consultando entendí que como es una variable que no está definida la primera libre
+M=D             // En la posición 16 se guarda el número 16384
+(READKEYBOARD)
+@KBD
+D=M
+@KEYPRESSED
+D;JNE
+@i
+D=M
+@SCREEN
+D=D-A
+@READKEYBOARD
+D;JLE
+@i
+M=M-1
+A=M
+M=0
+@READKEYBOARD
+0;JMP
+
+(KEYPRESSED)
+@i
+D=M
+@KBD
+D=D-A
+@READKEYBOARD
+D;JGE
+@16
+A=M
+M=-1
+@i
+M=M+1
+@READKEYBOARD
+0;JMP
+~~~
+
+
 
 
 

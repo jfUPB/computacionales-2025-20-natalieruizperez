@@ -40,7 +40,8 @@ M=D   // Ahora la memoria guarda a D en la posición que tenga a A como valor
 ~~~
 ---
 #### 2. ¿Qué diferencia hay entre los datos almancenados en la memoria ROM y en la RAM?
-En la ROM es donde se guardan las instrucciones y por medio de la RAM es posible ejecutarlas.
+   En la ROM es donde se guardan las instrucciones y por medio de la RAM es posible ejecutarlas.
+
 ---
 ### Actividad 02
 #### Experimento 
@@ -127,7 +128,16 @@ M=M+1           // M es 16384 + 1, es decir 16385
 0;JMP           // Hace un salto a la etiqueta
 ~~~
 
-Después de observar me dicuenta que el @READYKEABORD en realidad es una etiqueta que creamos para saber a que línea debe de saltar el código
+Después de observar me dicuenta que tenía problemas conceptuales, las etiquetas que pongo están entre paréntesis y mayúsculas y los confundía con comentarios. Lo que tiene arroba y mayúsculas es para asignarle a A ese valor y al hacer el salto el código va a la línea en la que puse la étiqueta. Adicionalmente me di cuenta que las etiquetas pueden tener el nombre que quiera. 
+
+---
+#### Bitácora
+Identifica una instrucción que use la ALU y explica qué hace.
+¿Para qué sirve el registro PC?
+¿Cuál es la diferencia entre @i y @READKEYBOARD?
+Describe qué se necesita para leer el teclado y mostrar información en la pantalla.
+Identifica un bucle en el programa y explica su funcionamiento.
+Identifica una condición en el programa y explica su funcionamiento.
 
 
 

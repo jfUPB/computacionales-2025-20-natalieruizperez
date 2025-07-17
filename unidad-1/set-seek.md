@@ -41,3 +41,51 @@ M=D   // Ahora la memoria guarda a D en la posición que tenga a A como valor
 ---
 #### 2. ¿Qué diferencia hay entre los datos almancenados en la memoria ROM y en la RAM?
 En la ROM es donde se guardan las instrucciones y por medio de la RAM es posible ejecutarlas.
+---
+### Actividad 02
+#### Experimento 
+Antes de ejecutar cada instrucción vas a predecir qué crees que va a suceder. Es muy importante que hagas esto, de esta manera tu mismo puedes saber si estás entendiendo el programa.
+
+Esto es lo que creo que va a suceder y después voy a analizar lo que realmente pasó y que se obtuvo como resultado:
+
+~~~
+@SCREEN         // A es 16384
+D=A             // D es 16384
+@i              // A es i, pienso que sería una posición pero no sé cuál
+M=D             // En la posición i se va a guardar D que es 16384
+(READKEYBOARD)  // Etiqueta para leer el teclado
+@KBD            // A es 24576
+D=M             // D es M entonces pensaría que toma el valor de la posición en dónde se guardó la memoria, es decir i
+@KEYPRESSED     // Ahora estoy pensando que A podría ser una tecla presionada
+D;JNE           // No se me ocurre qué podría ser pero lo relaciono con 0;JMP
+@i              // A es i
+D=M             // Pensaría que D sigue siendo i
+@SCREEN         // A es 16384
+D=D-A           // D es i - 16384 (sigo pensando que i es una posición pero no sé cuál podría ser)
+@READKEYBOARD   // Algo relacionadod con el teclado
+D;JLE           // No tengo claro qué podría ser
+@i              // A es una posición
+M=M-1           // M es la posición anterior al valor que tenía A anteriormente
+A=M             // A ahora es una posición menos
+M=0             // M es 0
+@READKEYBOARD   // No sé qué es, pienso que lee el teclado o que A lo hace
+0;JMP           // Salta a la parte en la que se lee el teclado
+
+(KEYPRESSED)    // Etiqueta cuando se presiona el teclado
+@i              // Ahora creo que A podría ser la tecla que es presionada
+D=M             // D es 
+@KBD            //
+D=D-A
+@READKEYBOARD
+D;JGE
+@16
+A=M
+M=-1
+@i
+M=M+1
+@READKEYBOARD
+0;JMP
+~~~
+Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender por qué fallaron las hipótesis por lo que voy a observar los resultados línea por línea en la página.
+
+

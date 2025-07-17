@@ -73,19 +73,31 @@ M=0             // M es 0
 
 (KEYPRESSED)    // Etiqueta cuando se presiona el teclado
 @i              // Ahora creo que A podría ser la tecla que es presionada
-D=M             // D es 
-@KBD            //
-D=D-A
-@READKEYBOARD
-D;JGE
-@16
-A=M
-M=-1
-@i
-M=M+1
-@READKEYBOARD
-0;JMP
+D=M             // No sé si D sería 0 porque todavía no hemos guardado algo o si este relacionado con el código anterior
+@KBD            // A es 24576
+D=D-A           // El valor anterior de D que no se cuál es, diré que es i menos 24576 
+@READKEYBOARD   // Lee el keyboard
+D;JGE           // No sé qué es, a lo mejor está relacionado con 0;JMP
+@16             // A es 16
+A=M             // Se le asigna un nuevo valor a A teniendo en cuenta la memoria
+M=-1            // A la memoria se el resta uno
+@i              // A es una posición
+M=M+1           // El valor de A es la posición de M mas 1
+@READKEYBOARD   // No tengo claro que es
+0;JMP           // Salta a A
 ~~~
 Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender por qué fallaron las hipótesis por lo que voy a observar los resultados línea por línea en la página.
+
+
+
+
+
+
+
+
+
+
+
+
 
 

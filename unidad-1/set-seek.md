@@ -5,10 +5,10 @@
 ### Actividad 01
 #### 1. Reporta tus observaciones para cada experimento en tu bitácora de aprendizaje.
 ##### Experimento 1
-Ejecuta el programa en el simulador de la CPU Hack y observa cómo se comporta. ¿Qué sucede? ¿Qué valor se almacena en la dirección de memoria 16? ¿Por qué crees que es ese valor?
+##### Ejecuta el programa en el simulador de la CPU Hack y observa cómo se comporta. ¿Qué sucede? ¿Qué valor se almacena en la dirección de memoria 16? ¿Por qué crees que es ese valor?
 Al ejecutar el programa se obtiene diversos resultados para cada una de las variables, según los registros A es 3, D es 7 y PC es 7, es decir la línea del código que se va a ejecutar. En la dirección de la memoria 16 se guarda el valor de 3. Esto es porque le asignamos a A el valor de 16 y al escribir el código M es igual a una variable, la M se guardará la variable que le demos en el valor que haya tomado A. 
 
-¿Qué instrucciones se ejecutan en cada ciclo Fetch-Decode-Execute?
+#### ¿Qué instrucciones se ejecutan en cada ciclo Fetch-Decode-Execute?
 ~~~
 @1    // A es 1
 D=A   // D es 1
@@ -20,7 +20,7 @@ M=D   // La memoria guarda el resultado de D que es 3 en el valor que tiene A, e
 (END) // Etiqueta
 0;JMP // Salta al valor de A, es decir a END
 ~~~
-¿Qué cambios observas en el contenido de la memoria y los registros?
+#### ¿Qué cambios observas en el contenido de la memoria y los registros?
 En la memoria en la posición número 16 se guarda el valor de 3, los demás valores son 0. Y los registros, de A, D y PC cambian cada vez que se realizan operaciones hasta que finalmente se tienen los resultados de A siendo 7, D siendo 3 y PC siendo 7.
 
 ---
@@ -45,7 +45,7 @@ M=D   // Ahora la memoria guarda a D en la posición que tenga a A como valor
 ---
 ### Actividad 02
 #### Experimento 
-Antes de ejecutar cada instrucción vas a predecir qué crees que va a suceder. Es muy importante que hagas esto, de esta manera tu mismo puedes saber si estás entendiendo el programa.
+#### Antes de ejecutar cada instrucción vas a predecir qué crees que va a suceder. Es muy importante que hagas esto, de esta manera tu mismo puedes saber si estás entendiendo el programa.
 
 Esto es lo que creo que va a suceder y después voy a analizar lo que realmente pasó y que se obtuvo como resultado:
 
@@ -87,7 +87,7 @@ M=M+1           // M es 0
 @READKEYBOARD   // Una etiqueta
 0;JMP           // Hace un salto 
 ~~~
-Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender por qué fallaron las hipótesis por lo que voy a observar los resultados línea por línea en la página.
+Al analizar los resultados qué obtuve no le veo mucho sentido por lo que creo que me falta comprender, mi hipótesis falló por lo que voy a observar los resultados línea por línea en la página de nanotetris.
 
 ~~~
 @SCREEN         // A es 16384
@@ -128,14 +128,14 @@ M=M+1           // M es 16384 + 1, es decir 16385
 0;JMP           // Hace un salto a la etiqueta
 ~~~
 
-Después de observar me dicuenta que tenía problemas conceptuales, las etiquetas que pongo están entre paréntesis y mayúsculas y los confundía con comentarios. Lo que tiene arroba y mayúsculas es para asignarle a A ese valor y al hacer el salto el código va a la línea en la que puse la étiqueta. Adicionalmente me di cuenta que las etiquetas pueden tener el nombre que quiera. 
+Después de observar me dicuenta que tenía problemas conceptuales, las etiquetas que pongo están entre paréntesis y mayúsculas las confundía con comentarios. Lo que tiene arroba y mayúsculas es para asignarle a A ese valor y al hacer el salta a la línea en la que puse la etiqueta. Adicionalmente me di cuenta que las etiquetas pueden tener el nombre que quiera. 
 
 ---
 #### Bitácora
 ##### Identifica una instrucción que use la ALU y explica qué hace.
-Una instrucción que usa la ALU sería D=D-A, porque hace una operación aritmética entre los registros D y A (resta). La ALU calcula el valor de D menos A y guarda el resultado en D.
+Una instrucción que usa la ALU sería D=D-A, porque hace una operación aritmética entre D y A. La ALU calcula el valor de D menos A y guarda el resultado en D.
 
-##### ¿Para qué sirve el registro PC?sirve para saber en qué línea del programa está el procesador.
+##### ¿Para qué sirve el registro PC?
 El registro PC sirve para saber en qué línea del programa está el procesador. 
 
 ##### ¿Cuál es la diferencia entre @i y @READKEYBOARD?
@@ -145,10 +145,10 @@ La diferencia entre @i y @READKEYBOARD es que el @i va a una dirección de la RA
 Para leer el teclado se necesita poner @KBD que contiene el valor de la tecla que se está presionando, si no se presiona ninguna el valor es 0. Para mostrar información en la pantalla, se escribe en la memoria teniendo en cuenta @SCREEN, o sea M[16384] y luego se le asigna un valor.
 
 ##### Identifica un bucle en el programa y explica su funcionamiento.
-Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretando ninguna tecla, en el caso de ser presionada se interrumpe el bucle y va a (KEYPRESSED). Estos sirven para que el programa corra a menos que se preste una condición que lo interrumpa.
+Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretando ninguna tecla, en el caso de ser presionada se interrumpe el bucle y va a (KEYPRESSED). Estos sirven para que el programa siempre corra, a menos que aparezca una condición que lo interrumpa.
 
 ##### Identifica una condición en el programa y explica su funcionamiento.
-Una condición en el programa sería si se está presionando una tecla, en el código de la actividad si se presiona una tecla se deja de ejecutar el programa, esto se hace para que no sea un bucle infinito y tenga un propósito.
+Una condición en el programa sería por ejemplo D;JNE, lo que esto hace es que realiza un salto si D es diferente de 0.Los condicionales sirven para que el programa pueda tomar decisiones y hacer cosas distintas según lo que esté ocurriendo, debido a esto, el programa no siempre hace lo mismo, sino que puede adaptarse si se cumple una condición específica.
 
 
 

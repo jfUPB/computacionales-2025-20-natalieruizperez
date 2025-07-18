@@ -40,7 +40,8 @@ M=D   // Ahora la memoria guarda a D en la posición que tenga a A como valor
 ~~~
 ---
 #### 2. ¿Qué diferencia hay entre los datos almancenados en la memoria ROM y en la RAM?
-   En la ROM es donde se guardan las instrucciones y por medio de la RAM es posible ejecutarlas.
+
+   ROM significa Read-Only-Memory, como su nombre lo indica en esta se almacena el programa o instrucciones, o sea del código que será ejecutado. En cambio, la RAM que significa Random Access Memory se usa para guardar y modificar datos mientras que se ejecuta el programa, como por ejemplo las variables o los resultados intermedios.
 
 ---
 ### Actividad 02
@@ -136,19 +137,20 @@ Después de observar me dicuenta que tenía problemas conceptuales, las etiqueta
 Una instrucción que usa la ALU sería D=D-A, porque hace una operación aritmética entre D y A. La ALU calcula el valor de D menos A y guarda el resultado en D.
 
 ##### ¿Para qué sirve el registro PC?
-El registro PC sirve para saber en qué línea del programa está el procesador. 
+PC significa Program Counter y este se encarga de guardar la dirección de la siguiente instrucción que se va a ejecutar en el programa.
 
 ##### ¿Cuál es la diferencia entre @i y @READKEYBOARD?
-La diferencia entre @i y @READKEYBOARD es que el @i va a una dirección de la RAM, en cambio el @READKEYBOARD va a la posición en la que se dejó la etiqueta, dicha etiqueta puede ser cualquier palabra.
+@i es una variable que apunta a una dirección en RAM. En cambio, @READKEYBOARD es una etiqueta, que representa una dirección en la ROM donde hay una instrucción.
+La diferencia entre @i y @READKEYBOARD es que el @i apunta hacia una dirección de la RAM. En cambio, el @READKEYBOARD le da a la A ese valor y después va a la dirección en la ROM en donde se dejó la etiqueta.
 
 ##### Describe qué se necesita para leer el teclado y mostrar información en la pantalla.
-Para leer el teclado se necesita poner @KBD que contiene el valor de la tecla que se está presionando, si no se presiona ninguna el valor es 0. Para mostrar información en la pantalla, se escribe en la memoria teniendo en cuenta @SCREEN, o sea M[16384] y luego se le asigna un valor.
+Para leer el teclado se necesita poner @KBD que es 24576, si no se presiona una tecla el valor es 0, en cambio si es presionada toma un valor. Para mostrar información en pantalla, se escribe un valor en la memoria a partir de @SCREEN que es 16384, donde cada posición representa un fragmento de la pantalla. 
 
 ##### Identifica un bucle en el programa y explica su funcionamiento.
 Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretando ninguna tecla, en el caso de ser presionada se interrumpe el bucle y va a (KEYPRESSED). Estos sirven para que el programa siempre corra, a menos que aparezca una condición que lo interrumpa.
 
 ##### Identifica una condición en el programa y explica su funcionamiento.
-Una condición en el programa sería por ejemplo D;JNE, lo que esto hace es que realiza un salto si D es diferente de 0.Los condicionales sirven para que el programa pueda tomar decisiones y hacer cosas distintas según lo que esté ocurriendo, debido a esto, el programa no siempre hace lo mismo, sino que puede adaptarse si se cumple una condición específica.
+Una condición en el programa sería por ejemplo D;JNE, lo que esto hace es que realiza un salto si D es diferente de 0. Los condicionales sirven para que el programa pueda tomar decisiones y ejecutar diferentes acciones según lo que esté ocurriendo, debido a esto, el programa no siempre hace lo mismo, sino que puede adaptarse si se cumple una condición específica. 
 
 
 

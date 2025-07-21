@@ -134,7 +134,7 @@ Después de observar me dicuenta que tenía problemas conceptuales, las etiqueta
 ---
 #### Bitácora
 ##### Identifica una instrucción que use la ALU y explica qué hace.
-Una instrucción que usa la ALU sería D=D-A, porque hace una operación aritmética entre D y A. La ALU calcula el valor de D menos A y guarda el resultado en D.
+ALU es Arithmetic Logic Unit entonces una instrucción que usa ALU sería D=D-A, porque hace una operación aritmética entre D y A que es la que permite calcular el valor de D menos A y guarda el resultado en D.
 
 ##### ¿Para qué sirve el registro PC?
 PC significa Program Counter y este se encarga de guardar la dirección de la siguiente instrucción que se va a ejecutar en el programa.
@@ -151,6 +151,10 @@ Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretand
 
 ##### Identifica una condición en el programa y explica su funcionamiento.
 Una condición en el programa sería por ejemplo D;JNE, lo que esto hace es que realiza un salto si D es diferente de 0. Los condicionales sirven para que el programa pueda tomar decisiones y ejecutar diferentes acciones según lo que esté ocurriendo, debido a esto, el programa no siempre hace lo mismo, sino que puede adaptarse si se cumple una condición específica. 
+---
+### Actividad 03
+
+Escribe un programa que compare el valor almacenado en la dirección de memoria 5 con el valor 10. Si el valor es menor que 10, guarda el valor 1 en la dirección 7. Si el valor es mayor o igual a 10, guarda el valor 0 en la dirección 7.
 
 
 

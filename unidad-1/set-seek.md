@@ -107,8 +107,8 @@ D=D-A           // El valor de D que es 16384 menos A que es 16384 toma un nuevo
 @READKEYBOARD   // Instrucción de ir a esa etiqueta
 D;JLE           // Si D es <= 0 entonces que haga un salto  a readykeyboard
 @i              // A es 16
-M=M-1           // En la posición 16 se guarda el valor de la memoria menos 1, es decir 16384 menos 1
-A=M             // A ahora es 16483
+M=M-1           // Se toma el valor de la posición 16 y se le resta uno, luego se guarda en la memoria, es decir 16384 menos 1
+A=M             // A ahora es 16383
 M=0             // M es 0
 @READKEYBOARD   // Instruccion de ir a esa etiqueta 
 0;JMP           // Salta a el valor de a
@@ -150,7 +150,9 @@ Para leer el teclado se necesita poner @KBD que es 24576, si no se presiona una 
 Un bucle en el programa sería (READKEYBOARD) que ocurre si no se está apretando ninguna tecla, en el caso de ser presionada se interrumpe el bucle y va a (KEYPRESSED). Estos sirven para que el programa siempre corra, a menos que aparezca una condición que lo interrumpa.
 
 ##### Identifica una condición en el programa y explica su funcionamiento.
+
 Una condición en el programa sería por ejemplo D;JNE, lo que esto hace es que realiza un salto si D es diferente de 0. Los condicionales sirven para que el programa pueda tomar decisiones y ejecutar diferentes acciones según lo que esté ocurriendo, debido a esto, el programa no siempre hace lo mismo, sino que puede adaptarse si se cumple una condición específica. 
+
 ---
 ### Actividad 03
 

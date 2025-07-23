@@ -77,43 +77,44 @@ Al tratar de realizar la actividad me di cuenta que no tengo muy claro cómo pue
 @1      // A es 1
 D=A     // D es 1
 @16     // A es 16
-M=D     // En la posición 16 se guarda el número 1
+M=D     // En la posición 16 se guarda el número 1 (contador i)
 
 @0      // A es 0
 D=A     // D es 0
 @17     // A es 17
-M=D     // En la posición 17 se guarda el 0
+M=D     // En la posición 17 se guarda el 0 (suma acumulada)
 
-(LOOP)  // Etiqueta
+(LOOP)  // Etiqueta del ciclo
 @16     // A es 16
-D=M     // D toma el valor de que está en la posición 16, es decir 1
+D=M     // D toma el valor que está en la posición 16 (i)
 @6      // A es 6
-D=D-A   // D se compara con 6
+D=D-A   // Se resta 6 para comparar
 @END
-D;JGE    // Si D mayor o igual que 6 salta a la etiqueta llamada END
+D;JGE    // Si i >= 6 salta a END para terminar
 
 @17     // A es 17
-D=M     // D toma el valor de la posición 17 
+D=M     // D toma el valor de la suma acumulada (RAM[17])
 @16     // A es 16
-D=D+M   // D = sum + i
+D=D+M   // D = suma + i
 @17     // A es 17
-M=D     // Guardar la suma en la posición 17 
+M=D     // Guarda la nueva suma en RAM[17]
 
 @16     // A es 16
-M=M+1   // Incrementar i
+M=M+1   // Incrementa i en 1
 
 @LOOP
-0;JMP
+0;JMP   // Salta al inicio del ciclo
 
 (END)
 @17     // A es 17
-D=M     // D toma el valor de sum
+D=M     // D toma el valor final de la suma
 @12     // A es 12
-M=D     // guardar resultado en RAM[12]
+M=D     // Guarda el resultado final en RAM[12]
 
 (END_LOOP)
 @END_LOOP
 0;JMP   // Bucle infinito para terminar el programa
+
 ~~~
 
 

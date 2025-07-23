@@ -9,7 +9,7 @@ Primero voy a escirbir cómo creo que se haría y después voy a corregir las pa
 
 ~~~
 @5
-D=M  // D= M[5]
+D=M  // En la posicicón 5 de la memoria se guarda D
 
 @10
 D= D-A

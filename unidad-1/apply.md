@@ -12,46 +12,46 @@ Primero voy a escirbir cómo creo que se haría y después voy a corregir las pa
 D=M  // En la posicicón 5 de la memoria se guarda D
 
 @10
-D= D-A
+D= D-A   // Para comparar el valor con D
 
 @MENOR  // Para que vaya a la dirección de la etiqueta si es menor
-D;JLT
+D;JLT   // Si D es menor que haga un salto
 
 (MENOR)
-@7
-M=1
+@7      // A es 7
+M=1     // 1 va a la posición 7
 
-@MAYOR
-D;JGE
+@MAYOR // Para que vaya a la dirección de la etiqueta si es mayor
+D;JGE  // Si D es mayor o igual que haga un salto
 
 (MAYOR)
-@7
+@7       // A es 7
 M = 0    //Guarda en la dirección 7 el número 0 cuando ocurre la condición
 ~~~
 
 Al observar el programa que hice, me di cuenta de que me falta una instrucción que evite que se sigan ejecutando las demás líneas después de cumplir la condición de que el valor sea menor que 10. También parece que la etiqueta de mayor sobra y me hace falta una etiqueta para indicar el final del programa. Así quedaría la corrección.
 
 ~~~
-(LOOP)
-@5
-D=M  // Se carga en D lo que está en la posición 5
+(LOOP)  // Etiqueta
+@5      // A es 5
+D=M     // Se carga en D lo que está en la posición 5
 
-@10
+@10     // A es 10
 D=D-A   // Se guarda en D el resultado de la operación
 
-@MENOR   // Si es menor salta a la etiqueta, si no se continua ejeutando el código como si fuese mayor o igual
-D;JLT	
+@MENOR   
+D;JLT	  // Si D es menor salta a la etiqueta, si no se continua ejeutando el código como si fuese mayor o igual
 
-@7      
+@7       // A es 7
 M=0      // Se guarda en la posición 7 el 0
-@LOOP   // Va a la primera etiqueta por lo que se repite el ciclo
-0;JMP
+@LOOP    // Va a la primera etiqueta por lo que se repite el ciclo
+0;JMP    // Vuelve a empezar el ciclo
 
-(MENOR)   //Etiqueta a la que salta si es menor
+(MENOR)   // Etiqueta a la que salta si es menor
 @7      
-M=1      //Pone 1 en la posición 7
-@LOOP
-0;JMP
+M=1      // Pone 1 en la posición 7
+@LOOP 
+0;JMP     // Vuelve a empezar el ciclo
 
 ~~~
 
@@ -74,27 +74,46 @@ D = M
 Al tratar de realizar la actividad me di cuenta que no tengo muy claro cómo puedo crear un ciclo con números que cambien constantemente, lo que se me ocurrió hacer que se detenga cuando llegue a 15 que es el resultado de sumar los números del 1 al 5. Me falto algo muy importante que era el loop, di por hecho que continuaría automátiamente al no detenerse.
 
 ~~~
-@1
-D=A         // D es 1
-@12
-M=D         // Para guardar el resultado de 1 en la dirección 12
+@1      // A es 1
+D=A     // D es 1
+@16     // A es 16
+M=D     // En la posición 16 se guarda el número 1
 
-(LOOP)
-@12
-D=M          // Tomo el valor que está en esa dirección, o sea el 1
-@2
-D=D+A        // Daría 3 al sumarle el 2 al 1
-@12
-M=D          // Para guardar el valor que dio
-@1
-D=A          // D es 1 
+@0      // A es 0
+D=A     // D es 0
+@17     // A es 17
+M=D     // En la posición 17 se guarda el 0
+
+(LOOP)  // Etiqueta
+@16     // A es 16
+D=M     // D toma el valor de que está en la posición 16, es decir 1
+@6      // A es 6
+D=D-A   // D se compara con 6
+@END
+D;JGE    // Si D mayor o igual que 6 salta a la etiqueta llamada END
+
+@17     // A es 17
+D=M     // D toma el valor de la posición 17 
+@16     // A es 16
+D=D+M   // D = sum + i
+@17     // A es 17
+M=D     // Guardar la suma en la posición 17 
+
+@16     // A es 16
+M=M+1   // Incrementar i
+
 @LOOP
-D;JLT        // Si D < 5, saltamos al inicio del ciclo
+0;JMP
 
 (END)
-@END
-0;JMP        // Bucle infinito para terminar el programa
+@17     // A es 17
+D=M     // D toma el valor de sum
+@12     // A es 12
+M=D     // guardar resultado en RAM[12]
 
+(END_LOOP)
+@END_LOOP
+0;JMP   // Bucle infinito para terminar el programa
 ~~~
 
 

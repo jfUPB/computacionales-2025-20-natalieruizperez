@@ -87,7 +87,7 @@ D=A     // D es 0
 M=D     // En la posición 17 se guarda el 0 que sería la suma
 (LOOP)  // Etiqueta del ciclo
 @16     // A es 16
-D=M     // D toma el valor que está en la posición 16 (i)
+D=M     // D toma el valor que está en la posición 16 
 @6      // A es 6
 D=D-A   // Se resta 6 para comparar
 @END
@@ -106,15 +106,15 @@ M=M+1   // Incrementa i en 1
 @LOOP
 0;JMP   // Va a donde está la etiqueta
 
-(END)
+(END)   //Etiqueta
 @17     // A es 17
 D=M     // D toma el valor de la suma
 @12     // A es 12
 M=D     // Guarda el resultado en la posición 12
 
-(END_LOOP)
-@END_LOOP
-0;JMP   // Bucle infinito para terminar el programa
+(ENDLOOP) //Etiqueta
+@ENDLOOP 
+0;JMP   // Salto para terminar el programa
 
 ~~~
 

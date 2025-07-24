@@ -55,6 +55,8 @@ M=1      // Pone 1 en la posición 7
 
 ~~~
 
+Aprendí algo nuevo y es que al comparar los valores cuando por ejemplo se va a hacer el salto que toma el valor de  D y mira si es menor que 0 (D < 0), se haría así normalmente pero como antes había puesto D = D-A en este caso se pone ese valor en donde está la D y al despejarlo quedaría (D < 10)
+
 ### Actividad 04 
 Crea un programa que use un ciclo para sumar los números del 1 al 5 y guarde el resultado en la dirección de memoria 12.
 
@@ -77,13 +79,12 @@ Al tratar de realizar la actividad me di cuenta que no tengo muy claro cómo pue
 @1      // A es 1
 D=A     // D es 1
 @16     // A es 16
-M=D     // En la posición 16 se guarda el número 1 (contador i)
+M=D     // En la posición 16 se guarda el número 1 que sería el contador
 
 @0      // A es 0
 D=A     // D es 0
 @17     // A es 17
-M=D     // En la posición 17 se guarda el 0 (suma acumulada)
-
+M=D     // En la posición 17 se guarda el 0 que sería la suma
 (LOOP)  // Etiqueta del ciclo
 @16     // A es 16
 D=M     // D toma el valor que está en la posición 16 (i)
@@ -93,23 +94,23 @@ D=D-A   // Se resta 6 para comparar
 D;JGE    // Si i >= 6 salta a END para terminar
 
 @17     // A es 17
-D=M     // D toma el valor de la suma acumulada (RAM[17])
+D=M     // D toma el valor de la suma
 @16     // A es 16
 D=D+M   // D = suma + i
 @17     // A es 17
-M=D     // Guarda la nueva suma en RAM[17]
+M=D     // Guarda la nueva suma en la posición 17
 
 @16     // A es 16
 M=M+1   // Incrementa i en 1
 
 @LOOP
-0;JMP   // Salta al inicio del ciclo
+0;JMP   // Va a donde está la etiqueta
 
 (END)
 @17     // A es 17
-D=M     // D toma el valor final de la suma
+D=M     // D toma el valor de la suma
 @12     // A es 12
-M=D     // Guarda el resultado final en RAM[12]
+M=D     // Guarda el resultado en la posición 12
 
 (END_LOOP)
 @END_LOOP

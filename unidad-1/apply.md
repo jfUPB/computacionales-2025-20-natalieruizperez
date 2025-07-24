@@ -117,5 +117,7 @@ M=D     // Guarda el resultado final en RAM[12]
 
 ~~~
 
+A la hora de consultar pensé en la lógica a la hora de programar en c# y quería encontrar una forma de hacer ciclos donde se usa una variable que cuenta y otra para ir sumando. Quise hacer algo parecido en ensamblador pero no hay ciclos de ese tipo por lo que use etiquetas y saltos para repetir. Guardé el contador y la suma en diferentes posiciones de memoria para no mezclar las cosas. Cada vez que i es menor que 6, le sumo ese valor a la suma y luego aumento i. Cuando i llega a 6, paro el ciclo y guardo el resultado en la dirección 12.
+
 
 

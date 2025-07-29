@@ -46,7 +46,7 @@ M=1    // En la posición de screen guarda uno y se ve un pixel
 ** Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.**
 
 
-
+ACTIVIDAD 4 y 5
 
 
 ``` 

@@ -175,6 +175,9 @@ arroba p
 A=M
 M=D
 
+en la dirrecion 16 de la ram deberia aparecer el 10
+despues de ejecutar las dos instrucciones deberia de apaarecer la dirrecion de a (16) en la 17
+
 
 
 ``` 

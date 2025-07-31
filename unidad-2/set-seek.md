@@ -169,6 +169,12 @@ d igual a a
 p arroba
 m igual a d
 
+arroba 20
+d igual a a
+arroba p
+A=M
+M=D
+
 
 
 ``` 

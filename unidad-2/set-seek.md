@@ -332,34 +332,31 @@ b = *p;        // Se lee el contenido de a porque es el contenido de la variable
 El 5 que teníamos antes se convierte en un 10 en la última línea del código.
 
 **Código en lenguaje ensamblador**
+
 Hipótesis
 ```
 @10
 D-A
-arroba a
-m igual a d
+@A
+M=D
 
 
-arroba a
-d igual a a
-p arroba
-m igual a d
+@A
+D=A
+@p
+M=D
 
-arroba 20
-d igual a a
-arroba p
+@20
+D=A
+@p
 A=M
 M=D
 
-en la dirrecion 16 de la ram deberia aparecer el 10
-despues de ejecutar las dos instrucciones deberia de apaarecer la dirrecion de a (16) en la 17
-
-
-
-``` 
+```
+En el código de arriba en la dirrecion 16 de la ram deberia aparecer el 10. Después de ejecutar las dos instrucciones deberia de apaarecer la dirrecion de a (16) en la 17
 
 En lenguaje ensamblador
-@i
+@iy el 
 M=1
 @sum
 M=0
@@ -369,6 +366,7 @@ M=0
 
 @WILE
 0;JMP
+
 
 
 

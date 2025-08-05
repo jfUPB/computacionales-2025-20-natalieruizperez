@@ -18,7 +18,7 @@ Al desarrollarlo en clase me di cuenta que estaba cometiendo un gran error y era
 
 ```
 @SCREEN  //Es 16384
-M= 1    // En la posición de screen guarda uno y se ve un pixel
+M=1    // En la posición de screen guarda uno y se ve un pixel
 ```
 <img width="634" height="131" alt="image" src="https://github.com/user-attachments/assets/27835f1b-e326-4f29-8081-ff00cee125fd" />
 
@@ -26,15 +26,13 @@ M= 1    // En la posición de screen guarda uno y se ve un pixel
 
 **2. Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.**
 
-No tenía claro como empezar a programarlo en c++ ya que los lenguajes que usamos el semestre pasado eran python y c# que es el que usa unity. Pienso que para crearlo en c++ debe de tener una lógica similar pero como es otro lenguaje una forma de llamar las variables que desconozco.
+No tenía claro como empezar a programarlo en c++ ya que los lenguajes que usamos el semestre pasado eran python y c# que es el que usa unity. Pienso que para crearlo en c++ debe de tener una lógica similar, este es el que hicimos en clase.
 
 ``` c
 screen = -1;        // Le fuerza al compilador para que asigne la variable a 16384
 screen = 0xFFFF;    // En lo mismo que -1
-``` 
-  Este es el que hicimos en clase y lo que hacía era encender pixeles así que creo que para hacer lo mismo en c que el còdigo anterior se haría así:
-¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡
-
+```
+ 
 ---
 ### Actividad 02
 **1. Modifica el programa anterior para que dibuje una línea horizontal negra de 16 pixeles de largo en la esquina superior izquierda de la pantalla. (Recuerda que cada word en la memoria representa 16 pixeles).**
@@ -45,7 +43,7 @@ Esta es la predicción.
 @SCREEN  //Es 16384
 M=?   // En M se le debe de asignar un número que desconozco
 ```
-Se pone 0 ya que quiero apagar los píxeles. Por ejemplo, en la actividad anterior se ponía -1 porque 
+Se pone 0 ya que quiero apagar los píxeles. 
 ``` 
 @SCREEN  //Es 16384
 M=0   
@@ -64,6 +62,7 @@ screen = 0x0000;
 Modifica el programa de la actividad anterior de tal manera que puedas mover la línea horizontal de derecha a izquierda usando las teclas d y i respectivamente. Tu programa no tiene que verificar si la línea se sale de la pantalla.
 
   Este es el ejercicio que hicimos en clase:
+  
 ```
 @SCREEN
 M=-1
@@ -106,7 +105,7 @@ M=-1
 0;JMP
 ```
 
-Para hacer que funcione con el teclado es necesario acceder a @KBD entonces pienso que primero debo de buscar como se escribe d e i en KBD y luego poner las condiciones para que sepa el programa cuando usar cual.
+Para hacer que funcione con el teclado es necesario acceder a @KBD entonces pienso que primero debo de buscar como se escribe d e i en KBD y luego poner las condiciones.
 ```
 @SCREEN
 M=-1
@@ -161,6 +160,7 @@ M=-1
 @IZQUIERDA
 0;JMP
 ```
+
 Al analizar mi hipótesis me doy cuenta que esta erronea porque no se pueden guardar valores en la dirección del teclado, tenía un error conceptual. Inicialmente pensé que era posible hacerlo porque estaba teniendo en cuenta como trabajamos con screen pero son cosas diferentes. También se me olvidó comparar los valores.
 ```
 @SCREEN
@@ -223,6 +223,29 @@ M=-1
 0;JMP
 ```
 
+Ahora al programarlo en el otro lenguaje creo que quedaría algo así
+
+```
+screen = 0xFFFF;   
+contador = 0;
+// Bucle       
+while (true) {
+    if (kbd == 100) {         // Si se apreta d
+        screen[contador] = 0;      // Apaga pixel
+        contador =  contador + 1;        // Se le suma uno y va a la derecha
+        screen[contador] = 0xFFFF; // Muestra donde queda
+    }
+
+    if (kbd == 105) {         //  Si se apreta i
+        screen[contador] = 0;      // Apaga pixel
+        contador = contador - 1;        // Se le resta uno y va a la izquierda
+        screen[contador] = 0xFFFF; // Muestra donde queda
+    }
+}
+
+```
+Al comparar ambos lenguajes me doy cuenta que es posible obtener un resultado más corto al no usar el lenguaje ensamblador ya que este otro es con más estructura.
+
 ---
 
 ### Actividad 04
@@ -273,20 +296,6 @@ int sum=0;
 for(int i = 1; i <=100; i++){
    sum+= i;
 }
-
-Código en c++
-``` c++
-int tmp
-while(1)
-{
-tmp = KDB;
-
-if(tmp ==100){
-//DERECHA
-}
-elsee if(tmp ==105){
-//IZQUIERDA
-}
 ```
 
 Ahora teniendo este programa hay que pasarlo a lenguaje ensamblador
@@ -310,17 +319,51 @@ Un puntero es una variable en la que se guardan direcciones.
 ``` 
 int i = 5;          // Int i variable en la que se guarda un valor entero
 int* ptr = &i;      // ptr guarda la dirección de un objeto, un flotante u otra cosa por lo que hay que especificar que tipo de dirección es.
-Para invocar una dirección le pongo la "&" adelante.
+Para invocar una dirección le pongo la "&" adelante. 
 
 ```
-
+Código del enunciado
 ``` 
 int a = 10;
 int* p;        // Declaro nueva variable p que es un puntero
 p = &a;        // Luego la defino y estoy guardando la dirección de a
 *p = 20;       // Modificando la variable a través del puntero y el 10 se vuelve 20
 ``` 
+Esta es la hipótesis de cómo se haría en lenguaje ensamblador
 
+```
+@10           //A es 10
+@PUNTERO      // Aquí estoy creando la variable de puntero
+A=M           // Para guardar la A en P
+@20           // A es 20
+A=M           // Para que se guarde el 20 en p
+``` 
+Está mala mi hipótesis ya que por intentar seguir el código de arriba al pie de la letra me distraje y olvidé los principios entonces sobreescribí A pensando en que estaba creando variables. Tampoco se guarde a en la memoria. El código corregido quedaría así
+
+```
+// int a = 10
+@10       // A es 10
+D=A       // D es 10
+@a 
+M=D       // Se guarda el 10 en a
+
+// int* p;
+// p = &a;
+@a       
+D=A      // En D pone a
+@p       
+M=D     // Guarda a en p
+
+// *p = 20;
+@20      // A es 20
+D=A      // D es 20
+@p       
+A=M     // A es lo que está guardado en p que es a
+M=D     // a es 20
+
+```
+
+Este es el otro código que hay que pasar a lenguaje ensamblador
 ``` 
 int a = 10;
 int b = 5;
@@ -328,45 +371,70 @@ int *p;        // Declarando p
 p = &a;        // Luego en p guardo la dirección de la a
 b = *p;        // Se lee el contenido de a porque es el contenido de la variable a la que apunto
 ```
-
-El 5 que teníamos antes se convierte en un 10 en la última línea del código.
-
-**Código en lenguaje ensamblador**
-
-Hipótesis
+Mi hipótesis es la siguiente.
 ```
-@10
-D-A
-@A
-M=D
+// int a = 10;
+@10          // A es 10
+D=A          // D es 10
+@a
+M=D          // Se guarda 10 en a
 
+// int b = 5;
+@5           // A es 5
+D=A          // D es 5
+@b            
+M=D          // Se guarda 5 en b
 
-@A
-D=A
+// int *p;
+// p = &a;
+// Esta parte es la misma que la de arriba
+@a
+D=A          
 @p
-M=D
+M=D          
 
-@20
-D=A
+
+// b = *p;
 @p
-A=M
-M=D
+D=A         // D es p
+@b            
+M=A         // Se guarda b
+
 
 ```
-En el código de arriba en la dirrecion 16 de la ram deberia aparecer el 10. Después de ejecutar las dos instrucciones deberia de apaarecer la dirrecion de a (16) en la 17
 
-En lenguaje ensamblador
-@iy el 
-M=1
-@sum
-M=0
+Veo que hacer el ejercicio pasado me sirvió para entender la lógica del principio del programa pero todavía tengo vacíos al final. Veo que en mi hipótesis me equivoqué en la forma de acceder al valor del puntero, como lo hice no tuve en cuenta el valor si no la dirección. 
 
-(WHILE)     //Etiqueta para mostrar que se viene un ciclo
+```
+// int a = 10;
+@10          // A es 10
+D=A          // D es 10
+@a
+M=D          // Se guarda 10 en a
 
+// int b = 5;
+@5           // A es 5
+D=A          // D es 5
+@b            
+M=D          // Se guarda 5 en b
 
-@WILE
-0;JMP
+// int *p;
+// p = &a;
+// Esta parte es la misma que la de arriba
+@a
+D=A          
+@p
+M=D          
 
+// b = *p;    // Lee el valor apuntado por p (que es a) y lo guarda en b
+@p
+A=M         
+D=M          
+@b
+M=D         // En b se guarda el valor de D 
+
+```
+Un puntero guarda la dirección de otra variable y también permite acceder o cambiar su valor. En lenguaje ensamblador hay que hacer todo paso a paso, pero en otros lenguajes de programación es más fácil porque se usan símbolos. En cambio, en ensamblador todo se hace manualmente. Los ejercicios me sirvieron para entender mejor cómo funciona la memoria y también para aprender a interpretar códigos y pasarlos a otros lenguajes.
 
 
 

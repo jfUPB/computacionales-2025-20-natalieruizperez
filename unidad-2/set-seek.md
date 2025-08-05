@@ -311,6 +311,8 @@ Al analizar ambos programas en lenguaje ensamblador me doy cuenta que son muy pa
 
 En conclusión son programas equivalentes y hacen lo mismo, por lo tanto deberían de tener un código ensamblador igual. El compilador saben que son iguales.
 
+---
+
 ### Actividad 05
 Interpretación de código.
 
@@ -371,7 +373,7 @@ int *p;        // Declarando p
 p = &a;        // Luego en p guardo la dirección de la a
 b = *p;        // Se lee el contenido de a porque es el contenido de la variable a la que apunto
 ```
-Mi hipótesis es la siguiente.
+Mi hipótesis es la siguiente
 ```
 // int a = 10;
 @10          // A es 10
@@ -399,8 +401,6 @@ M=D
 D=A         // D es p
 @b            
 M=A         // Se guarda b
-
-
 ```
 
 Veo que hacer el ejercicio pasado me sirvió para entender la lógica del principio del programa pero todavía tengo vacíos al final. Veo que en mi hipótesis me equivoqué en la forma de acceder al valor del puntero, como lo hice no tuve en cuenta el valor si no la dirección. 
@@ -435,6 +435,7 @@ M=D         // En b se guarda el valor de D
 
 ```
 Un puntero guarda la dirección de otra variable y también permite acceder o cambiar su valor. En lenguaje ensamblador hay que hacer todo paso a paso, pero en otros lenguajes de programación es más fácil porque se usan símbolos. En cambio, en ensamblador todo se hace manualmente. Los ejercicios me sirvieron para entender mejor cómo funciona la memoria y también para aprender a interpretar códigos y pasarlos a otros lenguajes.
+
 
 
 

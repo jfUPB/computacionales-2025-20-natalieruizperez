@@ -21,7 +21,8 @@ Al desarrollarlo en clase me di cuenta que estaba cometiendo un gran error y era
 M= 1    // En la posición de screen guarda uno y se ve un pixel
 ```
 <img width="634" height="131" alt="image" src="https://github.com/user-attachments/assets/27835f1b-e326-4f29-8081-ff00cee125fd" />
-En la foto se puede ver el pixel y cómo se guarda en la posición de la memoria el valor 1.
+
+  En la foto se puede ver el pixel y cómo se guarda en la posición de la memoria el valor 1.
 
 **2. Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.**
 
@@ -51,7 +52,7 @@ M=0
 ```
 <img width="1823" height="345" alt="image" src="https://github.com/user-attachments/assets/72527ffd-aa31-4687-8c13-40be4e53f0a3" />
 
-** Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.**
+**Traduce este programa a lenguaje C++ para que relaciones cómo los conceptos de alto nivel se traducen a bajo nivel.**
 Teniendo en cuenta el ejercicio anterior pienso que seguiría la misma lógica entonces usé el código pasado y puse todo en 0.
 
 ``` 
@@ -227,6 +228,8 @@ M=-1
 ### Actividad 04
 Convierte un ciclo while en un ciclo for
 
+  Se observa este programa 
+  
 ``` 
 //Adds 1+...+100.
  int i=1;
@@ -237,21 +240,9 @@ Convierte un ciclo while en un ciclo for
     i++;
  }
 ```
-@i
-M=1
-@sum
-M=0
 
-(WHILE)     //Etiqueta para mostrar que se viene un ciclo
-
-
-@WILE
-0;JMP
+Que se traduce a ensamblador como 
 ```
-
-
-
- Se traduce a ensamblador como 
  // Adds1+...+100.
  @i // i refers to some memory location.
  M=1 // i=1
@@ -296,24 +287,32 @@ if(tmp ==100){
 elsee if(tmp ==105){
 //IZQUIERDA
 }
-``` 
+```
 
-El progrma ensamblador tiene que ser el mismo ya que son dos formas distintas de escribirlo.
+Ahora teniendo este programa hay que pasarlo a lenguaje ensamblador
+```
+//Adds 1+...+100.
+int sum=0;
+for(int i = 1; i <=100; i++){
+   sum+= i;
+}
+```
 
-Simulación tiene que ser con predección, análisis y conclusión. Qué conclusiones has sacado
-Son programas equivalentes y hacen lo mismo, por lo tanto deberían de tener un código ensamblador igual. El compilador saben que ambo son lo mismo.
+Al analizar ambos programas en lenguaje ensamblador me doy cuenta que son muy parecidos porque en el lenguaje ensablador no hay ciclos for o while así que es lo mismo porque siguen la misma lógica pero tienen distintas formas de escribirlo. Eso pasa porque como el lenguaje ensamblador es de bajo nivel puede recibir y procesar instrucciones simples, en cambio las de alto nivel usan otras formas de escribir el código como más resumida.
+
+En conclusión son programas equivalentes y hacen lo mismo, por lo tanto deberían de tener un código ensamblador igual. El compilador saben que son iguales.
+
+### Actividad 05
+Interpretación de código.
 
 Un puntero es una variable en la que se guardan direcciones.
-
 
 ``` 
 int i = 5;          // Int i variable en la que se guarda un valor entero
 int* ptr = &i;      // ptr guarda la dirección de un objeto, un flotante u otra cosa por lo que hay que especificar que tipo de dirección es.
 Para invocar una dirección le pongo la "&" adelante.
 
-``` 
-### Actividad 05
-Interpretación de código.
+```
 
 ``` 
 int a = 10;
@@ -359,6 +358,17 @@ despues de ejecutar las dos instrucciones deberia de apaarecer la dirrecion de a
 
 ``` 
 
+En lenguaje ensamblador
+@i
+M=1
+@sum
+M=0
+
+(WHILE)     //Etiqueta para mostrar que se viene un ciclo
+
+
+@WILE
+0;JMP
 
 
 

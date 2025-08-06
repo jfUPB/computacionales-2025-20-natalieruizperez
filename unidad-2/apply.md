@@ -23,7 +23,7 @@ Teniendo esto en cuenta voy a hacer la primera prueba para ver si funciona el c�
 ```
 @0                   // A es 0
 D=A                  // D es 0 que sería sum
-@i                   // Para guardar aquí la suma
+@sum                   // Para guardar aquí la suma
 M=D                  // La suma se guarda en la posición 16
 
 //Hasta aquí creo que voy bien porque logicamente le veo sentido
@@ -31,16 +31,16 @@ M=D                  // La suma se guarda en la posición 16
 
 @1
 D=D+A                // Ahora la suma debería ser 1
-@i
+@sum
 M=D                 // Aquí ya debería de sobrescribir la suma a la nueva
 
 ```
-Acá ya tengo dudas de como ponerme a hacer el ciclo porque ya se me ocurre es hacer @2 y volver a copiar el último bloque pero creo que quedaría un código muy largo entonces voy a consultar.
+Analizando el código que hice me di cuenta que en ninguna parte intenté crear j entonces haré a continuación otra hipótesis. La forma anterior es muy tediosa ya que tendría que hacer el ciclo con @2 y volver a copiar el último bloque, sería un código muy extenso.
 
 ```
 @0                  // A es 0
 D=A                 // D es 0
-@i                  // Para guardar aquí la suma
+@sum                // Para guardar aquí la suma
 M=D                 // En la posición i se guarda D que es 0
 
 @0                  // A es 0
@@ -56,5 +56,6 @@ Considera que los datos del arreglo están almacenados desde la dirección 16. I
 Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
 Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
 Muestra el programa final y cómo lo probaste.
+
 
 

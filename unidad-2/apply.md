@@ -49,13 +49,42 @@ D=A                 // D es 0
 M=D                 // En la posición j se guarda el 0
 
 ```
-Aquí volví a intentar el código 
+Aquí volví a intentar el código pero no recordaba bien como crear el puntero así que decidí devolverme a la actividad anterior y me sirvió para recordar conceptos y el cómo se traducía el puntero el lenguaje ensamblador.
+```
+// int *p;
+// p = &a;
+// Esta parte es la misma que la de arriba
+@a
+D=A          
+@p
+M=D      
+```
+Teniendo en cuenta el código anterior crearé el puntero.
+```
+@0                  // A es 0
+D=A                 // D es 0
+@sum                // Para guardar aquí la suma
+M=D                 // En la posición i se guarda D que es 0
+
+@0                  // A es 0
+D=A                 // D es 0
+@j                  // Aquí sería como para hacer un for en el que j empieza en 0 y luego para saber en que parte del ciclo va
+M=D                 // En la posición j se guarda el 0
+
+@16                // A es 16
+D=A                // D es 16
+@p                 // Dirección p
+M=D                // p es 16 y estaría al principio del arreglo
+
+```
+
 
 
 Considera que los datos del arreglo están almacenados desde la dirección 16. Inicializa el arreglo en lenguaje ensamblador.
 Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
 Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
 Muestra el programa final y cómo lo probaste.
+
 
 
 

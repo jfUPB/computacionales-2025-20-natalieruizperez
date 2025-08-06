@@ -59,7 +59,7 @@ D=A
 @p
 M=D      
 ```
-Teniendo en cuenta el código anterior crearé el puntero.
+Teniendo en cuenta el código anterior crearé el puntero e intentaré usarlo.
 ```
 @0                  // A es 0
 D=A                 // D es 0
@@ -76,7 +76,14 @@ D=A                // D es 16
 @p                 // Dirección p
 M=D                // p es 16 y estaría al principio del arreglo
 
+@1
+D=A
+@sum
+M=M+D 
+
 ```
+Me di cuenta que este código tiene un error después de que pongo el puntero porque estoy volviendo a hacer la suma manualmente y no uso el arreglo que cree.
+
 
 
 
@@ -84,6 +91,7 @@ Considera que los datos del arreglo están almacenados desde la dirección 16. I
 Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
 Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
 Muestra el programa final y cómo lo probaste.
+
 
 
 

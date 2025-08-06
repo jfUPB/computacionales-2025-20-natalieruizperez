@@ -15,7 +15,7 @@ for (int j = 0; j < 10; j++) {
 }
 ```
 
-**Implementa el programa anterior en lenguaje ensamblador aplicando el concepto de punteros.**
+**Implementa el programa anterior en lenguaje ensamblador aplicando el concepto de punteros y considera que los datos del arreglo están almacenados desde la dirección 16. Inicializa el arreglo en lenguaje ensamblador.**
 Primero voy a analizar el programa, veo que tengo una lista de números del 1 al 10 y también una variable suma que inicia en 0 que sirve para acumular valores. Después veo que hay un ciclo que empieza en 0 y se repite varias veces hasta que la variable j es menor que 10. Cada vez que sucede el ciclo se toma el valor de la sum + el número que está en la posición j.
 
 Teniendo esto en cuenta voy a hacer la primera prueba para ver si funciona el código 
@@ -82,15 +82,50 @@ D=A
 M=M+D 
 
 ```
-Me di cuenta que este código tiene un error después de que pongo el puntero porque estoy volviendo a hacer la suma manualmente y no uso el arreglo que cree.
+Me di cuenta que este código tiene un error después de que pongo el puntero porque estoy volviendo a hacer la suma manualmente y no uso el arreglo que cree entonces debo de editar el código. Además necesito implementar un ciclo como el for. En la activiad anterior se llegó a la conclusión de que no es posible crearlo de forma sencilla así que usaré una etiqueta.
+```
+@0                  // A es 0
+D=A                 // D es 0
+@sum                // Para guardar aquí la suma
+M=D                 // En la posición i se guarda D que es 0
+
+@0                  // A es 0
+D=A                 // D es 0
+@j                  // Aquí sería como para hacer un for en el que j empieza en 0 y luego para saber en que parte del ciclo va
+M=D                 // En la posición j se guarda el 0
+
+@16                // A es 16
+D=A                // D es 16
+@p                 // Dirección p
+M=D                // p es 16 y estaría al principio del arreglo
 
 
+(LOOP)      // Donde empeieza el ciclo, ya tengo creados el arreglo, puntero y suma
+@p
+D=M        Digo que p es lo que está en la dirección p o sea 16
+A=M
+  
 
+    @sum
+    M=M+D      // sum += *p
 
-Considera que los datos del arreglo están almacenados desde la dirección 16. Inicializa el arreglo en lenguaje ensamblador.
-Simula paso a paso el programa en ensamblador. Recuerda la metodología: predice, ejecuta, observa y reflexiona.
+    @p
+    M=M+1      // p++
+
+    @j
+    M=M+1      // j++
+
+    @j
+    D=M
+    @10
+    D=D-A
+    @LOOP
+    D;JLT      // mientras j < 10, repetir
+```
+
 Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
 Muestra el programa final y cómo lo probaste.
+
 
 
 

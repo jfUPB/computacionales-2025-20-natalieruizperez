@@ -106,10 +106,10 @@ D=M        Digo que p es lo que está en la dirección p o sea 16
 A=M
   
 
-    @sum
-    M=M+D      // sum += *p
+@sum
+M=M+D      // sum += *p
 
-    @p
+ @p
     M=M+1      // p++
 
     @j
@@ -125,6 +125,7 @@ A=M
 
 Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
 Muestra el programa final y cómo lo probaste.
+
 
 
 

@@ -133,27 +133,62 @@ M=D                // p es 16 y estaría al principio del arreglo
 
 (LOOP)      // Donde empeieza el ciclo, ya tengo creados el arreglo, puntero y suma
 @p          // Lo mismo del código anterior pero poniéndolo en el ciclo porque quiero que se repita
-A=M
+A=M         
 D=M         
 @sum
 M=M+D      
 
 @p
-M=M+1      // p++
+M=M+1      // Al valor que está en esa posición p de memoria le suma 1 para que pueda apuntar en otra dirección
+A=M        // A es la dirección hacia donde apunta el p
+D=M        // D es el valor en esa dirección
 
 @j
-M=M+1      // j++
+M=M+1      // Al valor que está en esa posición j de memoria le suma 1
 
-@j
-D=M
-@10
-D=D-A
-@LOOP
-D;JLT      // mientras j < 10, repetir
 ```
+### Prueba 07
+Veo que en mi hipótesis hice las cosas por costumbre y no pensando bien, porque cometí el error de aumentar el puntero p y después leer el valor, pero no sumarlo a sum. Por eso, la suma no se actualiza correctamente. También me falto la condición que hace que se detenga el ciclo.
 
-Construye tu programa PASO A PASO mediante pruebas. Indica qué característica vas a implementar con cada prueba y cómo la probaste.
+```
+@0                  // A es 0
+D=A                 // D es 0
+@sum                // Para guardar aquí la suma
+M=D                 // En la posición i se guarda D que es 0
+
+@0                  // A es 0
+D=A                 // D es 0
+@j                  // Aquí sería como para hacer un for en el que j empieza en 0 y luego para saber en que parte del ciclo va
+M=D                 // En la posición j se guarda el 0
+
+@16                // A es 16
+D=A                // D es 16
+@p                 // Dirección p
+M=D                // p es 16 y estaría al principio del arreglo
+
+
+(LOOP)      // Donde empeieza el ciclo, ya tengo creados el arreglo, puntero y suma
+@p          // Lo mismo del código anterior pero poniéndolo en el ciclo porque quiero que se repita
+A=M         
+D=M         
+@sum
+M=M+D      
+
+@p
+M=M+1      // p va a la siguiente dirección
+
+@j
+M=M+1      // Al valor que está en esa posición j de memoria le suma 1
+
+@j         // A es j
+D=M        // Guarda el nuevo valor de j
+@10        // A es 10
+D=D-A      // Hago la comparación
+@LOOP      // Va a la etiqueta 
+D;JLT      // Solo si j es menor a 10
+```
 Muestra el programa final y cómo lo probaste.
+
 
 
 

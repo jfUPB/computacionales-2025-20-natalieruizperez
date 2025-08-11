@@ -7,7 +7,6 @@
 
 #### Parte 1: recuperación de conocimiento (retrieval practice)
 
-
 1. Explica cómo se representa y manipula un puntero en el lenguaje ensamblador de Hack. Describe las operaciones equivalentes a p = &a (asignar dirección) y *p = 20 (escribir a través del puntero) usando instrucciones de ensamblador
 
 Un puntero lo represento con @p y en esta dirección es donde guardo la dirección a donde quiero apuntar. A  a p = &a sería equivalente a @a que es el valor, luego D=A, después @p y ya con M=D se le está asignando a p la dirección de a. Ahora para *p = 20  empiezo con @20, después D=A y @p. Luego se pondría A=M para que p apunte y finalmente M=D para guardar el 20.
@@ -64,6 +63,7 @@ Le doy un 5, la última actividad me pareció muy difícil y con la metodología
 ***5. Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?**
 
 Me siento satisfecha con la fase de set-seek, siento que aprendí y las explicaciones en clase me sirvieron. No la sentí forzada y me pareció que tenía una dificicultad progresiva. En cambio, la de apply me pareció muy difícil de abordar.
+
 
 
 

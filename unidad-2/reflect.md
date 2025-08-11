@@ -40,6 +40,16 @@ Me siento más cómoda identificando los if y while.
 https://github.com/jfUPB/computacionales-2025-20-EstefaniaAO
 
 **Describe detalladamente qué pruebas vas a realizar para saber si el programa funciona correctamente. Reporta los resultados de las pruebas.**
+Seguí paso a paso lo que decía mi compañera para verificar que estuviese correcto. Lo haré únicamente con los que confirma que funcionan ya que se muestre una reflexión del error.
+
+  Si se crea el arreglo.
+<img width="1004" height="476" alt="image" src="https://github.com/user-attachments/assets/ec8ae027-dd09-46f6-aa1a-ec133ff03fe9" />
+
+El código final funciona.
+<img width="1842" height="406" alt="image" src="https://github.com/user-attachments/assets/2b653d37-5d39-4353-8430-a4f473968665" />
+
+
+Hizo un buen análisis, cada una con su objetivo, predicción, prueba y reflexión. Me gustó esa forma de trabajar, es organizada y hace enfásiis en entender qué se aprendió. En el futuro lo quiero usar para códigos pero que no sean tan largos ya que personnalmente pierdo la concentración. Me pareció muy interesante ver como escribía varias veces un código que no existía, eso demuestra que hace un gran esfuerzo por pensar en la lógica de cómo funciona el programa.
 
 
 ---
@@ -63,6 +73,7 @@ Le doy un 5, la última actividad me pareció muy difícil y con la metodología
 ***5. Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?**
 
 Me siento satisfecha con la fase de set-seek, siento que aprendí y las explicaciones en clase me sirvieron. No la sentí forzada y me pareció que tenía una dificicultad progresiva. En cambio, la de apply me pareció muy difícil de abordar.
+
 
 
 

@@ -8,15 +8,20 @@
 #### Parte 1: recuperación de conocimiento (retrieval practice)
 
 
-**1. Explica cómo se representa y manipula un puntero en el lenguaje ensamblador de Hack. Describe las operaciones equivalentes a p = &a (asignar dirección) y *p = 20 (escribir a través del puntero) usando instrucciones de ensamblador.
+**1. Explica cómo se representa y manipula un puntero en el lenguaje ensamblador de Hack. Describe las operaciones equivalentes a p = &a (asignar dirección) y *p = 20 (escribir a través del puntero) usando instrucciones de ensamblador**
+
+Un puntero lo represento con @p y en esta dirección es donde guardo la dirección a donde quiero apuntar. A  a p = &a sería equivalente a @a que es el valor, luego D=A, después @p y ya con M=D se le está asignando a p la dirección de a. Ahora para *p = 20  empiezo con @20, después D=A y @p. Luego se pondría A=M para que p apunte y finalmente M=D para guardar el 20.
 
 **2. ¿Cómo implementarías el acceso a un elemento de un arreglo, como arr[j], en lenguaje ensamblador? Describe el rol de la dirección base del arreglo y el índice j en esta operación.**
+
+No me quedó clara la última activdad de apply así que no estoy muy segura de como se haría. Creo que crearía donde guardar el arreglo y luego j y haría D=D=A para que se sumen. La dirección base es donde comienta el arreglo y el indice j sería una especie de contador.
 
 
 #### Parte 2: reflexión sobre tu proceso (metacognición)
 
 
 **1. ¿Cuál fue el concepto más abstracto o difícil de “traducir” de C++ a ensamblador en esta unidad (punteros, ciclos, arreglos)? ¿Qué hiciste para lograr entenderlo?**
+
 Los punteros fue lo más difícil, especialmente en la última actividad, eran muchísimas cosas a tener en cuenta.
 
 **2. En la Actividad 06 se sugirió construir el programa “PASO A PASO mediante pruebas”. ¿Cómo te ayudó este enfoque a manejar la complejidad del problema?**
@@ -26,7 +31,7 @@ Personalmente no me ayudó, hizo lo contrario. Debido a tantas pruebas me quedab
 
 **3. Esta unidad fue el “puente” hacia C++. ¿Qué concepto de bajo nivel te sientes más seguro de poder identificar cuando lo veas implementado en C++?**
 
-Definitivamente los ciclos.
+Me siento más cómoda identificando los if y while.
 
 ---
 
@@ -59,4 +64,5 @@ Le doy un 5, la última actividad me pareció muy difícil y con la metodología
 ***5. Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?**
 
 Me siento satisfecha con la fase de set-seek, siento que aprendí y las explicaciones en clase me sirvieron. No la sentí forzada y me pareció que tenía una dificicultad progresiva. En cambio, la de apply me pareció muy difícil de abordar.
+
 

@@ -3,63 +3,60 @@
 
 ## 🤔 Fase: Reflect
 
-### Actividad 05
+### Actividad 07
 
 #### Parte 1: recuperación de conocimiento (retrieval practice)
 
-**1. Describe con tus palabras las tres fases del ciclo Fetch-Decode-Execute. ¿Qué rol juega el Program Counter (PC) en este ciclo?**
 
-El program counter juega el programa de mostrar cuál línea es la que se va a ejecutar, sirve para saber en qué parte del código vamos cuando lo estamos probando. La fase fetch consiste en buscar, la decode en decodificar que sería procesar la información y la execute es para ejecutar la acción.
+**1. Explica cómo se representa y manipula un puntero en el lenguaje ensamblador de Hack. Describe las operaciones equivalentes a p = &a (asignar dirección) y *p = 20 (escribir a través del puntero) usando instrucciones de ensamblador.
 
-**2. ¿Cuál es la diferencia fundamental entre una instrucción-A (que empieza con @) y una instrucción-C (que involucra D, M, A, etc.) en el lenguaje ensamblador de Hack? Da un ejemplo de cada una.**
+**2. ¿Cómo implementarías el acceso a un elemento de un arreglo, como arr[j], en lenguaje ensamblador? Describe el rol de la dirección base del arreglo y el índice j en esta operación.**
 
-La instrucción A es una que podemos modificar constantemente y la única forma de asignarle valor a las variables, si queremos asignarle a D un número no se puede hacer directamente, solo si decimos que D=A. Otra sería cuando quiero guardar algo en la memoria que hago M=D, está instrucción tiene en cuenta el valor de A que es en donde se va a almacenar el valor de D.
-
-**3. Explica la función de los siguientes componentes del computador Hack: el registro D, el registro A y la ALU.**
-
-ALU sirve para hacer operaciones como por ejemplo D=D-A, también los saltos. El registro A se puede cambiar para crear valores diferentes y también para acceder a una dirección específica de memoria. En cambio la D se usa temporalmente para cálculos.
-
-**4. ¿Cómo se implementa un salto condicional en Hack? Describe un ejemplo (p. ej., saltar si el valor de D es mayor que cero).**
-
-Un salto condicional en hack se hace con D=D-A y lueg poniendo la condición como por ejemplo D;JGT.
-
-**5. ¿Cómo se implementa un loop en el computador Hack? Describe un ejemplo (p. ej., un loop que decremente un valor hasta que llegue a cero).**
-
-Primero se pone una etiqueta para saber donde empieza el loop y al final se le asigna a A ese valor para qu vaya a la etiqueta si sucede un condicional.
-
-**6. ¿Cuál es la diferencia entre la instrucción D=M y la instrucción M=D?**
-
-M=D hace que se guarde el valor de D en la dirección de la memoria de A, mientras que D=M toma el valor que está en la dirección de la memoria de A.   
-
-**Describe brevemente qué se necesita para leer un valor del teclado (KBD) y para “pintar” un pixel en la pantalla (SCREEN).**
-
-Para leer un valor de teclado KBD es necesario poner @KBD y luego guardarlo diciendo D=M. Ahora para pintar un pixel en screen sería poner @screen y luego M=1.
 
 #### Parte 2: reflexión sobre tu proceso (metacognición)
 
-**1. ¿Cuál fue el concepto o actividad más desafiante de esta unidad para ti y por qué?**
 
-La última me pareció excesivamente difícil, era muy manual y había que hacer un código largo ya que no hay una fomra sencilla de programar lenguaje ensamblado. En general me pareció muy confuso.
+**1. ¿Cuál fue el concepto más abstracto o difícil de “traducir” de C++ a ensamblador en esta unidad (punteros, ciclos, arreglos)? ¿Qué hiciste para lograr entenderlo?**
+Los punteros fue lo más difícil, especialmente en la última actividad, eran muchísimas cosas a tener en cuenta.
 
-**2. La metodología de “predecir, ejecutar, observar y reflexionar” fue central en nuestras actividades. ¿En qué momento esta metodología te resultó más útil para entender algo que no tenías claro?**
+**2. En la Actividad 06 se sugirió construir el programa “PASO A PASO mediante pruebas”. ¿Cómo te ayudó este enfoque a manejar la complejidad del problema?**
 
-Esa metodología me ha servido bastante a lo largo del curso pero en la última actividad seguir esta metodología me pareció muy complicado porque era un proceso muy largo y por tener tantos códigos en la pantalla me perdía y no sabía qué estaba haciendo. Más que servir para reflexionar me pareció que creaba desorden-
-
-**3. Describe un momento “¡Aha!” que hayas tenido durante estas dos semanas. ¿Qué estabas haciendo cuando ocurrió?**
+Personalmente no me ayudó, hizo lo contrario. Debido a tantas pruebas me quedaban  muchos bloques de código y me perdía en qué estaba haciendo.
 
 
-**4. Pensando en la próxima unidad, ¿Qué harás diferente en tu proceso de estudio para aprender de manera más efectiva?**
-Quizás no predecir tanto en actividades en las que haya que hacer un código muy largo porque personalmente ese proceso no me sirvió en esos casos específicos.
+**3. Esta unidad fue el “puente” hacia C++. ¿Qué concepto de bajo nivel te sientes más seguro de poder identificar cuando lo veas implementado en C++?**
 
-### Actividad 07 - Feedback
+Definitivamente los ciclos.
+
+---
+
+### Actividad 08 - Coevaluación.
+
+**Copia la URL de un compañero**
+https://github.com/jfUPB/computacionales-2025-20-EstefaniaAO
+
+**Describe detalladamente qué pruebas vas a realizar para saber si el programa funciona correctamente. Reporta los resultados de las pruebas.**
+
+
+---
+### Actividad 09 - Feedback
 **1. Continuar: ¿Qué aspecto de las actividades, las explicaciones o la dinámica de la clase te ha resultado más útil o te ha gustado más y debería seguir haciendo?**
-Me gustó que en clase
+
+Me gustó que en clase hicieramos gran parte del set-seek porque me sirvió para comprender mejor conceptos, las explicaciones en clase me parecen muy útiles y me parece que sirven para llenar vacíos.
 
 **2. Dejar de hacer: ¿Qué aspecto de la unidad te ha resultado confuso, poco útil o frustrante? ¿Hay algo que crees que debería eliminar o cambiar drásticamente?**
 
+La última actividad de la fase apply, me pareció muy frustrante y confuso, me hubiese gustado que en clase empezaramos a crearlos juntos para tener más clara la lógica y el como crearlo y depués terminarlo individualmente.
+
 **3. Empezar a hacer: ¿Qué te habría gustado que hiciéramos que no hicimos? ¿Tienes alguna idea para una actividad o un recurso que podría mejorar el aprendizaje en la próxima unidad?**
 
+Lo mismo que mencioné en la actividad pasada. Me hubiese gustado que en clase empezaramos a crear entre todos el punto de la fase apply para tener más clara la lógica y depués terminarlo individualmente. Así creo que hubiese tenido más claro como abordar el problema.
+
 **4. Ritmo y Dificultad: en una escala del 1 (muy fácil/lento) al 5 (muy difícil/rápido), ¿Cómo calificarías el ritmo y la dificultad general de esta unidad? ¿Por qué?**
+
 Le doy un 5, la última actividad me pareció muy difícil y con la metodología se me complicó aún más.
 
 ***5. Comentario Adicional: ¿Hay algo más que te gustaría compartir sobre tu experiencia de aprendizaje en esta unidad?**
+
+Me siento satisfecha con la fase de set-seek, siento que aprendí y las explicaciones en clase me sirvieron. No la sentí forzada y me pareció que tenía una dificicultad progresiva. En cambio, la de apply me pareció muy difícil de abordar.
+

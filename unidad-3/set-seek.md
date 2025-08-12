@@ -5,7 +5,7 @@
 ### Actividad 01
 Toma de nota actividad
 
-´´´ 
+``` c++
 #include <iostream>
 #include <iostream>
 
@@ -20,6 +20,7 @@ int main()
     int b = 7;
     std::cout << "La suma de " << a << " y " << b << " es " << sum(a, b) << "\n";  //Para acceder al objeto de salida y se le va a enviar la suma del valor de a, más el valor del valor b y se manda la función de la suma
 }
+```
 
 #### Reflexión
 **1. ¿Para qué sirven los breakpoints?**
@@ -42,8 +43,8 @@ La depuración en autos sirve para que todas las variables locales que se van de
 
 Análisis de código
 
+```c++
 #include <iostream>
-
 using namespace std;
 
 // Función que modifica el parámetro pasado por valor
@@ -90,6 +91,7 @@ int main() {
 
     return 0;
 }
+```
 
 **1. Predicción: antes de ejecutar el programa, predice la salida de cada función y explica el resultado.**
 Declaramos las variables como enteros, luego mandamos al objeto unos valores. Para A aparecerá un 10, luego el 10 se aumentará a 15 y al realizar la operación A debería de tener el valor de 15. **Esto es erroneo porque en realidad se crea una copia del valor de a en otra variable y al salir de la función se destruye por lo que queda con el valor inicial que era 0**
@@ -108,4 +110,40 @@ Crea un proyecto de consola en Visual Studio. Implementa swapPorValor(int a, int
 
 **Código**
 
+Hay que hacer 3, intentar hacerlo modificando el código que ya tenemos, hay que cambiar los mensajes que se van a imprimir y las funciones
+
+swapPorValor(int a, int b) -
+
+```c++
+void swapPorValor(int a, int b) {
+    cout << "Dentro de swapPorValor. a,b: " << a << "," << b << endl;
+    
+    int tmp = b
+        b = a; 
+    a = tmp;
+    a = b;
+
+    cout << "Dentro de swapPorValor valores modificados. a,b: " << a << "," << b << endl;
+}
+
+int main() {
+    int a = 10;
+    int b = 20;
+    int c = 10;
+
+    cout << "Valor inicial de a (paso por valor): " << a << endl;
+    cout << "Valor inicial de b (paso por referencia): " << b << endl;
+    cout << "Valor inicial de c (paso por puntero): " << c << endl;
+
+    cout << "\nLlamando a swapPorValor(a)..." << endl;
+    swapPorValor(a,b);
+    cout << "Después de swapPorValor, valor de a,b: " << a << "," << b <<  endl;
+    return 0;
+}
+```
+
+swapPorReferencia(int &a, int &b) - Estoy creando alias para las dos variables.
+swapPorPuntero(int *a, int *b) - Estoy manipulando las variables a través de sus direcciones.
+
 Muestra los resultados de las pruebas realizadas en la función main().
+

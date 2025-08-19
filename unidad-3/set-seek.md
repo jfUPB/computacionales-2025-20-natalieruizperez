@@ -260,6 +260,7 @@ Al ejecutar el código me di cuenta que tuve un error en la función ejecutarCon
   También revisé las notas para ver cómo explicar de forma diferente esta parte "// Apunto al valor actual de a, le sumo 10 y su nuevo valor apunta a a" porque no me parece una explicación clara. Una mejor forma de decirlo sería "Accedo al valor apuntado por el puntero a, le sumo 10, y se guarda el nuevo valor en esa misma dirección". Además aquí sumaPorPuntero(&val_C); // Accedo a la dirección de c, me faltó decir que modifico el valor con el puntero.
   
 **Mapa de memoria conceptual de este programa justo antes de que main finalice.**
+
   <img width="384" height="347" alt="image" src="https://github.com/user-attachments/assets/84a571b7-6d3e-4fcc-87d9-0bec0de15a9f" />
 
   No puse el parámetro a de la función SumaPorValor porque la instrucción dice que debo de poner en el mapa de memoria lo que está antes de que el main finalice y eso hace parte de otra función. Además ese valor a solo existiría dentro de la función SumaPorValor. El parámetro a es una copia que se destruye cuando se sale de la función.
@@ -280,6 +281,7 @@ Se cumple la predicción, el valor incial es diferente al del final porque en la
 <img width="1682" height="528" alt="image" src="https://github.com/user-attachments/assets/6fd9f226-c705-48f3-af8b-887de4addb01" />
 
 Aquí fue donde falló  mi predicción porque dije que cada vez que se llamaba la función ejecutarContador, el resultado iba a ser 1. La variable contador_estatico como es estática el programa inicializa el valor solo la primera vez que corre la función. A diferencia con una variable local normal, la estática recuerda el valor que tuvo la última vez que se usó. Hipotéticamente hablando si en el programa el contador no hubiese sido estático, el resultado hubiese sido que cada vez que se llama la función se sobreescribe la variable y el resultado sería el que predije.
+
 
 
 

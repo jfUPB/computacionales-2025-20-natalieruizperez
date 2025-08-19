@@ -81,11 +81,10 @@ Según mis observaciones un objeto en c++ ocupa una dirección en la memoria don
 
 <img width="831" height="250" alt="image" src="https://github.com/user-attachments/assets/6e0ad279-9a9f-4ec7-be53-7a872b97e486" />
 
-  Primero voy a observar qué está pasando en la clase personaje. Veo que se están creando variables y que hay una especie de puntero para manejar las estádisticas. Además veo que no hay un destructor, esto sería un error ya que se apunta a una posición de la memoria y en heap se crea un nuevo elemento pero nunca se elimina. Como consecuencia, estaría ocupando memoria innecesaria que podría aprovecharse para algo más.
+  Primero voy a observar qué está pasando en la clase personaje. Veo que se están creando variables y que hay una especie de puntero para manejar las estádisticas. Además veo que no hay un destructor, esto sería un error ya que se apunta a una posición de la memoria y en heap se crea un nuevo elemento pero nunca se elimina. Como consecuencia, estaría ocupando memoria innecesaria que podría aprovecharse para algo más. Otro error sería que se salta la función imprimir, como consecuencia es como si no estuviese.
 
-¿Cuál es el error?
-¿Por qué ocurre? Explica el mecanismo a nivel de memoria (stack, heap, punteros)
-¿Cuál es su consecuencia?
+
+
 
 
 

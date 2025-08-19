@@ -40,8 +40,7 @@ La depuración en autos sirve para que todas las variables locales que se van de
   **La función modificar por puntero** Recibe una dirección de una variable, para modificar la variable de a cual yo recibí la dirección tengo que usar asterisco. Es como si estubiese modificando directamente la variable b. Se pasa un alias desde la variable original y a través de la dirección de la variable y un puntero modifico la variable original.
 
 ---
-
-Análisis de código
+**Análisis de código**
 
 ```c++
 #include <iostream>
@@ -110,22 +109,60 @@ Crea un proyecto de consola en Visual Studio. Implementa swapPorValor(int a, int
 
 **Código**
 
-Hay que hacer 3, intentar hacerlo modificando el código que ya tenemos, hay que cambiar los mensajes que se van a imprimir y las funciones
+Hay que hacer 3, intentar hacerlo modificando el código que ya tenemos, hay que cambiar los mensajes que se van a imprimir y las funciones.
 
-swapPorValor(int a, int b) -
+**swapPorValor(int a, int b) - Que a tenga el valor de b y b el valor de a**
 
 ```c++
+// Función que modifica el parámetro pasado por valor
 void swapPorValor(int a, int b) {
-    cout << "Dentro de swapPorValor. a,b: " << a << "," << b << endl;
-    
-    int tmp = b
-        b = a; 
-    a = tmp;
-    a = b;
+    cout << "Dentro de swapPorValor. a,b: " << a << ',' << b << endl;
 
-    cout << "Dentro de swapPorValor valores modificados. a,b: " << a << "," << b << endl;
+    int tmp = b;       //Variable temporal en donde se guarda el valor de b
+    b = a;            // b toma el valor de a
+    a = tmp;          // a toma el valor de b
+ 
+    //No cambia los valores originales porque son copias
+    cout << "Dentro de swapPorValor valores modificados. a,b: " << a << ',' << b << endl;
 }
+```
 
+**swapPorReferencia(int &a, int &b)** - Estoy creando alias para las dos variables
+
+```c++
+// Función que modifica el parámetro pasado por referencia
+void modificarPorReferencia(int &a, int &b) {
+    cout << "Dentro de modificarPorReferencia, valores iniciales. a,b : " << a << ',' << b << endl;
+
+    int tmp = b;    // Variable temporal en donde se guarda el valor de b
+    b = a;         // b toma el valor de a
+    a = tmp;       // a toma el valor de b
+
+    //Se cambian los valores originales de a y b porque son apodos para referirme a lo mismo
+    cout << "Dentro de modificarPorReferencia, valores modificados. a,b : " << a << ',' << b << endl;
+}
+```
+
+**swapPorPuntero(int *a, int *b)** - Estoy manipulando las variables a través de sus direcciones.
+
+```c++
+// Función que modifica el parámetro utilizando punteros
+// Tiene que dar 10, 20
+void modificarPorPuntero(int* a, int* b) {
+    cout << "Dentro de modificarPorPuntero,valores iniciales. a,b : " << *a << ',' << *b << endl;
+
+    int tmp = *b;   // Variable temporal que guarda el valor apuntado por b
+    *b = *a;         /// El valor apuntado por b toma el valor apuntado por a
+    *a = tmp;        // El valor apuntado por a toma el valor de b
+    
+    // Se cambian los valores originales de a y b porque modifico lo que apuntan los punteros
+    cout << "Dentro de modificarPorPuntero, valores modificados. a,b : " << *a << ',' << *b << endl;
+}
+```
+
+**Main**
+
+```c++
 int main() {
     int a = 10;
     int b = 20;
@@ -135,15 +172,90 @@ int main() {
     cout << "Valor inicial de b (paso por referencia): " << b << endl;
     cout << "Valor inicial de c (paso por puntero): " << c << endl;
 
-    cout << "\nLlamando a swapPorValor(a)..." << endl;
-    swapPorValor(a,b);
-    cout << "Después de swapPorValor, valor de a,b: " << a << "," << b <<  endl;
+    cout << "\nLlamando a swapPorValor(a,b)..." << endl;
+    swapPorValor(a, b);
+    cout << "Después de swapPorValor, valores de a,b: " << a << ',' << b << endl;
+
+    cout << "\nLlamando a modificarPorReferencia(a,b)..." << endl;
+    modificarPorReferencia(a,b);
+    cout << "Después de modificarPorReferencia, valores de a,b: " << a << ',' << b << endl;
+
+    cout << "\nLlamando a modificarPorPuntero(&a, &b)..." << endl;
+    modificarPorPuntero(&a, &b);
+    cout << "Después de modificarPorPuntero,  valores de a,b: " << a << ',' << b << endl;
+
     return 0;
 }
 ```
 
-swapPorReferencia(int &a, int &b) - Estoy creando alias para las dos variables.
-swapPorPuntero(int *a, int *b) - Estoy manipulando las variables a través de sus direcciones.
+### Actividad integradora de investigación
 
-Muestra los resultados de las pruebas realizadas en la función main().
+**Predicción**
+```c++
+#include <iostream>
 
+int contador_global = 100;                //Tengo una variable global que se puede usar en las demas funciones
+
+void ejecutarContador() {                //Función que no devuelve ningún valor
+    static int contador_estatico = 0;    // Inicializo el contador estático
+    contador_estatico++;                 // El contador aumenta cada vez que se llama esta funcion
+
+    // De esta funcion muestra el valor del contador estático
+    std::cout << "  -> Llamada a ejecutarContador. Valor de contador_estatico: " << contador_estatico << std::endl;
+}
+
+void sumaPorValor(int a) {            //Declaro una variable en la función
+    a = a + 10;                       // Al valor actual de a le sumo 10 y su nuevo valor se guarda en a
+
+    // Esta copia de a debe de tener el valor de 30 pero no modifica la variable original
+    // Imprime el valor de a dentro de esta función
+    std::cout << "  -> Dentro de sumaPorValor, 'a' ahora es: " << a << std::endl;           
+}
+
+void sumaPorReferencia(int& a) {     //Declaro un alias en la función
+    a = a + 10;                      // Al valor actual de a le sumo 10 y su nuevo valor se guarda en a
+
+    // Como es por referencia el valor original debió de pasar de 20 a 30
+    // Imprime el valor de a dentro de esta función
+    std::cout << "  -> Dentro de sumaPorReferencia, 'a' ahora es: " << a << std::endl;
+}
+
+void sumaPorPuntero(int* a) {       //Declaro una variable en la función para sumar por puntero
+    *a = *a + 10;                   // Apunto al valor actual de a, le sumo 10 y su nuevo valor apunta a a
+
+    //  Imprime el valor de a dentro de esta función
+    std::cout << "  -> Dentro de sumaPorPuntero, '*a' ahora es: " << *a << std::endl;
+}
+
+int main() {
+    // Declaro variables
+    int val_A = 20;
+    int val_B = 20;
+    int val_C = 20;
+
+    std::cout << "--- Experimento con paso de parámetros ---" << std::endl;
+    std::cout << "Valor inicial de val_A: " << val_A << std::endl;           //El valor inicial de A es 20
+    sumaPorValor(val_A);                  
+    std::cout << "Valor final de val_A: " << val_A << std::endl << std::endl;   // A debe de seguir siendo 20
+
+    std::cout << "Valor inicial de val_B: " << val_B << std::endl;      // El valor inicial de B es 20
+    sumaPorReferencia(val_B); 
+    std::cout << "Valor final de val_B: " << val_B << std::endl << std::endl;  // El nuevo valor de B debe de ser 30
+
+    std::cout << "Valor inicial de val_C: " << val_C << std::endl;
+    sumaPorPuntero(&val_C);               // Accedo a la dirección de c
+    std::cout << "Valor final de val_C: " << val_C << std::endl << std::endl;  // El nuevo valor de c es 30
+
+    std::cout << "--- Experimento con variables estáticas ---" << std::endl;
+    ejecutarContador();      // El contador estático es 1
+    ejecutarContador();      // El contador estático es 1 
+    ejecutarContador();      // El contador estático es 1
+
+    return 0;
+}
+```
+Al ejecutar el código me di cuenta que tuve un error en la función ejecutarContador. Cuando hice la predicción asumí que el contador se resetearía cada vez, ya que la línea static int contador_estatico = 0; está al inicio de la función, pero no me parecía lógico porque cada vez que se llamara no se actualizaría el valor. Al revisar las actividades entendí que, al ser una variable static, se inicializa solo una vez al ejecutar la función por primera vez, es por esto que contador estático tiene que aumentar cada vez que se llama la función ejecutarContador();.
+
+  También revisé las notas para ver cómo explicar de forma diferente esta parte "// Apunto al valor actual de a, le sumo 10 y su nuevo valor apunta a a" porque no me parece una explicación clara. Una mejor forma de decirlo sería "Accedo al valor apuntado por el puntero a, le sumo 10, y se guarda el nuevo valor en esa misma dirección". Además aquí sumaPorPuntero(&val_C); // Accedo a la dirección de c, me faltó decir que modifico el valor con el puntero.
+
+**Dibuja un mapa de memoria conceptual de este programa justo antes de que main finalice. Debes indicar en qué segmento de memoria (Stack, Heap, Datos Globales/Estáticos, Código) se encontraría cada una de las siguientes variables: contador_global, contador_estatico, val_A, val_B, val_C (dentro de main), el parámetro a de la función sumaPorValor, la función main misma.**

@@ -53,6 +53,8 @@ Según mis observaciones un objeto en c++ ocupa una dirección en la memoria don
 #### Reflexión
 **1. Explicación de la diferencia entre objetos creados en el stack y en el heap.**
 
+
+
 **2. pStack ¿Es un objeto o una referencia a un objeto?**
 
 **3. pHeap ¿Es un objeto o una referencia a un objeto? Si es una referencia, ¿A qué objeto hace referencia?**
@@ -61,3 +63,4 @@ Según mis observaciones un objeto en c++ ocupa una dirección en la memoria don
 
 ---
 ### Actividad 08
+

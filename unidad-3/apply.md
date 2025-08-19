@@ -67,16 +67,25 @@ Según mis observaciones un objeto en c++ ocupa una dirección en la memoria don
 
 ### Actividad integradora de aplicación
 
+#### Parte 1
+**1. Explica con tus propias palabras qué es el stack y qué es el heap en C++.**
+
+**2. Describe las tres formas de pasar parámetros a una función en C++ (valor, referencia y puntero). Para cada una, explica qué sucede en memoria y cuándo usarías cada método.**
+
+**3. ¿Qué diferencia hay entre una variable local, una variable global y una variable local estática? ¿En qué segmento del mapa de memoria se almacena cada una?**
+
+**4. Explica qué es un objeto en C++ desde la perspectiva de memoria. ¿Dónde se almacenan los miembros de instancia y dónde los miembros estáticos?**
+
+#### Parte 2
 **Diagnóstico del problema**
 
-<img width="1614" height="651" alt="image" src="https://github.com/user-attachments/assets/3e96aa5f-4ae6-4216-8eee-753f9a1a4078" />
+<img width="831" height="250" alt="image" src="https://github.com/user-attachments/assets/6e0ad279-9a9f-4ec7-be53-7a872b97e486" />
 
-Al ejecutar el código logro identificar que
-
-Para cada error, describe:
+  Primero voy a observar qué está pasando en la clase personaje. Veo que se están creando variables y que hay una especie de puntero para manejar las estádisticas. Además veo que no hay un destructor, esto sería un error ya que se apunta a una posición de la memoria y en heap se crea un nuevo elemento pero nunca se elimina. Como consecuencia, estaría ocupando memoria innecesaria que podría aprovecharse para algo más.
 
 ¿Cuál es el error?
 ¿Por qué ocurre? Explica el mecanismo a nivel de memoria (stack, heap, punteros)
 ¿Cuál es su consecuencia?
+
 
 

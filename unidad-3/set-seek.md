@@ -187,11 +187,6 @@ int main() {
     return 0;
 }
 ```
----
-### Actividad 03
-**Construye tu propio mapa de memoria indicando en qué parte del mapa se ubican las variables y constantes globales, locales, estáticas y de la memoria dinámica y en qué parte del mapa se encuentran las funciones y el mensaje de solo lectura.**
-
-
 
 ---
 ### Actividad integradora de investigación
@@ -270,4 +265,21 @@ Al ejecutar el código me di cuenta que tuve un error en la función ejecutarCon
   No puse el parámetro a de la función SumaPorValor porque la instrucción dice que debo de poner en el mapa de memoria lo que está antes de que el main finalice y eso hace parte de otra función. Además ese valor a solo existiría dentro de la función SumaPorValor. El parámetro a es una copia que se destruye cuando se sale de la función.
 
 **Verificación y análisis**
+<img width="1480" height="512" alt="image" src="https://github.com/user-attachments/assets/52536644-174f-4130-b021-d24ee78be809" />
+
+Se cumple la predicción, el valor inicial es el mismo que el final porque en la función SumaPorValor se crea una copia de la variable original y como se modifica dicha copia la variable original no se ve afectada.
+
+<img width="1515" height="521" alt="image" src="https://github.com/user-attachments/assets/9934c4e8-cb63-4f2f-9687-503259a1ab22" />
+
+Se cumple la predicción, el valor inicial es diferente al del final porque en la función SumaPorReferencia la variable de la función es un apodo de la variable original, por lo que al modificar ese apodo se modifica la del principio.
+
+<img width="1565" height="513" alt="image" src="https://github.com/user-attachments/assets/ddc70c8b-09c5-4329-a725-5c663851da12" />
+
+Se cumple la predicción, el valor incial es diferente al del final porque en la función SumaPorPuntero se accede a la variable original a través del puntero y se modifica usando su dirección.
+
+<img width="1682" height="528" alt="image" src="https://github.com/user-attachments/assets/6fd9f226-c705-48f3-af8b-887de4addb01" />
+
+Aquí fue donde falló  mi predicción porque dije que cada vez que se llamaba la función ejecutarContador, el resultado iba a ser 1. La variable contador_estatico como es estática el programa inicializa el valor solo la primera vez que corre la función. A diferencia con una variable local normal, la estática recuerda el valor que tuvo la última vez que se usó. Hipotéticamente hablando si en el programa el contador no hubiese sido estático, el resultado hubiese sido que cada vez que se llama la función se sobreescribe la variable y el resultado sería el que predije.
+
+
 

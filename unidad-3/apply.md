@@ -64,3 +64,19 @@ Según mis observaciones un objeto en c++ ocupa una dirección en la memoria don
 ---
 ### Actividad 08
 
+
+### Actividad integradora de aplicación
+
+**Diagnóstico del problema**
+
+<img width="1614" height="651" alt="image" src="https://github.com/user-attachments/assets/3e96aa5f-4ae6-4216-8eee-753f9a1a4078" />
+
+Al ejecutar el código logro identificar que
+
+Para cada error, describe:
+
+¿Cuál es el error?
+¿Por qué ocurre? Explica el mecanismo a nivel de memoria (stack, heap, punteros)
+¿Cuál es su consecuencia?
+
+

@@ -187,7 +187,13 @@ int main() {
     return 0;
 }
 ```
+---
+### Actividad 03
+**Construye tu propio mapa de memoria indicando en qué parte del mapa se ubican las variables y constantes globales, locales, estáticas y de la memoria dinámica y en qué parte del mapa se encuentran las funciones y el mensaje de solo lectura.**
 
+
+
+---
 ### Actividad integradora de investigación
 
 **Predicción**
@@ -257,5 +263,11 @@ int main() {
 Al ejecutar el código me di cuenta que tuve un error en la función ejecutarContador. Cuando hice la predicción asumí que el contador se resetearía cada vez, ya que la línea static int contador_estatico = 0; está al inicio de la función, pero no me parecía lógico porque cada vez que se llamara no se actualizaría el valor. Al revisar las actividades entendí que, al ser una variable static, se inicializa solo una vez al ejecutar la función por primera vez, es por esto que contador estático tiene que aumentar cada vez que se llama la función ejecutarContador();.
 
   También revisé las notas para ver cómo explicar de forma diferente esta parte "// Apunto al valor actual de a, le sumo 10 y su nuevo valor apunta a a" porque no me parece una explicación clara. Una mejor forma de decirlo sería "Accedo al valor apuntado por el puntero a, le sumo 10, y se guarda el nuevo valor en esa misma dirección". Además aquí sumaPorPuntero(&val_C); // Accedo a la dirección de c, me faltó decir que modifico el valor con el puntero.
+  
+**Mapa de memoria conceptual de este programa justo antes de que main finalice.**
+  <img width="384" height="347" alt="image" src="https://github.com/user-attachments/assets/84a571b7-6d3e-4fcc-87d9-0bec0de15a9f" />
 
-**Dibuja un mapa de memoria conceptual de este programa justo antes de que main finalice. Debes indicar en qué segmento de memoria (Stack, Heap, Datos Globales/Estáticos, Código) se encontraría cada una de las siguientes variables: contador_global, contador_estatico, val_A, val_B, val_C (dentro de main), el parámetro a de la función sumaPorValor, la función main misma.**
+  No puse el parámetro a de la función SumaPorValor porque la instrucción dice que debo de poner en el mapa de memoria lo que está antes de que el main finalice y eso hace parte de otra función. Además ese valor a solo existiría dentro de la función SumaPorValor. El parámetro a es una copia que se destruye cuando se sale de la función.
+
+**Verificación y análisis**
+

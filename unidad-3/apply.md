@@ -162,6 +162,78 @@ int main() {
 
 Cree un destructor para las estadísticas del personaje y luego cree una copia que toma los mismos valores de heroe pero no la dirección, luego cambie uno de las estadísticas para verificar que no se sobreescribieran las del heroe y además llamé la función imprimir para que si apareciera.
 
+  Luego de leer bien me di cuenta que era solamente en la clase personaje entonces quise hacer lo mismo que en el código anterior de tomar las estadísticas del primer personaje para crear otras. Cree una clase con el mismo nombre que fuera copia del constructor, use el "&" para crear un apodo y que tomara los mismos valores de la clase original y los guardara en otra dirección. Quise dejar las adiciones que había hecho en el código anterior que eran para imprimir y verificar que si funcionara bien ya que no me pareció que afectara significativamente el código.
+
+ ```c++
+#include <iostream>
+#include <string>
+
+class Personaje {
+public:
+    std::string nombre;
+    int* estadisticas;
+
+    // Constructor
+    Personaje(std::string n, int vida, int ataque, int defensa) {
+        nombre = n;
+        estadisticas = new int[3];
+        estadisticas[0] = vida;
+        estadisticas[1] = ataque;
+        estadisticas[2] = defensa;
+        std::cout << "Constructor: nace " << nombre << std::endl;
+    }
+
+    // Copia de constructor
+    Personaje(Personaje& copia) {
+        nombre = copia.nombre;
+        estadisticas = new int[3];
+        estadisticas[0] = copia.estadisticas[0];
+        estadisticas[1] = copia.estadisticas[1];
+        estadisticas[2] = copia.estadisticas[2];
+        std::cout << "Constructor que copia de " << nombre << std::endl;
+    }
+
+    // Destructor 
+    ~Personaje() {
+        delete[] estadisticas;
+        std::cout << "Destructor " << nombre << std::endl;
+    }
+
+  
+    void imprimir() {
+        std::cout << "Personaje " << nombre
+            << " [Vida: " << estadisticas[0]
+            << ", ATK: " << estadisticas[1]
+            << ", DEF: " << estadisticas[2]
+            << "]" << std::endl;
+    }
+};
+
+void simularEncuentro() {
+    std::cout << "\n--- Iniciando encuentro ---" << std::endl;
+    Personaje heroe("Aragorn", 100, 20, 15);
+
+    heroe.imprimir();
+
+    Personaje copiaHeroe = heroe;
+    copiaHeroe.nombre = "Copia de Aragorn";
+
+    copiaHeroe.estadisticas[0] = 40;
+
+    copiaHeroe.imprimir();
+
+    std::cout << "Saliendo del encuentro..." << std::endl;
+}
+
+int main() {
+    simularEncuentro();
+    std::cout << "\nSimulación terminada." << std::endl;
+    return 0;
+}
+
+ ```
+
+
 
 
 

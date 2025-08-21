@@ -36,46 +36,88 @@ using namespace std;
 
 class Enemigo {
 public:
-    static int totalEnemigos;
-    int vida;
-    int* armas;
+    static int totalEnemigos;          //Variable estatica que guarda el valor total de enemigos
+    int vida;                          //La vida que ees un número entero
+    int* armas;                        //Se crea un puntero
 
-    Enemigo(int v) : vida(v) {
-        totalEnemigos++;
-        armas = new int[3];
-        armas[0] = 10; armas[1] = 15; armas[2] = 20;
+    Enemigo(int v) : vida(v) {        //Recibe una variable v y esa variable afecta la vida
+        totalEnemigos++;              //Aumenta el número de enemigos cada vez que se ejecuta la clase
+        armas = new int[3];           //Creo a través de int una dirección de memoria donde puedo guardar las armas en el heap
+        armas[0] = 10; armas[1] = 15; armas[2] = 20;        //Aquí estoy asignandole a cada uno de los elementos de la lista un valor
     }
 };
 
-int Enemigo::totalEnemigos = 0;
+int Enemigo::totalEnemigos = 0;    //Le asigne a la clase enemigo un 0 en la variable total de enemigos
 
-void crearEscuadron() {
-    for(int i = 0; i < 5; i++) {
-        Enemigo soldado(100);
-        soldado.vida -= 10;
+void crearEscuadron() {           //Una función que no devuelve nada
+    for(int i = 0; i < 5; i++) {  //Un ciclo for que se repite hasta 5 veces
+        Enemigo soldado(100);     //Creo un objeto de la clase Enemigo llamado soldado que tiene 100 de vida
+        soldado.vida -= 10;       //Cada vez que se llama el ciclo le resto a esa vida 10
     }
-    cout << "Escuadrón creado. Total enemigos: " << Enemigo::totalEnemigos << endl;
+    cout << "Escuadrón creado. Total enemigos: " << Enemigo::totalEnemigos << endl;   //Texto para mostrar el total de enemigos
 }
 
 int main() {
-    crearEscuadron();
-    crearEscuadron();
+    crearEscuadron();          //Creo un escuadrón de 5
+    crearEscuadron();          //Creo otro escuadrón pero esta vez de 10 porque se suman
     return 0;
 }
 ```
 
 **Análisis**
-identifica al menos dos problemas
+Lo primero que noto es que no hay un destructor para los elementos que se crean en el heap por lo que el programa podría saturarse por no liberar la memoria.
 
 **Solución**
+Aquí copie el código anterior y añadí el destructor.
+
+``` c++
+#include <iostream>
+using namespace std;
+
+class Enemigo {
+public:
+    static int totalEnemigos;          //Variable estatica que guarda el valor total de enemigos
+    int vida;                          //La vida que ees un número entero
+    int* armas;                        //Se crea un puntero
+
+    Enemigo(int v) : vida(v) {        //Recibe una variable v y esa variable afecta la vida
+        totalEnemigos++;              //Aumenta el número de enemigos cada vez que se ejecuta la clase
+        armas = new int[3];           //Creo a través de int una dirección de memoria donde puedo guardar las armas en el heap
+        armas[0] = 10; armas[1] = 15; armas[2] = 20;        //Aquí estoy asignandole a cada uno de los elementos de la lista un valor
+    }
+     ~Enemigo() {                      // Destructor para liberar la memoria
+        delete[] armas;
+    }
+};
+
+int Enemigo::totalEnemigos = 0;    //Le asigne a la clase enemigo un 0 en la variable total de enemigos
+
+void crearEscuadron() {           //Una función que no devuelve nada
+    for(int i = 0; i < 5; i++) {  //Un ciclo for que se repite hasta 5 veces
+        Enemigo soldado(100);     //Creo un objeto de la clase Enemigo llamado soldado que tiene 100 de vida
+        soldado.vida -= 10;       //Cada vez que se llama el ciclo le resto a esa vida 10
+    }
+    cout << "Escuadrón creado. Total enemigos: " << Enemigo::totalEnemigos << endl;   //Texto para mostrar el total de enemigos
+}
+
+int main() {
+    crearEscuadron();          //Creo un escuadrón de 5
+    crearEscuadron();          //Creo otro escuadrón pero esta vez de 10 porque se suman con el anterior
+    return 0;
+}
+```
 
 #### Parte 3
 **1. De todos los conceptos que exploraste en esta unidad (stack vs heap, paso de parámetros, ciclo de vida de objetos, etc.), ¿Cuál consideras que es el más crítico para evitar errores en programas reales? ¿Por qué?**
 
 Considero que el más críticio para evitar errores es programación sería un buen manejo de memoria ya que al no tener esta práctica el programa se puede saturar el sistema y afectar el rendimiento. Por lo que hay que estar atentos a el ciclo de vida de los objetos en caso de que sea necesario destruirlos, también tener claro cómo funciona el heap o el stack es muy importante. También el paso de parámetros como valor, por referencia o puntero son muy utiles a la hora de programar y el uso adecuado permite crear un código eficiente.
 
-**2.  ¿Cómo cambió tu comprensión sobre lo que realmente es un “objeto” después de comparar C++ con C#? ¿Qué implicaciones prácticas tiene esta diferencia?**
-Cuando usaba c# para programar y creaba nuevos objetos lo hacía a través del new pero no sabía en dónde se guardaba o exactamente que hacía, simplemente lo asociaba con crear un nuevo objeto.
+**2. ¿Cómo cambió tu comprensión sobre lo que realmente es un “objeto” después de comparar C++ con C#? ¿Qué implicaciones prácticas tiene esta diferencia?**
 
-**4. Si tuvieras que explicar a un compañero de semestres anteriores por qué es importante entender la gestión de memoria en programación, ¿Qué le dirías en máximo 3 oraciones**
+Cuando usaba c# para programar en unity, para crear nuevos objetos lo hacía a través del new pero no sabía en dónde se guardaba o exactamente que hacía, simplemente lo asociaba con crear un nuevo objeto. En esta unidad que trabajamos c++ entendí que es importante hacer una buena gestión de memoria y del ciclo de vida de los objetos. También recuerdo que en c# no era necesario un destructor por lo que me da la impresión de que c++ es más mecáico pero más preciso.
+
+**3. Si tuvieras que explicar a un compañero de semestres anteriores por qué es importante entender la gestión de memoria en programación, ¿Qué le dirías en máximo 3 oraciones**
+
+Entender la gestión de memoria es muy importante para que no hayan errores que hagan que el programa falle o sea lento. Si entiendes el stack y el heap podrás saber que sucede en la memoria de almacenamiento y así entender cuando es necesario destruir objetos para que el código sea funcional. Si no sabes de esto los programas que crees podrían ocupar mucha memoria.
+
 

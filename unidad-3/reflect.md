@@ -86,7 +86,7 @@ public:
         armas = new int[3];           //Creo a través de int una dirección de memoria donde puedo guardar las armas en el heap
         armas[0] = 10; armas[1] = 15; armas[2] = 20;        //Aquí estoy asignandole a cada uno de los elementos de la lista un valor
     }
-     ~Enemigo() {                      // Destructor para liberar la memoria
+     ~Enemigo() {                      // Destructor 
         delete[] armas;
     }
 };
@@ -120,6 +120,7 @@ Cuando usaba c# para programar en unity, para crear nuevos objetos lo hacía a t
 **3. Si tuvieras que explicar a un compañero de semestres anteriores por qué es importante entender la gestión de memoria en programación, ¿Qué le dirías en máximo 3 oraciones**
 
 Entender la gestión de memoria es muy importante para que no hayan errores que hagan que el programa falle o sea lento. Si entiendes el stack y el heap podrás saber que sucede en la memoria de almacenamiento y así entender cuando es necesario destruir objetos para que el código sea funcional. Si no sabes de esto los programas que crees podrían ocupar mucha memoria.
+
 
 
 

@@ -68,6 +68,7 @@ int main() {
 Lo primero que noto es que no hay un destructor para los elementos que se crean en el heap por lo que el programa podría saturarse por no liberar la memoria.
 
 **Solución**
+
 Aquí copie el código anterior y añadí el destructor.
 
 ``` c++
@@ -119,5 +120,6 @@ Cuando usaba c# para programar en unity, para crear nuevos objetos lo hacía a t
 **3. Si tuvieras que explicar a un compañero de semestres anteriores por qué es importante entender la gestión de memoria en programación, ¿Qué le dirías en máximo 3 oraciones**
 
 Entender la gestión de memoria es muy importante para que no hayan errores que hagan que el programa falle o sea lento. Si entiendes el stack y el heap podrás saber que sucede en la memoria de almacenamiento y así entender cuando es necesario destruir objetos para que el código sea funcional. Si no sabes de esto los programas que crees podrían ocupar mucha memoria.
+
 
 

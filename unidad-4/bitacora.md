@@ -42,6 +42,15 @@ El objeto va a tener todos los atributos que vienen de cp m{as los nuevos de .h,
 
   .h declaramos cpp definimos
 
+  Head es el untero de la lista, si está en null no tengo que hacer nada y push manda a la lista al final.
+
+Voy a mapear el index y este puede tomar valores entre cero y el tamaño de la cola menos uno. Una vez creo ls nodos y defino los vertices le digo a la cpu que dibuje la línea.
+
+
+Hay que implementar a mano una fifo para el apply, no una lista de datos. Yo creo un elemento y el siguiente elemento está al lado, los elementos se pueden conectar pero al procesarlos lo hacen en el orden qe se crearon. Tiene que star implementado de forma maual , no se pueden usar librerías.
+   
+
+
 
 
 

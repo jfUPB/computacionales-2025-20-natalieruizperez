@@ -5,7 +5,7 @@
 Código para ofApp.h:
 
 ``` cpp
-.h#pragma once
+#pragma once
 #include "ofMain.h"
 
 // Nodo de la cola
@@ -219,7 +219,7 @@ int main( ){
 
 ## Demostración:
 
-[Aquí está el video demostrativo de mi aplicación](url del video no listado en youtube)
+[Aquí está el video demostrativo de mi aplicación](https://youtu.be/ieQNZ1EfYkk)
 
 
 ---
@@ -244,6 +244,7 @@ Voy a mapear el index y este puede tomar valores entre cero y el tamaño de la c
 
 Hay que implementar a mano una fifo para el apply, no una lista de datos. Yo creo un elemento y el siguiente elemento está al lado, los elementos se pueden conectar pero al procesarlos lo hacen en el orden qe se crearon. Tiene que star implementado de forma maual , no se pueden usar librerías.
    
+
 
 
 

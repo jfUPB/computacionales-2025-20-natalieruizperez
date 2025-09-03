@@ -21,7 +21,7 @@ struct Node {
     }
 };
 
-// Implementación cola
+// Implementación manual de una cola (FIFO)
 class BrushQueue {
 public:
     Node* front;
@@ -49,8 +49,7 @@ BrushQueue::~BrushQueue() {
 
 // Implementa aquí `enqueue()`
 void BrushQueue::enqueue(float x, float y, float radius, ofColor color, float opacity) {
-    // TODO: crear un nuevo nodo y agregarlo al final de la cola.
-    // Si la cola supera `maxSize`, eliminar el nodo más antiguo con `dequeue()`.
+    // Crear un nuevo nodo y agregarlo al final de la cola
     Node* newNode = new Node(x, y, radius, color, opacity);
     
     if (isEmpty()) {
@@ -61,19 +60,20 @@ void BrushQueue::enqueue(float x, float y, float radius, ofColor color, float op
     }
     size++;
     
+    // Si la cola supera `maxSize`, eliminar el nodo más antiguo con `dequeue()`
     if (size > maxSize) {
-        dequeue(); // Elimina el nodo más antiguo si se excede el tamaño
+        dequeue();
     }
 }
 
 // Implementa aquí `dequeue()`
 void BrushQueue::dequeue() {
-    // TODO: eliminar el nodo más antiguo si la cola no está vacía.
+    // Eliminar el nodo más antiguo si la cola no está vacía
     if (isEmpty()) return;
     
     Node* temp = front;
     front = front->next;
-    delete temp; // Se libera la memoria del nodo
+    delete temp; // Liberar memoria del nodo eliminado
     size--;
     
     if (isEmpty()) {
@@ -83,15 +83,15 @@ void BrushQueue::dequeue() {
 
 // Implementa aquí `clear()`
 void BrushQueue::clear() {
-    // TODO: eliminar todos los nodos de la cola.
+    // Eliminar todos los nodos de la cola
     while (!isEmpty()) {
-        dequeue(); // Se libera memoria de todos los nodos
+        dequeue();
     }
 }
 
 // Implementa aquí `isEmpty()`
 bool BrushQueue::isEmpty() {
-    // TODO: retornar si la cola está vacía.
+    // Retornar si la cola está vacía
     return front == nullptr;
 }
 
@@ -126,12 +126,12 @@ void ofApp::update() {
     backgroundHue += 0.2;
     if (backgroundHue > 255) backgroundHue = 0;
 
-    // TODO: agregar un nuevo trazo si el mouse está presionado.
-    // Usa strokes.enqueue(x, y, radius, color, opacity);
+    // Agregar un nuevo trazo si el mouse está presionado
     if (ofGetMousePressed()) {
-        ofColor randomColor = ofColor::fromHsb(ofRandom(255), 200, 255);
-        float randomRadius = ofRandom(10, 30);
-        strokes.enqueue(ofGetMouseX(), ofGetMouseY(), randomRadius, randomColor, 1.0f);
+        ofColor randomColor;
+        randomColor.setHsb(ofRandom(255), 200, 255); // Color aleatorio
+        float randomRadius = ofRandom(10, 30); // Radio original entre 10-30
+        strokes.enqueue(ofGetMouseX(), ofGetMouseY(), randomRadius, randomColor, 255.0f);
     }
 }
 
@@ -143,54 +143,40 @@ void ofApp::draw() {
     color2.setHsb(fmod(backgroundHue + 128, 255), 150, 240);
     ofBackgroundGradient(color1, color2, OF_GRADIENT_LINEAR);
 
-    // TODO: dibujar los trazos almacenados en la cola.
-    // Recorre los nodos desde strokes.front hasta nullptr y usa ofDrawCircle().
+    // Dibujar los trazos almacenados en la cola
     Node* current = strokes.front;
-    int position = 0;
+    int index = 0;
     
+    // Recorre los nodos desde strokes.front hasta nullptr
     while (current != nullptr) {
-        // Calcular opacidad basada en la posición en la cola (20% a 100%)
-        float minOpacity = 0.2f;
-        float maxOpacity = 1.0f;
-        float calculatedOpacity;
-        
-        if (strokes.size == 1) {
-            calculatedOpacity = maxOpacity;
-        } else {
-            float t = static_cast<float>(position) / (strokes.size - 1);
-            calculatedOpacity = minOpacity + t * (maxOpacity - minOpacity);
-        }
-        
-        ofSetColor(current->color, calculatedOpacity * 255);
+        // Calcular opacidad: más viejo (20%) → más nuevo (100%)
+        float opacity = ofMap(index, 0, strokes.size - 1, 51, 255);
+        ofSetColor(current->color, opacity);
         ofDrawCircle(current->x, current->y, current->radius);
         
         current = current->next;
-        position++;
+        index++;
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     if (key == 'c') {
-        // TODO: limpiar la cola de trazos.
-        strokes.clear(); // Se libera la memoria
+        // Limpiar la cola de trazos
+        strokes.clear();
     }
     if (key == 'a') {
-        // TODO: alternar entre 50 y 100 trazos.
-        if (strokes.maxSize == 50) {
-            strokes.maxSize = 100;
-        } else {
-            strokes.maxSize = 50;
-        }
+        // Alternar entre 50 y 100 trazos
+        strokes.maxSize = (strokes.maxSize == 50) ? 100 : 50;
         
-        // Eliminar trazos excedentes si el nuevo tamaño máximo es menor
+        // Eliminar trazos excedentes si el nuevo tamaño es menor
         while (strokes.size > strokes.maxSize) {
-            strokes.dequeue(); // Se libera memoria de nodos
+            strokes.dequeue();
         }
     }
     else if (key == 's') {
-        // TODO: guardar el frame actual.
-        ofSaveFrame();
+        // Guardar el frame actual
+        ofSaveScreen("captura_" + ofGetTimestampString() + ".png");
     }
 }
 
@@ -219,7 +205,7 @@ int main( ){
 
 ## Demostración:
 
-[Aquí está el video demostrativo de mi aplicación](https://youtu.be/ieQNZ1EfYkk)
+[Aquí está el video demostrativo de mi aplicación](https://youtu.be/UkvJMXIvmAo)
 
 
 ---
@@ -244,6 +230,7 @@ Voy a mapear el index y este puede tomar valores entre cero y el tamaño de la c
 
 Hay que implementar a mano una fifo para el apply, no una lista de datos. Yo creo un elemento y el siguiente elemento está al lado, los elementos se pueden conectar pero al procesarlos lo hacen en el orden qe se crearon. Tiene que star implementado de forma maual , no se pueden usar librerías.
    
+
 
 
 

@@ -8,13 +8,13 @@ Código para ofApp.h:
 #pragma once
 #include "ofMain.h"
 
-// Nodo de la cola
+// Nodo 
 struct Node {
-    float x, y;
-    float radius;
-    ofColor color;
-    float opacity;
-    Node* next;
+    float x, y;        // Posición 
+    float radius;      // Tamaño del círculo
+    ofColor color;     // Color
+    float opacity;     // Opacidad
+    Node* next;        // Puntero que va al siguiente nodo en la cola
 
     Node(float _x, float _y, float _radius, ofColor _color, float _opacity)
         : x(_x), y(_y), radius(_radius), color(_color), opacity(_opacity), next(nullptr) {
@@ -24,10 +24,10 @@ struct Node {
 // Implementación manual de una cola (FIFO)
 class BrushQueue {
 public:
-    Node* front;
-    Node* rear;
-    int size;
-    int maxSize;
+    Node* front;    // Apunta al primer nodo creado de la cola (el más antiguo)
+    Node* rear;     // apunta al último nodo de la cola (el más reciente)
+    int size;      // Cantidad de nodos
+    int maxSize;   // Cantidad máxima
 
     BrushQueue(int _maxSize);
     ~BrushQueue();
@@ -49,14 +49,17 @@ BrushQueue::~BrushQueue() {
 
 // Implementa aquí `enqueue()`
 void BrushQueue::enqueue(float x, float y, float radius, ofColor color, float opacity) {
-    // Crear un nuevo nodo y agregarlo al final de la cola
+    // Crea un nuevo nodo en el heap al final de la cola
     Node* newNode = new Node(x, y, radius, color, opacity);
-    
+
+	// Si la cola esta vacía el primer nodo creado es el primero y el último porque es el único elemento
     if (isEmpty()) {
         front = rear = newNode;
-    } else {
-        rear->next = newNode;
-        rear = newNode;
+    }
+	// Si ya tiene nodos, agrega otro al final (debajo del mouse)
+	else {    
+        rear->next = newNode;        
+        rear = newNode;             // El nuevo nodo es el último en la cola
     }
     size++;
     
@@ -71,11 +74,12 @@ void BrushQueue::dequeue() {
     // Eliminar el nodo más antiguo si la cola no está vacía
     if (isEmpty()) return;
     
-    Node* temp = front;
-    front = front->next;
-    delete temp; // Liberar memoria del nodo eliminado
-    size--;
-    
+    Node* temp = front;       // Guarda la referencia del primer nodo (el primero en ser creado o el más antiguo)
+    front = front->next;      // Apunta al siguiente
+    delete temp; // Liberar memoria del nodo eliminado (el más antiguo)
+    size--;      // Reduce el tamaño
+
+	// Si esta vacía
     if (isEmpty()) {
         rear = nullptr;
     }
@@ -130,8 +134,8 @@ void ofApp::update() {
     if (ofGetMousePressed()) {
         ofColor randomColor;
         randomColor.setHsb(ofRandom(255), 200, 255); // Color aleatorio
-        float randomRadius = ofRandom(10, 30); // Radio original entre 10-30
-        strokes.enqueue(ofGetMouseX(), ofGetMouseY(), randomRadius, randomColor, 255.0f);
+        float randomRadius = ofRandom(10, 30); // Radio entre 10-30
+        strokes.enqueue(ofGetMouseX(), ofGetMouseY(), randomRadius, randomColor, 255.0f);  // Agregarlo a la cola
     }
 }
 
@@ -147,9 +151,9 @@ void ofApp::draw() {
     Node* current = strokes.front;
     int index = 0;
     
-    // Recorre los nodos desde strokes.front hasta nullptr
+    // Recorre todos los nodos
     while (current != nullptr) {
-        // Calcular opacidad: más viejo (20%) → más nuevo (100%)
+        // Calcular opacidad
         float opacity = ofMap(index, 0, strokes.size - 1, 51, 255);
         ofSetColor(current->color, opacity);
         ofDrawCircle(current->x, current->y, current->radius);
@@ -230,6 +234,7 @@ Voy a mapear el index y este puede tomar valores entre cero y el tamaño de la c
 
 Hay que implementar a mano una fifo para el apply, no una lista de datos. Yo creo un elemento y el siguiente elemento está al lado, los elementos se pueden conectar pero al procesarlos lo hacen en el orden qe se crearon. Tiene que star implementado de forma maual , no se pueden usar librerías.
    
+
 
 
 

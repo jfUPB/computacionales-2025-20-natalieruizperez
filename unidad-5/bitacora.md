@@ -235,6 +235,20 @@ Los corchetes son para acceder a entradas específicas de la vtable, mientras qu
 
 Como experimento voy a observar si es posibe hackear el programa en tiempo real. Lo primero que voy a hacer es copiar la dirección del rectángulo, esta es 0x00007ff66273114a y la del círculo que es 0x00007ff66273149c. Mi plan es poner en el rectángulo la dirección del círculo y observar qué sucede.
 
+**Dirección de rectángulo**
+
+<img width="921" height="544" alt="image" src="https://github.com/user-attachments/assets/7a921f52-010d-4168-8173-60bdf856976b" />
+
+**Dirección de memoria del círculo**
+
+<img width="921" height="544" alt="image" src="https://github.com/user-attachments/assets/34022025-2801-4552-8440-96a155d3bddd" />
+
+Alias de fig que toma las referencias del otro grupo por asi decirlo.
+<img width="936" height="511" alt="image" src="https://github.com/user-attachments/assets/e28bc8bb-8725-4236-a3ef-feb679dfe41c" />
+
+
+
+
 
 
 

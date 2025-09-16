@@ -108,6 +108,107 @@ Creo que estas preguntas las podré responder al analizar el código entonces ir
 Voy a observar con los brakpoints que es lo que sucede a nivel de memoria. Dado que c# esconde lo que sucede voy a pedirle a la ia que lo convierta a un código en c++ para analizar la memoria correctamente.
 <img width="901" height="288" alt="image" src="https://github.com/user-attachments/assets/704fe03a-3b9f-4a04-90ce-79f6e1652a32" />
 
+**Código c++**
+
+```c++
+#include <iostream>
+#include <vector>
+#include <memory>  // Para smart pointers
+#include <string>
+
+using namespace std;
+
+// Clase abstracta Figura
+class Figura {
+private:
+    string nombre;  // Variable privada
+
+protected:
+    void setNombre(const string& nuevoNombre) {
+        nombre = nuevoNombre;
+    }
+
+public:
+    Figura(const string& nombre) {
+        setNombre(nombre);
+    }
+
+    string getNombre() const {
+        return nombre;
+    }
+
+    virtual void Dibujar() const = 0; // Método virtual puro (abstracto)
+
+    virtual ~Figura() {} // Destructor virtual necesario para polimorfismo
+};
+
+// Clase Circulo que hereda de Figura
+class Circulo : public Figura {
+private:
+    double radio;
+
+public:
+    Circulo(double r) : Figura("Círculo"), radio(r) {}
+
+    double getRadio() const {
+        return radio;
+    }
+
+    void Dibujar() const override {
+        cout << "Dibujando un " << getNombre() << " de radio " << radio << "." << endl;
+    }
+};
+
+// Clase Rectangulo que hereda de Figura
+class Rectangulo : public Figura {
+private:
+    double base;
+    double altura;
+
+public:
+    Rectangulo(double b, double h) : Figura("Rectángulo"), base(b), altura(h) {}
+
+    double getBase() const {
+        return base;
+    }
+
+    double getAltura() const {
+        return altura;
+    }
+
+    void Dibujar() const override {
+        cout << "Dibujando un " << getNombre() << " de " << base << "x" << altura << "." << endl;
+    }
+};
+
+// Función principal
+int main() {
+    vector<unique_ptr<Figura>> misFiguras;
+
+    // Creamos las figuras con smart pointers
+    misFiguras.push_back(make_unique<Circulo>(5.0));
+    misFiguras.push_back(make_unique<Rectangulo>(4.0, 6.0));
+    misFiguras.push_back(make_unique<Circulo>(10.0));
+
+    // Llamamos a Dibujar en cada una
+    for (const auto& fig : misFiguras) {
+        fig->Dibujar();
+    }
+
+
+
+    return 0;
+}
+```
+Una vez convertido el código voy a poner breakpoints para analizar la memoria, pero primero verificar que el código funcione correctamente.
+
+<img width="1493" height="718" alt="image" src="https://github.com/user-attachments/assets/662f9e94-1080-4b92-ad55-f685e98a480a" />
+
+Ahora a analizar el stack. Veo que 
+
+<img width="909" height="485" alt="image" src="https://github.com/user-attachments/assets/b648fbe0-a5e6-4dec-9db9-8fdd2bc7bc13" />
+
+
 
 
 ## 4.  **Consolidación, autoevaluación y cierre:**

@@ -204,9 +204,38 @@ Una vez convertido el código voy a poner breakpoints para analizar la memoria, 
 
 <img width="1493" height="718" alt="image" src="https://github.com/user-attachments/assets/662f9e94-1080-4b92-ad55-f685e98a480a" />
 
-Ahora a analizar el stack. Veo que 
+Ahora a analizar el stack. Veo que en las variables locales está el nuevoNombre que lo puedo ubicar en el programa sin problema, pero hay una variable llamada **this** la cual no veo en el códgio.
 
-<img width="909" height="485" alt="image" src="https://github.com/user-attachments/assets/b648fbe0-a5e6-4dec-9db9-8fdd2bc7bc13" />
+**¿Qué es esa variable this que crea el código y de qué se encarga?**
+
+Sin this, el método setNombre() no sabría en qué objeto debe modificar la variable nombre. Gracias a this, el compilador resuelve que nombre pertenece al objeto actual. Cuando se a un método como setNombre(), this contiene la dirección de memoria del objeto que está invocando ese método.
+
+En conclusión, this no es una variable que aparezca de forma literal en el programa pero es fundamental ya que ella alberga la dirección de memoria del objeto para que el programa pueda saber a qué me refiero.
+
+<img width="934" height="628" alt="Captura de pantalla 2025-09-16 091420" src="https://github.com/user-attachments/assets/69603368-a523-4776-bc64-61504c027671" />
+
+el valor de this es 0x0000011914447a20, que es la dirección de memoria del objeto Figura en construcción y al abrirlo veo que hay una tabla __vfptr pero no sé la dirección de memoria a qué corresponde, su dirección es la siguiente 0x00007ff76c4646b8. Voy a seguir observando el código en busca de que objeto tiene esa dirección.
+
+<img width="937" height="544" alt="image" src="https://github.com/user-attachments/assets/f2196b32-76e2-4f48-a43b-7a136bb6ff34" />
+
+Encontré en qué la tabla hace referencia a la figura porque es la clase padre y la que se construye primero. Ahora tengo las siguientes preguntas:
+
+**1. ¿Qué es exactamente un _vfptr? ¿Es lo mismo que una vtable?**
+
+Las siglas _vfptr son por virtual function pointer y es un puntero implícito que todo objeto de una clase con funciones virtuales contiene. Apunta a la vtable de su clase. Es una tabla de punteros a funciones virtuales. Cada clase con métodos virtuales tiene su propia vtable, que almacena las direcciones de las implementaciones de esas funciones. 
+
+En conclusión _vfptr es el puntero que apunta a la vtable. No son lo mismo pero se relacionan.
+
+**2. ¿Por qué en la imagen hay una Figura con y sin corchetes? ¿Cúal es la diferencia?**
+
+Los corchetes son para acceder a entradas específicas de la vtable, mientras que sin corchetes, se describe la vtable en general o la clase a la que pertenece.
+
+---
+### Experimento
+
+Como experimento voy a observar si es posibe hackear el programa en tiempo real. Lo primero que voy a hacer es copiar la dirección del rectángulo, esta es 0x00007ff66273114a y la del círculo que es 0x00007ff66273149c. Mi plan es poner en el rectángulo la dirección del círculo y observar qué sucede.
+
+
 
 
 

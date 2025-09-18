@@ -245,20 +245,39 @@ Al abrir el puntero veo que tiene una referencia a la figura, en este caso el c�
 
 <img width="933" height="431" alt="image" src="https://github.com/user-attachments/assets/878fb43b-d877-48d2-a13e-2c4bf5ef63eb" />
 
-Cuando abro el puntero veo que apunta a dos elementos y además estos tienen direcciones diferentes ¿Estas direcciones qué referencian?
+Cuando abro el puntero veo que apunta a dos elementos y además estos tienen direcciones diferentes ¿Estas direcciones qué referencian? Luego de inspeccionar vi que esta referencia al círculo 0x00007ff73887149c, pero la otra que es 0x00007ff738871767 no sé qué referencia, voy a seguir analizando el código.
 
 <img width="914" height="483" alt="image" src="https://github.com/user-attachments/assets/fa3718ce-6275-406e-a207-a30df808a6b6" />
 
+Cuando abro círculo que es una entrada específica a la vtable, también que círculo contiene figura, esto es algo contraintuitivo porque círculo hereda a padre, pero es así porque círculo tienen los mismos parámentros que figura. Lo que quiere decir que así se implementa la herencia en c++
 
+<img width="904" height="514" alt="image" src="https://github.com/user-attachments/assets/90ae5726-5b9e-439a-a704-9830b5406c0a" />
+
+[Figura] tiene su nombre y también un puntero a la tabla, este puntero también apunta a dos elementos y veo que tiene la misma dirección que el círculo y la otra que desconozco.
+
+<img width="894" height="527" alt="image" src="https://github.com/user-attachments/assets/cb087e7f-881c-4fdd-8425-504261c764d3" />
+
+**Conclusión**
+
+Circulo es una extensión de Figura en memoria. Al heredar, la parte de Figura se convierte en el primer segmento de cualquier objeto Circulo. Esto explica por qué ambos comparten la misma dirección inicial y el mismo puntero _vfptr. Todas comparten la misma tabla de la clase Circulo. En este orden de ideas puedo pensar que el puntero y la vtable son un sistema de direcciones que le dice al programa específicamente qué dibujar.
+
+**Preguntas de la sección**
 
 **1. ¿Qué es "push_back" y "vector<unique_ptr<Figura>>"? ¿Para qué sirven?**
 
+El primero agrega un nuevo elemento al final de un vector y el otro es un vector que guarda punteros a objetos del tipo Figura.
+
 **2. ¿El deleter qué borra?**
+
+Es el mecanismo que se encarga de liberar automáticamente la memoria del objeto al que apunta el puntero, viene por defecto que viene con unique_ptr.
 
 **3. ¿Por qué el puntero a punta dos elementos si por el momento solamente hay uno en el vector?**
 
+Al consultar encontré que no son dos elementos, si no la vtable del círculo que contiene punteros, uno que se encarga de dibujar el círculo y el otro de borrarlo.
+
 **4. ¿Por qué todos los elementos tienen un componente entre corchetes llamado vista sin formato?**
 
+Es una herramienta del entorno de depuración para ver los detalles internos, es para poder inspeccionar objetos complejos.
 
 
 

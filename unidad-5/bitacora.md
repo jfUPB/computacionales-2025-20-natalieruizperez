@@ -106,6 +106,11 @@ Creo que estas preguntas las podré responder al analizar el código entonces ir
 <img width="1048" height="706" alt="image" src="https://github.com/user-attachments/assets/ac50a1a6-665d-4764-9b75-f605c9632553" />
 
 Voy a observar con los brakpoints que es lo que sucede a nivel de memoria. Dado que c# esconde lo que sucede voy a pedirle a la ia que lo convierta a un código en c++ para analizar la memoria correctamente.
+
+<a name="exp1"></a>
+Experimento 1
+
+
 <img width="901" height="288" alt="image" src="https://github.com/user-attachments/assets/704fe03a-3b9f-4a04-90ce-79f6e1652a32" />
 
 **Código c++**
@@ -312,3 +317,5 @@ Alias de fig que toma las referencias del otro grupo por asi decirlo.
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
 > Esta sección es OBLIGATORIA y central para tu evaluación
+>
+> Criterio 1: Por ejemplo en el [experimento 1](#exp1) se nota que .... porque ...

@@ -23,6 +23,9 @@ El polimorfismo es cuando puedo darle a diferentes clases métodos con el mismo 
 Mi hipótesis es que cada vez que hago polimorfismo a pesar de que los métodos tienen el mismo nombre, estos tienen que funcionar a nivel de memoria de forma diferente para poder almacenar los datos. Mi propósito es entender  por qué es posible realizar polimorfismo y cómo se hace. Una vez comprendido el concepto quiero observar si es posible hackear el programa en tiempo de ejecución, por el momento pienso que sí pero no tengo muy claro cómo, quizás cambiando las direcciones en tiempo real, además quiero entender esto para qué serviría.
 
   Lo primero que voy a hacer es analizar el código de la actividad uno ya que está relacionada con polimorfismo pero antes voy a ver qué hace el código para entender qué hace antes de observar la parte de la memoria.
+  
+<a name="exp0"></a>
+### Experimento fallido
 
 **Código**
 ```c#
@@ -96,8 +99,9 @@ public class Programa
     }
 }
 ```
+<a name="preg0"></a>
 
-**Preguntas que me surgieron luego de analizar el código:**
+### Preguntas que me surgieron luego de analizar el código:
 1. ¿Cómo a pesar de tener los mismos nombres hacen acciones diferentes? ¿El programa cómo lo entiende?
 2. ¿Por qué uso "fig" antes de dibujar? ¿Cómo se relaciona la clase abstracta de dibujar con figura? ¿El programa cómo sabe cúal ejecutar?
 3. Cuando la  clase figura toma un nombre ¿Ese nombre es el mismo que el de los strings public y private creado anteriormente? ¿Si es diferente el programa cómo sabe?
@@ -225,6 +229,9 @@ el valor de this es 0x0000011914447a20, que es la dirección de memoria del obje
 
 Encontré en qué la tabla hace referencia a la figura porque es la clase padre y la que se construye primero. Ahora tengo las siguientes preguntas:
 
+<a name="preg1"></a>
+### Preguntas de los nombres en el depurador
+
 **1. ¿Qué es exactamente un _vfptr? ¿Es lo mismo que una vtable?**
 
 Las siglas _vfptr son por virtual function pointer y es un puntero implícito que todo objeto de una clase con funciones virtuales contiene. Apunta a la vtable de su clase. Es una tabla de punteros a funciones virtuales. Cada clase con métodos virtuales tiene su propia vtable, que almacena las direcciones de las implementaciones de esas funciones. 
@@ -262,11 +269,13 @@ Cuando abro círculo que es una entrada específica a la vtable, también que c�
 
 <img width="894" height="527" alt="image" src="https://github.com/user-attachments/assets/cb087e7f-881c-4fdd-8425-504261c764d3" />
 
-**Conclusión**
+<a name="conc1"></a>
+#### **Conclusión análisis creación de figuras**
 
 Circulo es una extensión de Figura en memoria. Al heredar, la parte de Figura se convierte en el primer segmento de cualquier objeto Circulo. Esto explica por qué ambos comparten la misma dirección inicial y el mismo puntero _vfptr. Todas comparten la misma tabla de la clase Circulo. En este orden de ideas puedo pensar que el puntero y la vtable son un sistema de direcciones que le dice al programa específicamente qué dibujar.
 
-**Preguntas de la sección**
+<a name="preg2"></a>
+### **Preguntas de la creación de objetos**
 
 **1. ¿Qué es "push_back" y "vector<unique_ptr<Figura>>"? ¿Para qué sirven?**
 
@@ -285,7 +294,25 @@ Al consultar encontré que no son dos elementos, si no la vtable del círculo qu
 Es una herramienta del entorno de depuración para ver los detalles internos, es para poder inspeccionar objetos complejos.
 
 
+Continuaré analizando el código y al hacerlo veo que ahora se creo la nueva figura rectángulo 
 
+<img width="926" height="887" alt="image" src="https://github.com/user-attachments/assets/c149fce0-be51-4471-b74b-36fde11b7e17" />
+
+Tiene los mismos componentes solo que sta vez en vez de círculo aparece rectángulo.
+
+<img width="880" height="562" alt="image" src="https://github.com/user-attachments/assets/b00fa8e2-0fab-4fef-b144-76a4113eb675" />
+
+Veo que también su puntero esta compuesto por dos y ya se por qué aunque sea un solo objeto. La dirección del rectángulo es 0x00007ff73887114a
+
+<img width="914" height="608" alt="image" src="https://github.com/user-attachments/assets/298323ae-0b44-4cfc-9e91-0eef937af491" />
+
+
+
+<img width="921" height="737" alt="image" src="https://github.com/user-attachments/assets/4092a2db-3f85-45ce-ae42-2fb36ed8fabc" />
+
+Veo que tiene la misma dirección de memoria.
+
+<img width="921" height="662" alt="image" src="https://github.com/user-attachments/assets/b3540899-23e6-40d4-9285-2af2ca20522d" />
 
 
 

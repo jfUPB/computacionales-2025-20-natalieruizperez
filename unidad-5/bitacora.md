@@ -306,11 +306,11 @@ Veo que también su puntero esta compuesto por dos y ya se por qué aunque sea u
 
 <img width="914" height="608" alt="image" src="https://github.com/user-attachments/assets/298323ae-0b44-4cfc-9e91-0eef937af491" />
 
-
+Al final se puede ver como se llaman a 3 elementos, uno sería el círculo, otro el rectángulo y después otro círculo.
 
 <img width="921" height="737" alt="image" src="https://github.com/user-attachments/assets/4092a2db-3f85-45ce-ae42-2fb36ed8fabc" />
 
-Veo que tiene la misma dirección de memoria.
+Veo que ambos círculos tiene la misma dirección de memoria.
 
 <img width="921" height="662" alt="image" src="https://github.com/user-attachments/assets/b3540899-23e6-40d4-9285-2af2ca20522d" />
 

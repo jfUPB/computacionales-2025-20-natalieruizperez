@@ -329,17 +329,28 @@ Veo que ambos círculos tiene la misma dirección de memoria.
 Como experimento voy a observar si es posibe hackear el programa en tiempo real. Lo primero que voy a hacer es copiar la dirección del rectángulo, esta es 0x00007ff66273114a y la del círculo que es 0x00007ff66273149c. Mi plan es poner en el rectángulo la dirección del círculo y observar qué sucede.
 
 
-**Dirección de rectángulo**
+**Dirección de rectángulo** 0x00007ff73887114a
 
 <img width="921" height="544" alt="image" src="https://github.com/user-attachments/assets/7a921f52-010d-4168-8173-60bdf856976b" />
 
-**Dirección de memoria del círculo**
+**Dirección de memoria del círculo**  0x00007ff73887149c
 
 <img width="921" height="544" alt="image" src="https://github.com/user-attachments/assets/34022025-2801-4552-8440-96a155d3bddd" />
 
 Alias de fig que toma las referencias del otro grupo por asi decirlo
-.
+
 <img width="936" height="511" alt="image" src="https://github.com/user-attachments/assets/e28bc8bb-8725-4236-a3ef-feb679dfe41c" />
+
+
+Reemplace la dirección del círculo por la del rectángulo.
+
+<img width="939" height="626" alt="image" src="https://github.com/user-attachments/assets/e98ef25b-e896-44fc-b870-7e0737d7db63" />
+
+Aunque el programa muestra un error porque el tipo de objeto esperado no coincide con el que realmente hay, lo interesante es que al modificar la dirección de memoria del primer círculo, también cambió la dirección de memoria del segundo círculo.
+
+<img width="941" height="792" alt="image" src="https://github.com/user-attachments/assets/dd1284be-0b2d-4f78-a1fe-140eb4971929" />
+
+Esto indica que ambos objetos círculo están compartiendo o referenciando indirectamente la misma dirección de memoria para ciertos datos. Esto puede pasar por cómo el vector o la estructura de datos está manejando la memoria o por la forma en que se está apuntando a las tablas.
 
 <a name="conf"></a>
 ### Conclusión final

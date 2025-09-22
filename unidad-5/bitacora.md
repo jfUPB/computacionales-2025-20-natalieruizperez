@@ -24,7 +24,7 @@ Mi hipótesis es que cada vez que hago polimorfismo a pesar de que los métodos 
 
   Lo primero que voy a hacer es analizar el código de la actividad uno ya que está relacionada con polimorfismo pero antes voy a ver qué hace el código para entender qué hace antes de observar la parte de la memoria.
   
-<a name="exp0"></a>
+<a name="expf"></a>
 ### Experimento fallido
 
 **Código**
@@ -99,7 +99,7 @@ public class Programa
     }
 }
 ```
-<a name="preg0"></a>
+<a name="pregu"></a>
 
 ### Preguntas que me surgieron luego de analizar el código:
 1. ¿Cómo a pesar de tener los mismos nombres hacen acciones diferentes? ¿El programa cómo lo entiende?
@@ -111,11 +111,11 @@ Creo que estas preguntas las podré responder al analizar el código entonces ir
 
 Voy a observar con los brakpoints que es lo que sucede a nivel de memoria. Dado que c# esconde lo que sucede voy a pedirle a la ia que lo convierta a un código en c++ para analizar la memoria correctamente.
 
-<a name="exp1"></a>
-Experimento 1
-
 
 <img width="901" height="288" alt="image" src="https://github.com/user-attachments/assets/704fe03a-3b9f-4a04-90ce-79f6e1652a32" />
+
+<a name="cod"></a>
+Código de análisis
 
 **Código c++**
 
@@ -209,16 +209,23 @@ int main() {
     return 0;
 }
 ```
+<a name="ana"></a>
+Análisis de código
+
 Una vez convertido el código voy a poner breakpoints para analizar la memoria, pero primero verificar que el código funcione correctamente.
 
 <img width="1493" height="718" alt="image" src="https://github.com/user-attachments/assets/662f9e94-1080-4b92-ad55-f685e98a480a" />
 
 Ahora a analizar el stack. Veo que en las variables locales está el nuevoNombre que lo puedo ubicar en el programa sin problema, pero hay una variable llamada **this** la cual no veo en el códgio.
 
+<a name="preg0"></a>
+Preguntas
+
 **¿Qué es esa variable this que crea el código y de qué se encarga?**
 
 Sin this, el método setNombre() no sabría en qué objeto debe modificar la variable nombre. Gracias a this, el compilador resuelve que nombre pertenece al objeto actual. Cuando se a un método como setNombre(), this contiene la dirección de memoria del objeto que está invocando ese método.
 
+<a name="con0"></a>
 En conclusión, this no es una variable que aparezca de forma literal en el programa pero es fundamental ya que ella alberga la dirección de memoria del objeto para que el programa pueda saber a qué me refiero.
 
 <img width="934" height="628" alt="Captura de pantalla 2025-09-16 091420" src="https://github.com/user-attachments/assets/69603368-a523-4776-bc64-61504c027671" />
@@ -236,6 +243,7 @@ Encontré en qué la tabla hace referencia a la figura porque es la clase padre 
 
 Las siglas _vfptr son por virtual function pointer y es un puntero implícito que todo objeto de una clase con funciones virtuales contiene. Apunta a la vtable de su clase. Es una tabla de punteros a funciones virtuales. Cada clase con métodos virtuales tiene su propia vtable, que almacena las direcciones de las implementaciones de esas funciones. 
 
+<a name="con1"></a>
 En conclusión _vfptr es el puntero que apunta a la vtable. No son lo mismo pero se relacionan.
 
 **2. ¿Por qué en la imagen hay una Figura con y sin corchetes? ¿Cúal es la diferencia?**
@@ -269,7 +277,7 @@ Cuando abro círculo que es una entrada específica a la vtable, también que c�
 
 <img width="894" height="527" alt="image" src="https://github.com/user-attachments/assets/cb087e7f-881c-4fdd-8425-504261c764d3" />
 
-<a name="conc1"></a>
+<a name="conc3"></a>
 #### **Conclusión análisis creación de figuras**
 
 Circulo es una extensión de Figura en memoria. Al heredar, la parte de Figura se convierte en el primer segmento de cualquier objeto Circulo. Esto explica por qué ambos comparten la misma dirección inicial y el mismo puntero _vfptr. Todas comparten la misma tabla de la clase Circulo. En este orden de ideas puedo pensar que el puntero y la vtable son un sistema de direcciones que le dice al programa específicamente qué dibujar.
@@ -293,7 +301,7 @@ Al consultar encontré que no son dos elementos, si no la vtable del círculo qu
 
 Es una herramienta del entorno de depuración para ver los detalles internos, es para poder inspeccionar objetos complejos.
 
-
+<a name="ana2"></a>
 Continuaré analizando el código y al hacerlo veo que ahora se creo la nueva figura rectángulo 
 
 <img width="926" height="887" alt="image" src="https://github.com/user-attachments/assets/c149fce0-be51-4471-b74b-36fde11b7e17" />
@@ -314,9 +322,8 @@ Veo que ambos círculos tiene la misma dirección de memoria.
 
 <img width="921" height="662" alt="image" src="https://github.com/user-attachments/assets/b3540899-23e6-40d4-9285-2af2ca20522d" />
 
-
-
 ---
+<a name="exp0"></a>
 ### Experimento
 
 Como experimento voy a observar si es posibe hackear el programa en tiempo real. Lo primero que voy a hacer es copiar la dirección del rectángulo, esta es 0x00007ff66273114a y la del círculo que es 0x00007ff66273149c. Mi plan es poner en el rectángulo la dirección del círculo y observar qué sucede.
@@ -330,19 +337,28 @@ Como experimento voy a observar si es posibe hackear el programa en tiempo real.
 
 <img width="921" height="544" alt="image" src="https://github.com/user-attachments/assets/34022025-2801-4552-8440-96a155d3bddd" />
 
-Alias de fig que toma las referencias del otro grupo por asi decirlo.
+Alias de fig que toma las referencias del otro grupo por asi decirlo
+.
 <img width="936" height="511" alt="image" src="https://github.com/user-attachments/assets/e28bc8bb-8725-4236-a3ef-feb679dfe41c" />
-
-
-
-
-
-
-
-
 
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
 > Esta sección es OBLIGATORIA y central para tu evaluación
->
+
+### Nota:
+
+-Profundidad de la Indagación (5.0): Formulo preguntas que desmuestran síntesis conceptual y relaciono el diseño con memoria y sintaxis como se puede ver por ejemplo en estas [Preguntas](#preg0) donde dice "Gracias a this, el compilador resuelve que nombre pertenece al objeto actual." También hice más que se pueden encontrar en
+
+-Calidad de la Experimentación (5.0): Hice dos experimentos, considero que ambos muy completos dado que el primero no involucraba unicamente polimorfismo si no también herencia y encapsulamiento como se puede ver en el [experimento 1](#cod). En el segundo experimento [Experimento 2](#exp0) modifiqué manualmente la dirección de memoria de un objeto Figura que originalmente era un Rectángulo, para que apuntara a la instancia de un Circulo. Lo que descubrí fue que, al ejecutar Dibujar(), el programa no dibujó el rectángulo, sino el círculo.
+
+-Análisis y Reflexión (5.0): A lo largo de la bitácora definí que iba a hacer, después observé qué sucedía, lo analicé y finalmente hice una conclusión. Por ejemplo en esta parte me pregunto el por qué del diseño, hago una reflexión y finalmente una conclusión.
+
+-Apropiación y Articulación de Conceptos (5.0):
+
+
+
+
+
+
+
 > Criterio 1: Por ejemplo en el [experimento 1](#exp1) se nota que .... porque ...

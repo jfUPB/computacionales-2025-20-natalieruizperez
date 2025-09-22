@@ -347,7 +347,7 @@ Alias de fig que toma las referencias del otro grupo por asi decirlo
 
 ### Nota:
 
--Profundidad de la Indagación (5.0): Formulo preguntas que desmuestran síntesis conceptual y relaciono el diseño con memoria y sintaxis como se puede ver por ejemplo en estas [Preguntas](#preg0) donde dice "Gracias a this, el compilador resuelve que nombre pertenece al objeto actual." También hice más que se pueden encontrar en
+-Profundidad de la Indagación (5.0): Formulo preguntas que desmuestran síntesis conceptual y relaciono el diseño con memoria y sintaxis como se puede ver por ejemplo en estas [Preguntas](#preg0) donde dice "Gracias a this, el compilador resuelve que nombre pertenece al objeto actual." También hice más que se pueden encontrar en [Preguntas 1](#preg1), [Preguntas 2](#preg2) y [Preguntas al ver el código](#pregu).
 
 -Calidad de la Experimentación (5.0): Hice dos experimentos, considero que ambos muy completos dado que el primero no involucraba unicamente polimorfismo si no también herencia y encapsulamiento como se puede ver en el [experimento 1](#cod). En el segundo experimento [Experimento 2](#exp0) modifiqué manualmente la dirección de memoria de un objeto Figura que originalmente era un Rectángulo, para que apuntara a la instancia de un Circulo. Lo que descubrí fue que, al ejecutar Dibujar(), el programa no dibujó el rectángulo, sino el círculo.
 

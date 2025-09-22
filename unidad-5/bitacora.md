@@ -341,19 +341,25 @@ Alias de fig que toma las referencias del otro grupo por asi decirlo
 .
 <img width="936" height="511" alt="image" src="https://github.com/user-attachments/assets/e28bc8bb-8725-4236-a3ef-feb679dfe41c" />
 
+<a name="conf"></a>
+### Conclusión final
+
+El encapsulamiento no solo oculta datos, sino que permite controlar cómo se usan. La herencia hace posible que clases compartan estructura, y el polimorfismo conecta todo, permitiendo que objetos distintos se comporten diferente desde un mismo tipo base. A través del experimento pude confirmar que cambiar punteros puede modificar el comportamiento del programa en tiempo real. El proceso de predecir, analizar, reflexionar y concluir me ayudó a entender que encapsular, heredar y reutilizar no son pasos sueltos, son decisiones de diseño que se reflejan en cómo corre el programa en memoria.
+
 ## 4.  **Consolidación, autoevaluación y cierre:**
 > [!CAUTION]
 > Esta sección es OBLIGATORIA y central para tu evaluación
 
-### Nota:
+### Nota: 5.0
 
 -Profundidad de la Indagación (5.0): Formulo preguntas que desmuestran síntesis conceptual y relaciono el diseño con memoria y sintaxis como se puede ver por ejemplo en estas [Preguntas](#preg0) donde dice "Gracias a this, el compilador resuelve que nombre pertenece al objeto actual." También hice más que se pueden encontrar en [Preguntas 1](#preg1), [Preguntas 2](#preg2) y [Preguntas al ver el código](#pregu).
 
 -Calidad de la Experimentación (5.0): Hice dos experimentos, considero que ambos muy completos dado que el primero no involucraba unicamente polimorfismo si no también herencia y encapsulamiento como se puede ver en el [experimento 1](#cod). En el segundo experimento [Experimento 2](#exp0) modifiqué manualmente la dirección de memoria de un objeto Figura que originalmente era un Rectángulo, para que apuntara a la instancia de un Circulo. Lo que descubrí fue que, al ejecutar Dibujar(), el programa no dibujó el rectángulo, sino el círculo.
 
--Análisis y Reflexión (5.0): A lo largo de la bitácora definí que iba a hacer, después observé qué sucedía, lo analicé y finalmente hice una conclusión. Por ejemplo en esta parte me pregunto el por qué del diseño, hago una reflexión y finalmente una conclusión.
+-Análisis y Reflexión (5.0): A lo largo de la bitácora definí que iba a hacer, después observé qué sucedía, lo analicé [Prueba de análisis](#ana) y [Continuación análisis](#ana2) y finalmente hice una conclusión. Por ejemplo en [Preguntas 1](#preg1) me pregunto el por qué del diseño, hago una reflexión y finalmente una conclusión [Conclusión 1](#conc1). Estás también son otras conclusiones que surgen luego de un análisis profundo. [Conclusiones 1](#con0), [Conclusiones análisis](#con3) y [Conclusion final](#conf)
 
--Apropiación y Articulación de Conceptos (5.0):
+-Apropiación y Articulación de Conceptos (5.0): En los análisis del experimento es posible observar cómo encapsulamiento, herencia y polimorfismo se necesitan entre sí. A través de la bitácora pude ir haciendo conexión entre conceptos pero en la parte en dónde está más literal es en la [Conclusion final](#conf) cuando digo que "El encapsulamiento no solo oculta datos, sino que permite controlar cómo se usan. La herencia hace posible que clases compartan estructura, y el polimorfismo conecta todo, permitiendo que objetos distintos se comporten diferente desde un mismo tipo base."
+
 
 
 

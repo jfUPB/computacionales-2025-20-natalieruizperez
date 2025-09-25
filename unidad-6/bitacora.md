@@ -1,16 +1,8 @@
 # Bitácora de aprendizaje de la unidad 6
 
-Observar el comportamiento e interactuar con el código.
-
 ## Actividad 01
-A cada una de las partículas del sistema le notificará qué tiene qué hacer. Las partículas observan un cambio de estado en la aplicación que es el subject y en la aplicación como tal va a ser el ofapp.
-En el stup hay 3 ciclos para cerar tres tipos diferentes de partículas y es ahí donde se ingresala partícula que se está creando como ese cambio de estado que se va a observar.
-La aplicación le pide al factory crear partícula creo en la memoria un tipo de partículo y luego se personaliza, se define el tamaño, color y en algunos casos la velocidad inciial. Lo único que se retorna a la aplicación es la dirección de memoria de la partícula.
-Permite poner maquinas de estado
 
-Cada que se destruye enl enemigo se le avisa al intresado y se actualiza en la base de datos en la nube. Es un patrón que permite trabajar en equipo.
-
----
+Observar el comportamiento e interactuar con el código.
 
 **1. ¿Cómo puedes interactuar con la aplicación? Menciona específicamente las teclas y qué efecto parecen tener sobre las partículas.**
 
@@ -127,3 +119,33 @@ En esta actividad modificarás el caso de estudio para añadir un nuevo tipo de 
 Explica cómo usaste el patrón Factory para esta nueva partícula.
 Describe cómo implementaste el patrón Observer para esta nueva partícula.
 Explica cómo aplicaste el patrón State a esta nueva partícula.
+
+---
+Notas de clase
+A cada una de las partículas del sistema le notificará qué tiene qué hacer. Las partículas observan un cambio de estado en la aplicación que es el subject y en la aplicación como tal va a ser el ofapp.
+En el stup hay 3 ciclos para cerar tres tipos diferentes de partículas y es ahí donde se ingresala partícula que se está creando como ese cambio de estado que se va a observar.
+La aplicación le pide al factory crear partícula creo en la memoria un tipo de partículo y luego se personaliza, se define el tamaño, color y en algunos casos la velocidad inciial. Lo único que se retorna a la aplicación es la dirección de memoria de la partícula.
+Permite poner maquinas de estado
+
+Cada que se destruye enl enemigo se le avisa al intresado y se actualiza en la base de datos en la nube. Es un patrón que permite trabajar en equipo.
+
+---
+**Rúbrica**
+
+Si usas IA para generar código, texto o imágenes la nota en esa actividad será 0.
+Rúbrica de evaluación del proceso
+
+5: realicé las 5 actividades completas y la autoevaluación.
+4: realicé 4 actividades completas y la autoevaluación.
+3: realicé 3 actividades completas y la autoevaluación.
+2: realicé 2 actividades completas y la autoevaluación.
+1: realicé 1 actividad completa y la autoevaluación.
+
+---
+
+## Nota 
+-Actividad 01:
+-Actividad 02:
+-Activida 03:
+-Actividad 04:
+-Activida 05:

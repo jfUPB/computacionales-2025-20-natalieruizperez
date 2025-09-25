@@ -8,9 +8,34 @@ En el stup hay 3 ciclos para cerar tres tipos diferentes de partículas y es ah�
 La aplicación le pide al factory crear partícula creo en la memoria un tipo de partículo y luego se personaliza, se define el tamaño, color y en algunos casos la velocidad inciial. Lo único que se retorna a la aplicación es la dirección de memoria de la partícula.
 Permite poner maquinas de estado
 
-Cada que se destruye enl enemigo se le visa al intresado y se actualiza en la base de datos en la nube. Es un patrón que permite trabajar en equipo.
+Cada que se destruye enl enemigo se le avisa al intresado y se actualiza en la base de datos en la nube. Es un patrón que permite trabajar en equipo.
+
+---
 
 **1. ¿Cómo puedes interactuar con la aplicación? Menciona específicamente las teclas y qué efecto parecen tener sobre las partículas.**
+
+Puedo interactuar con la aplicación con las teclas s, a, r, y n como se puede ver en el código en esta parte:
+
+``` c++
+void ofApp::keyPressed(int key) {
+  switch (key) {
+  case 's':
+    notify("stop");
+    break;
+  case 'a':
+    notify("attract");
+    break;
+  case 'r':
+    notify("repel");
+    break;
+  case 'n':
+    notify("normal");
+    break;
+  default:
+    break;
+  }
+}
+```
 
 **2.¿Observas los diferentes tipos de “partículas”? ¿Se comportan todas igual inicialmente?**
 

@@ -72,10 +72,14 @@ El propósito del patrón observer es notificar al objeto o no me quedó claro s
 **2. Dibuja un diagrama que muestre la relación entre Subject, Observer, ofApp y Particle en el caso de estudio, indicando quién es el Sujeto y quiénes los Observadores.**
 
 
+
 **3. Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
 
 
+
 **4. ¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.**
+
+Creo que al tener el sistema del observer es mejor ya que no se está actualizando en cada frame como en el update, si no que unicamente cambian su comportamiento cuando reciben la notificación. Las partículas no están directamente relacionadas entre si por lo que tienen menor acomplamiento y como los objetos dependen de la notificación hay más extensibilidiad y facilidad para agregar nuevos objetos y otras cosas.
 
 ---
 

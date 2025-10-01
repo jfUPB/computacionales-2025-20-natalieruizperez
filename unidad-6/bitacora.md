@@ -91,9 +91,53 @@ Creo que al tener el sistema del observer es mejor ya que no se está actualizan
 
 **1. Explica con tus propias palabras el propósito del patrón Factory Method (o Simple Factory, en este caso). ¿Qué problema principal aborda en la creación de objetos?**
 
+El Factory Method tiene como propósito simplificar procesos y que sea más flexible porque no hay que escribirlo cada vez que quiero crear un objeto. Ejemplo en el código donde se usa:
+
+**Código:**
+```
+Particle * ParticleFactory::createParticle(const std::string & type) {
+  Particle * particle = new Particle();
+
+  if (type == "star") {
+    particle->size = ofRandom(2.0f, 4.0f);
+    particle->color = ofColor(255, 0, 0);
+  } else if (type == "shooting_star") {
+    particle->size = ofRandom(3.0f, 6.0f);
+    particle->color = ofColor(0, 255, 0);
+    particle->velocity *= 3.0f;
+  } else if (type == "planet") {
+    particle->size = ofRandom(5.0f, 8.0f);
+    particle->color = ofColor(0, 0, 255);
+  }
+  return particle;
+}
+```
+El problema principal que aborda la creación de objetos es el tener que instanciar manualmente cada objeto y cambiarle parámetros. A través del Factory Method es más sencillo porque solo pongo que tipo es crea el objeto con los valores que corresponden. Además en caso de querer agregar otro objeto diferente no tendría que modificar el código anterior, simplemente agregar un nuevo tipo.
+
 **2. ¿Qué ventajas aporta el uso de ParticleFactory en ofApp::setup en comparación con instanciar y configurar las partículas directamente allí? Piensa en términos de organización del código (SRP - Single Responsibility Principle), legibilidad y facilidad para añadir nuevos tipos de partículas en el futuro.**
 
+El ParticleFactory permite tiene una ventaja grande ya que en lugar de instanciar y configurar las partúculas manualmente me ahorro ese paso y puedo por así decirlo categorizar cada uno de los tipos que quiero. Es un código mucho más legible, limpio y además funcional ya que no tiene grandes niveles de dependencia y en caso de yo querer agregar una partícula lo hago simplemente poniendo otro tipo.
+
 **3. Imagina que quieres añadir un nuevo tipo de partícula llamada "black_hole" que tiene tamaño grande, color negro y velocidad muy lenta. Describe los pasos que necesitarías seguir para implementar esto utilizando la ParticleFactory existente. ¿Tendrías que modificar ofApp::setup? ¿Por qué sí o por qué no?**
+
+En caso de crear esa nueva partícula si necesito modificar el ofApp::setup porque ahí es donde se agregan como observadores y también defino el tipo y la cantidad, pero se puede hacer de forma sencilla. Lo qe debería de hacer para implementarlo en la ParticleFactory sería primero agregar en el ofApp "black_hole" y luego en el ParticleFactorydefinir los parámetros.
+
+**ofApp**
+```
+  for (int i = 0; i < 10; ++i) {
+    Particle * p = ParticleFactory::createParticle("black_hole");
+    particles.push_back(p);
+    addObserver(p);
+  }
+```
+
+**ParticleFactory**
+```
+else if (type == "black_hole") {
+    particle->size = ofRandom(100.0f, 150.0f);
+    particle->color = ofColor(0, 0, 0);
+    particle->velocity *= 0.1f;
+```
 
 **4. El método createParticle en el ejemplo es estático. ¿Qué implicaciones (ventajas/desventajas) tiene esto comparado con tener una instancia de ParticleFactory y un método de instancia createParticle()?.**
 

@@ -92,7 +92,7 @@ Creo que al tener el sistema del observer es mejor ya que no se está actualizan
 El Factory Method tiene como propósito simplificar procesos y que sea más flexible porque no hay que escribirlo cada vez que quiero crear un objeto. Ejemplo en el código donde se usa:
 
 **Código:**
-```
+```c++
 Particle * ParticleFactory::createParticle(const std::string & type) {
   Particle * particle = new Particle();
 

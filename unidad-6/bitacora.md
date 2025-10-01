@@ -121,7 +121,7 @@ El ParticleFactory permite tiene una ventaja grande ya que en lugar de instancia
 En caso de crear esa nueva partícula si necesito modificar el ofApp::setup porque ahí es donde se agregan como observadores y también defino el tipo y la cantidad, pero se puede hacer de forma sencilla. Lo qe debería de hacer para implementarlo en la ParticleFactory sería primero agregar en el ofApp "black_hole" y luego en el ParticleFactory definir los parámetros.
 
 **ofApp**
-```
+```c++
   for (int i = 0; i < 3; ++i) {
     Particle * p = ParticleFactory::createParticle("black_hole");
     particles.push_back(p);
@@ -130,7 +130,7 @@ En caso de crear esa nueva partícula si necesito modificar el ofApp::setup porq
 ```
 
 **ParticleFactory**
-```
+```c++
 else if (type == "black_hole") {
     particle->size = ofRandom(100.0f, 150.0f);
     particle->color = ofColor(0, 0, 0);
@@ -172,7 +172,7 @@ En esta actividad modificarás el caso de estudio para añadir un nuevo tipo de 
 Decidí añadir la misma partícula del ejemplo pasado de black_hole porque ya había hecho una parte del código solo que puse le fondo en blanco para que se pudieran ver las nuevas partícula nuevas ya que son negras.
 
 **ofApp.h:**
-```
+```c++
 #pragma once
 
 #include "ofMain.h"
@@ -272,7 +272,7 @@ private:
 ```
 
 **ofApp.cpp:**
-```
+```c++
 #include "ofApp.h"
 #include <algorithm>
 

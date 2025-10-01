@@ -550,22 +550,14 @@ Cada que se destruye enl enemigo se le avisa al intresado y se actualiza en la b
 
 ---
 
-**Rúbrica**
-
-Si usas IA para generar código, texto o imágenes la nota en esa actividad será 0.
-Rúbrica de evaluación del proceso
-
-5: realicé las 5 actividades completas y la autoevaluación.
-4: realicé 4 actividades completas y la autoevaluación.
-3: realicé 3 actividades completas y la autoevaluación.
-2: realicé 2 actividades completas y la autoevaluación.
-1: realicé 1 actividad completa y la autoevaluación.
-
----
-
 ## Nota: 4.75
+
 -Actividad 01: Completa (1.0)
--Activida 02: Me faltó el punto 3, no hice el diagrama de secuencia ya que no sabía cómo hacerlo. Los demás puntos de la actividad los hice así que complete 3/4 (0.75)
--Actividad 03: Completa (1.0)
--Actividad 04: Completa (1.0)
--Activida 05: Completa  (1.0)
+
+  -Activida 02: Me faltó el punto 3, no hice el diagrama de secuencia ya que no sabía cómo hacerlo. Los demás puntos de la actividad los hice así que complete 3/4 (0.75)
+  
+  -Actividad 03: Completa (1.0)
+  
+  -Actividad 04: Completa (1.0)
+  
+  -Activida 05: Completa  (1.0)

@@ -78,8 +78,6 @@ Los sujetos serían Subject (que es la clase padre) y ofApp (que la hereda), est
 
 **3. Construye un diagrama de secuencia que muestre cómo funciona el patrón Observer al presionar una tecla.**
 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
 
 **4. ¿Qué ventajas crees que ofrece usar el patrón Observer en esta aplicación en comparación con, por ejemplo, que ofApp::update recorriera todas las partículas y les dijera directamente que cambien su comportamiento basado en una variable global? Piensa en términos de acoplamiento y extensibilidad.**
 
@@ -155,7 +153,7 @@ Este patrón es útil cuando quiero que un objeto tenga distintos comportamiento
 
 **2. Dibuja un diagrama de estados simple para la clase Particle. Muestra los diferentes estados (Normal, Attract, Repel, Stop) como nodos y las transiciones entre ellos como flechas etiquetadas con el evento que las causa (p. ej., la tecla presionada: ‘n’, ‘a’, ‘r’, ‘s’).**
 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+<img width="963" height="708" alt="image" src="https://github.com/user-attachments/assets/764629dc-51ef-402e-8d14-84248d009ead" />
 
 **3. Describe las ventajas de usar el patrón State en Particle en lugar de tener un miembro std::string estadoActual y usar un gran if/else if/else o switch dentro de Particle::update() para cambiar el comportamiento. Piensa en cohesión, extensibilidad (añadir nuevos estados) y el Principio Abierto/Cerrado (Open/Closed Principle).**
 
@@ -565,9 +563,9 @@ Rúbrica de evaluación del proceso
 
 ---
 
-## Nota: 5.0
--Actividad 01: Completa (5.0)
--Actividad 02: Completa (5.0)
--Activida 03: Completa  (5.0)
--Actividad 04: Completa (5.0)
--Activida 05: Completa  (5.0)
+## Nota: 4.75
+-Actividad 01: Completa (1.0)
+-Activida 02: Me faltó el punto 3, no hice el diagrama de secuencia ya que no sabía cómo hacerlo. Los demás puntos de la actividad los hice así que complete 3/4 (0.75)
+-Actividad 03: Completa (1.0)
+-Actividad 04: Completa (1.0)
+-Activida 05: Completa  (1.0)

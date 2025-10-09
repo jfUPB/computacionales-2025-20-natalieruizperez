@@ -77,12 +77,18 @@ Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crea
 <img width="897" height="663" alt="image" src="https://github.com/user-attachments/assets/02076275-fd01-49e5-8889-85a121e8ef44" />
 
 
-8. Ya funciona 
+8. Ya funciona
+
+<img width="948" height="980" alt="image" src="https://github.com/user-attachments/assets/d73064be-3336-4a6e-85b1-b73c2a63e15b" />
+
 9. 
+
+
 10. 
 11. 
 12. 
 13. 
+14. 
 
 
 

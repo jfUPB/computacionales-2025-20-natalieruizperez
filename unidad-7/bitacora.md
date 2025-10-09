@@ -35,6 +35,8 @@ Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crea
 
 2. Después agregue la carpeta external y dentro glfw34, glad y glm-101-light.
 
+<img width="632" height="295" alt="image" src="https://github.com/user-attachments/assets/edce4556-fb50-4a45-b0a2-e036258c239e" />
+
 3. Le di a glfw4 available for download y luego a 64-bit windows binaries, lo descomprimi y guarde las carpetas necesarias en glfw34.
 
 <img width="327" height="460" alt="image" src="https://github.com/user-attachments/assets/f928e37c-85e4-4a3c-ad57-c4a182bf7aa9" />
@@ -59,42 +61,31 @@ Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crea
 
 <img width="751" height="627" alt="image" src="https://github.com/user-attachments/assets/d78cde51-4270-4ae4-b662-61a72bfa3027" />
 
+6. Faltaba el código y no me salía el menu desplegable de c/c++ entonces descargué el cpp y lo puse en la carpeta del proyecto. Luego le di click detecho en el proyecto, NO EN LA SOLUCIÓN, le di a agregar y seleccioné el triángulo cpp.
 
-6. 
-7. 
+<img width="719" height="392" alt="image" src="https://github.com/user-attachments/assets/99cd6685-bf8a-4c6a-9dd6-8c1999fe892f" />
 
-8. 
+7. Ahora para poder enlazar todo con las dependencias le di a click derecho en el proyecto y después propiedades. Y en el de c/c++ puse incluir directorios, le di a editar. Después se creo una nueva pestaña y para vincularlo le di a la nueva carpeta, en la parte derecha salen 3 puntos para vincularlo.
+
+<img width="782" height="532" alt="image" src="https://github.com/user-attachments/assets/58c2bf96-25a8-439c-a4b6-ef0868a2e6b6" />
+
+<img width="784" height="534" alt="image" src="https://github.com/user-attachments/assets/0987f819-5888-4a86-b8e6-acf7bedac0e8" />
+
+<img width="476" height="481" alt="image" src="https://github.com/user-attachments/assets/c0367a9a-eaf6-440c-abf4-7e4f6cd30f2a" />
+
+
+<img width="897" height="663" alt="image" src="https://github.com/user-attachments/assets/02076275-fd01-49e5-8889-85a121e8ef44" />
+
+
+8. Ya funciona 
 9. 
 10. 
 11. 
-<img width="632" height="295" alt="image" src="https://github.com/user-attachments/assets/edce4556-fb50-4a45-b0a2-e036258c239e" />
-
 12. 
 13. 
-14. 
-15. Cree la carpeta external y dentro
 
-16. 
-17. 
-18. d
-19. d
-20. d
-21. d
-22. d
-23. d
-24. d
-25. d
-26. d
-27. d
-28. d
-29. d
 
-30. d
-31. d
-32. d
-33. d
-34. d
-35. d
+
 **Qué tal si ensayas. Prueba con esta línea**
 // 9) Configura el viewport
 glViewport(0, 0, bufferWidth, bufferHeight);

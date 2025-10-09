@@ -28,6 +28,73 @@ Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crea
 ---
 ## Actividad 03
 
+**Crear un proyecto openGL en Windows**
+1. Cree un proyecto vacio de c++
+
+   <img width="933" height="988" alt="image" src="https://github.com/user-attachments/assets/59ac6046-e8db-4592-a61f-ae5138dcf829" />
+
+2. Después agregue la carpeta external y dentro glfw34, glad y glm-101-light.
+
+3. Le di a glfw4 available for download y luego a 64-bit windows binaries, lo descomprimi y guarde las carpetas necesarias en glfw34.
+
+<img width="327" height="460" alt="image" src="https://github.com/user-attachments/assets/f928e37c-85e4-4a3c-ad57-c4a182bf7aa9" />
+
+<img width="925" height="244" alt="image" src="https://github.com/user-attachments/assets/6a9d3044-bca6-40b3-b78a-5e342a7a68cf" />
+
+<img width="793" height="353" alt="image" src="https://github.com/user-attachments/assets/230381f8-f915-49ac-9a19-6922bc9337a3" />
+
+
+4. Fui a la página de GLAD para poder acceder a funciones en tiempo de ejecución y puse las siguientes cosas. Le di a generate, descargué el zip y puse las carpetas en glad.
+
+
+<img width="895" height="923" alt="image" src="https://github.com/user-attachments/assets/47f3517b-fe33-4802-9a44-cbbca713507b" />
+
+<img width="828" height="458" alt="image" src="https://github.com/user-attachments/assets/de41c252-2b9f-4fc2-9219-df61330f3037" />
+
+<img width="787" height="296" alt="image" src="https://github.com/user-attachments/assets/38858387-23bb-4dbb-8ae0-928e133ef5e7" />
+
+5. Para poner la dependencia de GLM fui al githhb y descargué el zip y puse la carpeta de glm del zip en el external.
+
+<img width="879" height="195" alt="image" src="https://github.com/user-attachments/assets/898c1acc-7874-4c47-912e-d19ec4d39ac8" />
+
+<img width="751" height="627" alt="image" src="https://github.com/user-attachments/assets/d78cde51-4270-4ae4-b662-61a72bfa3027" />
+
+
+6. 
+7. 
+
+8. 
+9. 
+10. 
+11. 
+<img width="632" height="295" alt="image" src="https://github.com/user-attachments/assets/edce4556-fb50-4a45-b0a2-e036258c239e" />
+
+12. 
+13. 
+14. 
+15. Cree la carpeta external y dentro
+
+16. 
+17. 
+18. d
+19. d
+20. d
+21. d
+22. d
+23. d
+24. d
+25. d
+26. d
+27. d
+28. d
+29. d
+
+30. d
+31. d
+32. d
+33. d
+34. d
+35. d
 **Qué tal si ensayas. Prueba con esta línea**
 // 9) Configura el viewport
 glViewport(0, 0, bufferWidth, bufferHeight);

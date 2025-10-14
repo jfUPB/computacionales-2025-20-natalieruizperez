@@ -17,16 +17,8 @@ Voy a intentar entender qué sucede sin conocimientos previos, a simple vista cr
 3. Veo que se usa mucho gl en el código y supongo que es debido a una biblioteca pero quiero saber por qué se usa esa en particular
    
 ---
+
 ## Actividad 02
-
-**Te voy a pedir un resumen en tus propias palabras de lo que acabas de leer debes tratar de conectar GLFW, opengl32.lib, GLAD, GLM y los drivers de la GPU. ¿Qué rol cumple cada uno? ¿Cómo se relacionan entre sí? Mira, trata de hacer esto de memoria y como si estuvieras contándole a un amigo que quiere aprender OpenGL. Cuando haces el proceso de memoria tu cerebro hace un esfuerzo adicional y eso te ayuda a aprender. Además, si no recuerdas algo quiere decir que no lo entendiste bien y eso es una buena señal para que vuelvas a leerlo.**
-
-Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crear visuales, por otro lado GLFW sirve para que hayan ventanas, opengl32.lib me acuerdo que servía para algo pero no se usará en este caso. Por otro lado GLAD se usaba como para incluir bibliotecas y los drivers de la GPU permite que encontremos direcciones de memoria. Voy a volverlo a leer y luego a hacer un resumen conectando conceptos.
-
-  En resumen, opengl32.lib no lo usaremos en este caso porque es una versión anterior y además la idea es poder usar los drivers de la gpu. Entonces teniendo en cuenta esos drivers pienso que al ejecutar el programa lo que se tiene que hacer es crear una ventana entonces por medio de GLFW es posible hacerlo, después a traves de GLAD es como puedo incluir funcioalidades que no aparecen inicialmente y por medio de GLM es como se crea la visual, como en el ejemplo que es un triángulo. 
-
----
-## Actividad 03
 
 **Crear un proyecto openGL en Windows**
 1. Cree un proyecto vacio de c++
@@ -81,16 +73,13 @@ Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crea
 
 <img width="948" height="980" alt="image" src="https://github.com/user-attachments/assets/d73064be-3336-4a6e-85b1-b73c2a63e15b" />
 
-9. 
+**Te voy a pedir un resumen en tus propias palabras de lo que acabas de leer debes tratar de conectar GLFW, opengl32.lib, GLAD, GLM y los drivers de la GPU. ¿Qué rol cumple cada uno? ¿Cómo se relacionan entre sí? Mira, trata de hacer esto de memoria y como si estuvieras contándole a un amigo que quiere aprender OpenGL. Cuando haces el proceso de memoria tu cerebro hace un esfuerzo adicional y eso te ayuda a aprender. Además, si no recuerdas algo quiere decir que no lo entendiste bien y eso es una buena señal para que vuelvas a leerlo.**
 
+Según lo que recuerdo GLM es la biblioteca que permite usar matemáticas y crear visuales, por otro lado GLFW sirve para que hayan ventanas, opengl32.lib me acuerdo que servía para algo pero no se usará en este caso. Por otro lado GLAD se usaba como para incluir bibliotecas y los drivers de la GPU permite que encontremos direcciones de memoria. Voy a volverlo a leer y luego a hacer un resumen conectando conceptos.
 
-10. 
-11. 
-12. 
-13. 
-14. 
+  En resumen, opengl32.lib no lo usaremos en este caso porque es una versión anterior y además la idea es poder usar los drivers de la gpu. Entonces teniendo en cuenta esos drivers pienso que al ejecutar el programa lo que se tiene que hacer es crear una ventana entonces por medio de GLFW es posible hacerlo, después a traves de GLAD es como puedo incluir funcioalidades que no aparecen inicialmente y por medio de GLM es como se crea la visual, como en el ejemplo que es un triángulo. 
 
-
+## Actividad 03
 
 **Qué tal si ensayas. Prueba con esta línea**
 // 9) Configura el viewport
@@ -106,9 +95,10 @@ glViewport(0, bufferHeight/2, bufferWidth/2, bufferHeight/2);
   <img width="828" height="431" alt="image" src="https://github.com/user-attachments/assets/663f76ee-6017-4450-a84b-3a7521ee220d" />
 
 
- ** Realiza un resumen de lo que has aprendido hasta ahora, haciendo un diagrama conceptual o un mapa mental. Experimentando. ¿Cómo? Haciendo la pregunta mágica: ¿Qué pasaría si? ¿Qué pasaría si cambio el tamaño de la ventana? ¿Qué pasaría si cambio el tamaño del viewport? Entonces hagamos “digestión”: en tu bitácora, escribe un resumen de lo que has aprendido hasta ahora y piensa en un experimento del tipo ¿Qué pasaría si?**
+ **Realiza un resumen de lo que has aprendido hasta ahora, haciendo un diagrama conceptual o un mapa mental. Experimentando. ¿Cómo? Haciendo la pregunta mágica: ¿Qué pasaría si? ¿Qué pasaría si cambio el tamaño de la ventana? ¿Qué pasaría si cambio el tamaño del viewport? Entonces hagamos “digestión”: en tu bitácora, escribe un resumen de lo que has aprendido hasta ahora y piensa en un experimento del tipo ¿Qué pasaría si?**
 
- Qué pasaría si cambio esta línea 
+ AAAAAAAAA
+ ---
 
 c++
 ```
@@ -139,23 +129,51 @@ Qué pasaría si se cambián los valores de los vértices?
 
 Se crea otra figura, ya no es un triángulo equilátero si no que es un triángulo rectángulo.
 
+Luego de hablar con el profe me sugirió que no cambiara los parámetros del shader ya que podía ocasionar que el programa dejara de funcionar. Tengo que centrarme más en lo que pide cada actividad, en este caso los ejeplos que muestra en el enunciado están relacionados unicamente con el viewport y la figura.
 
 **¿Qué pasa si cambias el primer parámetro de glDrawArrays a GL_LINES? ¿Qué pasa si lo cambias a GL_POINTS? ¿Qué pasa si cambias el tercer parámetro a 2? ¿Qué pasa si lo cambias a 4? En esta unidad no profundizaremos en los tipos de primitivas, pero es importante que entiendas que OpenGL puede dibujar diferentes tipos de primitivas (triángulos, líneas, puntos, etc.).**
 
+**GL_LINES**
+Se crea una línea
+<img width="896" height="671" alt="image" src="https://github.com/user-attachments/assets/3a31f41a-f77e-4931-890c-1a20b65675c7" />
+
+**GL_POINTS**
+Se crea un punto pequeño
+<img width="778" height="670" alt="image" src="https://github.com/user-attachments/assets/0d41bb96-e3fa-4921-967c-bd5fe1378106" />
+
+**Cambiando el último parámetro a 2**
+Se crean dos puntos
+<img width="806" height="685" alt="image" src="https://github.com/user-attachments/assets/d3ade853-5fb7-498f-a0ec-2f7f73645ae1" />
+
+De esto puedo concluir que se puede empezar con un tipo de figura gracias a GL_.
+
+---
+
 **Es importante que intentes responder estos conceptos sin ver inicialmente tus notas. Trata de ejercitar tu memoria y tu comprensión. Luego, puedes revisar tus notas para completar o corregir lo que hayas escrito.**
 
-1. ¿Qué es el contexto OpenGL?
-2. ¿Cuál es el rol de la biblioteca GLFW y qué ventaja tiene usarla?
-3. ¿Por qué crees que OpenGL necesita un contexto (recuerda la analogía del taller de arte)?
-4. ¿En últimas qué será el framebuffer y a qué te recuerda de las dos primeras unidades del curso?
-5. ¿Qué relación entre en el viewport y el framebuffer?
-6. ¿En todo la analizado hasta ahora qué rol juega los drivers de la GPU y la GPU misma?
-7. ¿Por qué crees que sea necesario activar el VSync? ¿Si no lo activas y la imagen es estática qué crees que pase, y si es dinámica?
-8. En esta unidad estamos usando OpenGL moderno, pero ¿Qué es OpenGL Legacy? ¿Qué diferencias hay entre ambos?
-9. ¿Qué es el shader program? ¿Por qué es importante en OpenGL moderno?
-10. Trata de revisar el código setupTriangle(), intuitivamente ¿Qué crees que hace? ¿Qué crees que es el VAO y el VBO?
-11. En el ciclo principal (game loop) de OpenGL, notaste que en cada frame (cuadro) le decimos a openGL que use el shader program y el VAO. Si le indicas esto antes del game loop ¿Será necesario seguirlo haciendo en cada loop? Si no es necesario ¿En qué casos crees que esto puede ser útil?
-12. Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)
+**1. ¿Qué es el contexto OpenGL?**
+
+
+**2. ¿Cuál es el rol de la biblioteca GLFW y qué ventaja tiene usarla?**
+
+**3. ¿Por qué crees que OpenGL necesita un contexto (recuerda la analogía del taller de arte)?**
+
+**4. ¿En últimas qué será el framebuffer y a qué te recuerda de las dos primeras unidades del curso?**
+
+**5. ¿Qué relación entre en el viewport y el framebuffer?**
+
+**6. ¿En todo la analizado hasta ahora qué rol juega los drivers de la GPU y la GPU misma?**
+
+**7. ¿Por qué crees que sea necesario activar el VSync? ¿Si no lo activas y la imagen es estática qué crees que pase, y si es dinámica?**
+**8. En esta unidad estamos usando OpenGL moderno, pero ¿Qué es OpenGL Legacy? ¿Qué diferencias hay entre ambos?**
+
+**9. ¿Qué es el shader program? ¿Por qué es importante en OpenGL moderno?**
+
+**10. Trata de revisar el código setupTriangle(), intuitivamente ¿Qué crees que hace? ¿Qué crees que es el VAO y el VBO?**
+
+**11. En el ciclo principal (game loop) de OpenGL, notaste que en cada frame (cuadro) le decimos a openGL que use el shader program y el VAO. Si le indicas esto antes del game loop ¿Será necesario seguirlo haciendo en cada loop? Si no es necesario ¿En qué casos crees que esto puede ser útil?**
+
+**12. Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)**
 
 ---
 ## Actividad 04
@@ -181,3 +199,20 @@ Trata de responder de memoria a cada pregunta. No busques la respuesta en el vid
 
 ---
 ##Actividad 05
+
+**1. En esta actividad vas a modificar el ejemplo del triángulo simple para que sea interactivo. La idea es que puedas cambiar el color del triángulo y su posición en la pantalla pasando información desde el código C++ a los shaders.**
+**2. Incluye una captura de pantalla del triángulo interactivo funcionando en tu máquina.**
+**3. Explica el proceso de normalización de las coordenadas del mouse y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+**4. Explica el proceso de normalización a coordenadas de dispositivo (NDC) y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+
+---
+
+## Actividad 06
+
+**Tu misión es modificar el ejemplo del triángulo simple (puedes partir del resultado de la Actividad 05 o del original) para que su color cambie automáticamente a lo largo del tiempo, creando un efecto pulsante o cíclico.**
+
+**1. Describe brevemente los cambios que realizaste en el código C++ (dónde obtienes el tiempo, cómo y dónde actualizas el uniform).**
+**2. Pega el código modificado de tu fragment shader.**
+**3. Explica cómo usaste la función de tiempo (sin, cos, u otra) para lograr el efecto de cambio de color cíclico. ¿Qué rango de valores produce tu cálculo y cómo afecta eso al color final?**
+**4. Incluye una captura de pantalla o UN ENLACE a un video mostrando el resultado del triángulo con color cambiante.**
+**5. Reflexión: ¿Qué otros efectos visuales simples podrías lograr usando el tiempo como uniform? Piensa en la posición, el tamaño o la rotación (aunque no hemos visto rotaciones formalmente, ¡intuitivamente podrías intentarlo!). Anota al menos una idea.

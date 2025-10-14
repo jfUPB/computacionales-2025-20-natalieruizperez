@@ -206,22 +206,231 @@ glfwSwapBuffers(mainWindow) es importante porque muestra lo que se hizo en frame
 
 **Luego de estudiar las unidades 1 y 2 de este curso y ver el video, escribe con tus propias palabras ¿Cuál es la diferencia entre una CPU y una GPU?**
 
-Trata de responder de memoria a cada pregunta. No busques la respuesta en el video. Trata de recordar lo que viste. De todas maneras si no lo logras hacer, regresa al video y busca la respuesta.
+La diferencia entre CPU y GPU es que la GPU se encarga del procesamiento de texturas y vértices, en cambio la CPU es el que se encarga de manejar las tareas.
 
-1. ¿Cuáles son los tres pasos claves del pipeline de OpenGL? Explica en tus propias palabras cuál es el objetivo de cada paso.
-2. La gran novedad que introduce OpenGL moderno es el pipeline programable. ¿Qué significa esto? ¿Qué diferencia hay entre el pipeline fijo y el programable? ¿Qué ventajas le ves a esto? y si el pipeline es programable, ¿Qué tengo que programar?
-3. Si fueras a describir el proceso de rasterización ¿Qué dirías?
-4. ¿Qué son los fragmentos? ¿Es lo mismo un fragmento que un pixel? ¿Por qué?
-5. Explica qué problema resuelve el Z-buffer y ¿Qué es el depth test?
-6. ¿Por qué se presenta el problema de la aliasing? ¿Qué es el anti-aliasing?
-7. ¿Qué relación hay entre la iluminación y el fragment shader? Siempre es necesario tener en cuenta la iluminación en un fragment shader? o puedo hacer un fragment shader sin iluminación? Explica que implicaciones tiene esto.
-8. ¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?
+**Trata de responder de memoria a cada pregunta. No busques la respuesta en el video. Trata de recordar lo que viste. De todas maneras si no lo logras hacer, regresa al video y busca la respuesta.**
+**1. ¿Cuáles son los tres pasos claves del pipeline de OpenGL? Explica en tus propias palabras cuál es el objetivo de cada paso.**
+
+
+**2. La gran novedad que introduce OpenGL moderno es el pipeline programable. ¿Qué significa esto? ¿Qué diferencia hay entre el pipeline fijo y el programable? ¿Qué ventajas le ves a esto? y si el pipeline es programable, ¿Qué tengo que programar?**
+
+
+**3. Si fueras a describir el proceso de rasterización ¿Qué dirías?**
+
+   
+**4. ¿Qué son los fragmentos? ¿Es lo mismo un fragmento que un pixel? ¿Por qué?**
+
+   
+**5. Explica qué problema resuelve el Z-buffer y ¿Qué es el depth test?**
+
+   
+**6. ¿Por qué se presenta el problema de la aliasing? ¿Qué es el anti-aliasing?**
+
+    
+**7. ¿Qué relación hay entre la iluminación y el fragment shader? Siempre es necesario tener en cuenta la iluminación en un fragment shader? o puedo hacer un fragment shader sin iluminación? Explica que implicaciones tiene esto.**
+
+    
+**8. ¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?**
 
 
 **Escribe un resumen en tus propias palabras de lo que se necesita para dibujar un triángulo en OpenGL.**
 **Escribe un resumen en tus propias palabras de lo que necesitas para poder usar un shader en OpenGL.**
 
 **Implementa el código anterior en tu máquina y captura pantalla del resultado. Pero antes de hacerlo trata de predecir qué va a pasar.**
+
+
+```c++
+#include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window) {
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
+}
+
+const unsigned int SCR_WIDTH = 400;
+const unsigned int SCR_HEIGHT = 400;
+
+//Crear diferentes shaders para cada una de las figuras 
+const char* vertexShaderSrcA = R"glsl(
+    #version 460 core
+    layout(location = 0) in vec3 aPos;
+    void main() {
+        gl_Position = vec4(aPos, 1.0);
+    }
+)glsl";
+
+const char* vertexShaderSrcB = R"glsl(
+    #version 460 core
+    layout(location = 1) in vec3 aColor;
+    void main() {
+        gl_Position = vec4(aColor * 0.5, 1.0);
+    }
+)glsl";
+
+const char* vertexShaderSrcC = R"glsl(
+    #version 460 core
+    layout(location = 2) in vec2 aOffset;
+    void main() {
+        gl_Position = vec4(aOffset, 0.0, 1.0);
+    }
+)glsl";
+
+const char* fragmentShaderSrc = R"glsl(
+    #version 460 core
+    out vec4 FragColor;
+    void main() {
+        FragColor = vec4(1.0, 0.5, 0.2, 1.0);
+    }
+)glsl";
+
+//Las variables
+unsigned int VAO, VBO;
+unsigned int shaderProgramA, shaderProgramB, shaderProgramC;
+
+unsigned int buildShaderProgram(const char* vertexShaderSrc) {
+	int success;
+	char log[512];
+
+	unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vs, 1, &vertexShaderSrc, nullptr);
+	glCompileShader(vs);
+	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(vs, 512, nullptr, log);
+		std::cerr << log << "\n";
+	}
+
+	unsigned int fs = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fs, 1, &fragmentShaderSrc, nullptr);
+	glCompileShader(fs);
+	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(fs, 512, nullptr, log);
+		std::cerr << log << "\n";
+	}
+
+	unsigned int prog = glCreateProgram();
+	glAttachShader(prog, vs);
+	glAttachShader(prog, fs);
+	glLinkProgram(prog);
+	glGetProgramiv(prog, GL_LINK_STATUS, &success);
+	if (!success) {
+		glGetProgramInfoLog(prog, 512, nullptr, log);
+		std::cerr << log << "\n";
+	}
+
+	glDeleteShader(vs);
+	glDeleteShader(fs);
+	return prog;
+}
+
+//Va a crear 3 triángulos diferentes
+
+void setupTriangle() {
+	float vertices[] = {
+		-1.0f, -1.0f, 0.0f,   0.0f, 0.0f, 0.0f,   0.1f, 0.5f,
+		 0.0f, -1.0f, 0.0f,   1.0f, 0.0f, 0.0f,   0.2f, 0.5f,
+		-0.5f, -0.5f, 0.0f,   0.5f, 0.5f, 0.0f,   0.15f, 0.75f,
+	};
+
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(0));
+	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	glBindVertexArray(0);
+}
+
+int main() {
+	if (!glfwInit()) return -1;
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Ventana", nullptr, nullptr);
+	if (!window) {
+		glfwTerminate();
+		return -1;
+	}
+
+	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) return -1;
+	glfwSwapInterval(1);
+
+	shaderProgramA = buildShaderProgram(vertexShaderSrcA);
+	shaderProgramB = buildShaderProgram(vertexShaderSrcB);
+	shaderProgramC = buildShaderProgram(vertexShaderSrcC);
+
+	setupTriangle();
+
+	int bufferWidth, bufferHeight;
+	glfwGetFramebufferSize(window, &bufferWidth, &bufferHeight);
+	glViewport(0, 0, bufferWidth, bufferHeight);
+
+	while (!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+		processInput(window);
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glBindVertexArray(VAO);
+
+		glUseProgram(shaderProgramA);
+		glEnableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		glUseProgram(shaderProgramB);
+		glDisableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		glUseProgram(shaderProgramC);
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glEnableVertexAttribArray(2);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		glfwSwapBuffers(window);
+	}
+
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteProgram(shaderProgramA);
+	glDeleteProgram(shaderProgramB);
+	glDeleteProgram(shaderProgramC);
+
+	glfwDestroyWindow(window);
+	glfwTerminate();
+	return 0;
+}
+```
+
+<img width="890" height="679" alt="image" src="https://github.com/user-attachments/assets/b1dd8f48-eab4-4ec4-b1c0-23fc11321767" />
+
+
+
 
 ---
 ##Actividad 05

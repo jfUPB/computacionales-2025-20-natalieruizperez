@@ -206,35 +206,49 @@ glfwSwapBuffers(mainWindow) es importante porque muestra lo que se hizo en frame
 
 **Luego de estudiar las unidades 1 y 2 de este curso y ver el video, escribe con tus propias palabras ¿Cuál es la diferencia entre una CPU y una GPU?**
 
-La diferencia entre CPU y GPU es que la GPU se encarga del procesamiento de texturas y vértices, en cambio la CPU es el que se encarga de manejar las tareas.
+La diferencia entre CPU y GPU es que la GPU se encarga del procesamiento de texturas y vértices, las renderiza, en cambio la CPU es el que se encarga de manejar las tareas.
 
 **Trata de responder de memoria a cada pregunta. No busques la respuesta en el video. Trata de recordar lo que viste. De todas maneras si no lo logras hacer, regresa al video y busca la respuesta.**
+
 **1. ¿Cuáles son los tres pasos claves del pipeline de OpenGL? Explica en tus propias palabras cuál es el objetivo de cada paso.**
 
+Los tres pasos clave de OpenGL son vertex shading, rasterization y fragment shading.
 
 **2. La gran novedad que introduce OpenGL moderno es el pipeline programable. ¿Qué significa esto? ¿Qué diferencia hay entre el pipeline fijo y el programable? ¿Qué ventajas le ves a esto? y si el pipeline es programable, ¿Qué tengo que programar?**
 
+Significa que ahora se puede acceder al funcionamiento interno del pipeline, en cambio en el fijo no se podía y se tenía que trabajar con lo ya existente. La ventaja de que sea progamable es que és posible realizar efectos más avanzados. Se tienen que programar el vertex shader y pensará que el fragment shading también.
 
 **3. Si fueras a describir el proceso de rasterización ¿Qué dirías?**
 
+Consiste en que el programa analice en qué partes hay triángulos, después de eso se calcule la cantidad de pixeles que hay en esa zona. La GPU cálcula cuáles pixeles están cubiertos y luego le asigna un color.
    
 **4. ¿Qué son los fragmentos? ¿Es lo mismo un fragmento que un pixel? ¿Por qué?**
 
-   
+Los fragmentos son grupos de píxeles, no es lo mismo un fragmento que un pixel porque el primero es un grupo y el segundo es solo una cosa.
+
 **5. Explica qué problema resuelve el Z-buffer y ¿Qué es el depth test?**
 
+El z-buffer resuelve problemas que pueden haber a la hora de renderizar varios objetos. Por ejemplo cuando se ve un objeto en el render la parte trasera no aparece esto es porque el z-buffer detecta que tiene un objeto delante de otro. Entonces en el caso de tener un objeto encima de otro, el objeto que esté más cerca de la cámara es el que se verá.
    
 **6. ¿Por qué se presenta el problema de la aliasing? ¿Qué es el anti-aliasing?**
 
+El problema del aliasing se presenta porque cuando un triángulo pasa por la mitad de un pixel puede dar como resultado una imagen pixelada. El anti-aliasing lo que hace es crear una cuadrícula de 16 y si pasa el triángulo por la mitad el programa lo analia y hace que se creen bordes con menos opacioadad para que la imagen se vea más suave.
     
 **7. ¿Qué relación hay entre la iluminación y el fragment shader? Siempre es necesario tener en cuenta la iluminación en un fragment shader? o puedo hacer un fragment shader sin iluminación? Explica que implicaciones tiene esto.**
 
+La relación entre iluminación y fragmnent shader es que cada uno depende del otro, puede haber iluminación sin fragment shader pero entonces siemrpre estaría brillante el objeto y también puede haber fragment shader sin iluminación pero no se vería absolutamente nada. La iluminación tiene que ver con el lugar en dodne está la luz, en cambio fragment shading que son varios pixeles en grupo y según la posición, rotación del objeto y la luz que recae sobre él los materiales del objeto se ven afectados.
     
 **8. ¿Qué implica para la GPU que una aplicación tenga múltiples fuentes de iluminación?**
 
+Para la GPU implica más trabajo ya que tendría que hacer más cálculos.
 
 **Escribe un resumen en tus propias palabras de lo que se necesita para dibujar un triángulo en OpenGL.**
+
+Necesito shaders, las coordenadas del triángulo para que el programa sepa donde dibujarlo, un compilador de shaders y una función para dibujar.
+
 **Escribe un resumen en tus propias palabras de lo que necesitas para poder usar un shader en OpenGL.**
+
+Para poder usar un shader en OpenGL es necesario enteder cómo funciona para poder saber qué partes modificar.  
 
 **Implementa el código anterior en tu máquina y captura pantalla del resultado. Pero antes de hacerlo trata de predecir qué va a pasar.**
 
@@ -427,18 +441,260 @@ int main() {
 }
 ```
 
+**Resultado**
 <img width="890" height="679" alt="image" src="https://github.com/user-attachments/assets/b1dd8f48-eab4-4ec4-b1c0-23fc11321767" />
 
 
 
 
 ---
+
 ##Actividad 05
 
 **1. En esta actividad vas a modificar el ejemplo del triángulo simple para que sea interactivo. La idea es que puedas cambiar el color del triángulo y su posición en la pantalla pasando información desde el código C++ a los shaders.**
+
+```c++
+#include <iostream>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+
+// Callback: ajusta el viewport cuando cambie el tamaño de la ventana
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
+}
+
+// Procesa entrada simple: cierra con ESC
+void processInput(GLFWwindow* window) {
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
+}
+
+// Tamaño de las ventanas
+const unsigned int SCR_WIDTH = 400;
+const unsigned int SCR_HEIGHT = 400;
+
+// Fuentes de los shaders
+const char* vertexShaderSrc = R"glsl(
+#version 460 core
+
+layout(location = 0) in vec3 aPos;
+uniform vec2 offset;
+
+void main() {
+    vec3 newPos = aPos;
+    newPos.x += offset.x;
+    newPos.y += offset.y;
+    gl_Position = vec4(newPos, 1.0);
+}
+)glsl";
+
+const char* fragmentShaderSrc = R"glsl(
+	#version 460 core
+
+	out vec4 FragColor;
+	uniform vec4 ourColor;
+
+	void main() {
+		FragColor = ourColor;
+	}
+)glsl";
+
+// IDs globales
+unsigned int VAO, VBO;
+unsigned int shaderProg;
+
+// Compila y linkea un programa de shaders, retorna su ID
+unsigned int buildShaderProgram() {
+	int success;
+	char log[512];
+
+	unsigned int vs = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vs, 1, &vertexShaderSrc, nullptr);
+	glCompileShader(vs);
+	glGetShaderiv(vs, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(vs, 512, nullptr, log);
+		std::cerr << "ERROR VERTEX SHADER:\n" << log << "\n";
+	}
+
+	unsigned int fs = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fs, 1, &fragmentShaderSrc, nullptr);
+	glCompileShader(fs);
+	glGetShaderiv(fs, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(fs, 512, nullptr, log);
+		std::cerr << "ERROR FRAGMENT SHADER:\n" << log << "\n";
+	}
+
+	unsigned int prog = glCreateProgram();
+	glAttachShader(prog, vs);
+	glAttachShader(prog, fs);
+	glLinkProgram(prog);
+	glGetProgramiv(prog, GL_LINK_STATUS, &success);
+	if (!success) {
+		glGetProgramInfoLog(prog, 512, nullptr, log);
+		std::cerr << "ERROR LINKING PROGRAM:\n" << log << "\n";
+	}
+
+	glDeleteShader(vs);
+	glDeleteShader(fs);
+	return prog;
+}
+
+// Crea un VAO/VBO con los datos de un triángulo
+void setupTriangle() {
+	float vertices[] = {
+		-0.5f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.0f,  0.5f, 0.0f
+	};
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+
+	glBindVertexArray(VAO);
+
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+	glBindVertexArray(0);
+}
+
+
+int main()
+{
+	// 1) Inicializar GLFW
+	if (!glfwInit()) {
+		std::cerr << "Fallo al inicializar GLFW\n";
+		return -1;
+	}
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	// 2) Crear ventana
+	GLFWwindow* mainWindow = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Ventana", nullptr, nullptr);
+	if (!mainWindow) {
+		std::cerr << "Error creando ventana1\n";
+		glfwTerminate();
+		return -1;
+	}
+
+	// 3) Lee el tamaño del framebuffer
+	int bufferWidth, bufferHeight;
+	glfwGetFramebufferSize(mainWindow, &bufferWidth, &bufferHeight);
+	
+	// 4) Callbacks 
+	glfwSetFramebufferSizeCallback(mainWindow, framebuffer_size_callback);
+
+
+	// 5) Cargar GLAD y recursos en contexto de window1
+	glfwMakeContextCurrent(mainWindow);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		std::cerr << "Fallo al cargar GLAD (contexto1)\n";
+		return -1;
+	}
+
+	// 6) Habilita el V-Sync
+	glfwSwapInterval(1);
+
+	// 7) Compila y linkea shaders
+	shaderProg = buildShaderProgram();
+
+	// 8) Genera el contenido a mostrar
+	setupTriangle();
+
+	// 9) Configura el viewport
+	glViewport(0, 0, bufferWidth, bufferHeight);
+
+	glUseProgram(shaderProg);
+	int offsetLocation = glGetUniformLocation(shaderProg, "offset");
+	int colorLocation = glGetUniformLocation(shaderProg, "ourColor");
+
+	// 10) Loop principal
+	while (!glfwWindowShouldClose(mainWindow))
+	{
+		// 11) Manejo de eventos
+		glfwPollEvents();
+
+	
+		// 12) Procesa la entrada
+		processInput(mainWindow);
+
+		// 13) Configura el color de fondo y limpia el framebuffer
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		// 14) Indica a OpenGL que use el shader program
+		glUseProgram(shaderProg);
+
+		// Dibuja el triángulo
+		double xpos, ypos;
+		glfwGetCursorPos(mainWindow, &xpos, &ypos);
+
+		// Normalizo las coordenadas del mouse
+		float x = (float)xpos / (float)SCR_WIDTH;
+		x < 0 ? x = 0 : x;
+		x > 1 ? x = 1 : x;
+
+		float y = (float)ypos / (float)SCR_HEIGHT;
+		y < 0 ? y = 0 : y;
+		y > 1 ? y = 1 : y;
+
+		// Envio el color y la posición del triángulo
+		float color[] = { x, y, 0.0f, 1.0f };
+		glUniform4f(colorLocation, x, y, 0.0f, 1.0f);
+
+		// Envio el offset del triángulo normalizado a NDC
+		glUniform2f(offsetLocation, x * 2 - 1, 1 - y * 2);
+
+
+		// 15) Activa el VAO y dibuja el triángulo
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		// 16) Intercambia buffers y muestra el contenido
+		glfwSwapBuffers(mainWindow);
+	}
+
+	// 17) Limpieza
+	glfwMakeContextCurrent(mainWindow);
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteProgram(shaderProg);
+
+	glfwDestroyWindow(mainWindow);
+	glfwTerminate();
+	return 0;
+}
+```
+
 **2. Incluye una captura de pantalla del triángulo interactivo funcionando en tu máquina.**
+
+<img width="891" height="687" alt="image" src="https://github.com/user-attachments/assets/82c4cc30-c856-49c4-8e32-a45940da13e9" />
+
+<img width="915" height="694" alt="image" src="https://github.com/user-attachments/assets/80fa6f99-85f1-40cc-a34e-3eb16db1ac5e" />
+
+<img width="907" height="690" alt="image" src="https://github.com/user-attachments/assets/3c876f59-6d01-46a9-9f14-32d7f267f1fa" />
+
+
+
 **3. Explica el proceso de normalización de las coordenadas del mouse y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+
+Luego de leer La normalización de coordenadas del mouse es que según la posición del mouse en la ventana se le asigna unos valores en x y en y, así es como el programa sabe en qué parte está el mouse. La normalización es para obtener números entre 0 y 1 entonces se convierte dividiendo la coordenadas x y y del mouse por el ancho y la altura de la pantalla respectivamente.
+
 **4. Explica el proceso de normalización a coordenadas de dispositivo (NDC) y cómo se relaciona con el sistema de coordenadas de OpenGL.**
+
+OpenGL usa números entre -1 y 1 entonces se usa una fórmula para que OpenGL pueda entender los valores y dibujarlos. 
+
+c++
+```
+// Envio el offset del triángulo normalizado a NDC
+glUniform2f(offsetLocation, x * 2 - 1, 1 - y * 2);
+```
 
 ---
 
@@ -451,3 +707,27 @@ int main() {
 **3. Explica cómo usaste la función de tiempo (sin, cos, u otra) para lograr el efecto de cambio de color cíclico. ¿Qué rango de valores produce tu cálculo y cómo afecta eso al color final?**
 **4. Incluye una captura de pantalla o UN ENLACE a un video mostrando el resultado del triángulo con color cambiante.**
 **5. Reflexión: ¿Qué otros efectos visuales simples podrías lograr usando el tiempo como uniform? Piensa en la posición, el tamaño o la rotación (aunque no hemos visto rotaciones formalmente, ¡intuitivamente podrías intentarlo!). Anota al menos una idea.
+
+---
+
+Rúbrica
+5: realice las 6 actividades completas y la autoevaluación.
+4: realicé 5 actividades completas y la autoevaluación.
+3: realicé 4 actividades completas y la autoevaluación.
+2: realicé 3 actividades completas y la autoevaluación.
+1: realicé 2 actividades completas y la autoevaluación.
+0.5: realicé 1 actividad completa y la autoevaluación.
+0: no realicé ninguna actividad o no realicé la autoevaluación.
+
+---
+
+## Nota: 4.0
+
+-Actividad 01: Completa (0.5)
+-Actividad 02: Completa (0.5)
+-Actividad 03: Completa (1.0)
+-Actividad 04: Completa (1.0)
+-Actividad 05: Completa (1.0)
+-Actividad 06:
+
+

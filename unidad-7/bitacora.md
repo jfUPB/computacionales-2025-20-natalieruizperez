@@ -153,27 +153,53 @@ De esto puedo concluir que se puede empezar con un tipo de figura gracias a GL_.
 
 **1. ¿Qué es el contexto OpenGL?**
 
+Es una especie de lugar que permite manejar todo de forma sencilla, en esta están los shaders, el tipo de figura y colores que permiten que funcione el programa.
 
 **2. ¿Cuál es el rol de la biblioteca GLFW y qué ventaja tiene usarla?**
 
+El rol de la biblioteca GLFW es que una biblioteca que permite crear una ventana es útil porque así es como se puede ver qué se ejecuta.
+
 **3. ¿Por qué crees que OpenGL necesita un contexto (recuerda la analogía del taller de arte)?**
+
+OpenGL necesita un contexto para saber en qué parte hace cada cosa.
 
 **4. ¿En últimas qué será el framebuffer y a qué te recuerda de las dos primeras unidades del curso?**
 
+La verdad no recuerdo que es framebuffer así que miraré las notas para refrescar la memoria. El framebuffer es donde OpenGL pinta cada cuadro.
+
 **5. ¿Qué relación entre en el viewport y el framebuffer?**
+
+El viewport es el área del framebuffer mientras que el framebuffer es donde se pinta, si se configura mal entonces la figura se podria ver estirada.
 
 **6. ¿En todo la analizado hasta ahora qué rol juega los drivers de la GPU y la GPU misma?**
 
+Son una especie de intermediarios para que la GPU pueda interpretar el código y hacer los cálculos necesarios.
+
 **7. ¿Por qué crees que sea necesario activar el VSync? ¿Si no lo activas y la imagen es estática qué crees que pase, y si es dinámica?**
+
+Se necesita VSync para que pueda haber sincronización, si no se activa cuando la imagen es estática no creo que haya un cambio significativo peor si es dinámica y no está activado podría verse mal y no como se supone que actuaría.
+
 **8. En esta unidad estamos usando OpenGL moderno, pero ¿Qué es OpenGL Legacy? ¿Qué diferencias hay entre ambos?**
+
+Esto no lo recuerdo entonces volveré a revisar la actividad y a consultar al respecto. Luego de investigar OpenGL Legacy es una versión más antigua de OpenGL y la diferencia es que en OpenGL Legacy se dibujaba con glBegin(), glVertex3f(), y glEnd(), en cambio en el actual se usan shaders.
 
 **9. ¿Qué es el shader program? ¿Por qué es importante en OpenGL moderno?**
 
+Un shader program le dicen a la GPU cómo hacer las cosas. Es fundamental en OpenGL moderno porque gracias a los shaders es posible dibujar.
+
 **10. Trata de revisar el código setupTriangle(), intuitivamente ¿Qué crees que hace? ¿Qué crees que es el VAO y el VBO?**
+
+Crep que es para preparar el triángulo con los datos necesarios como la posición de los vértices. La verdad no tengo idea de qué es VAO y VBO entonces voy a consultar y revisar la actividad. Luego de buscar encontré que VAO significa Vertex Array Object y se encarga de guardar todo lo necesario para crear el triángulo en cambio VBO que singifica Vertex Buffer Object y es donde se guardan los datos de los vértices.
 
 **11. En el ciclo principal (game loop) de OpenGL, notaste que en cada frame (cuadro) le decimos a openGL que use el shader program y el VAO. Si le indicas esto antes del game loop ¿Será necesario seguirlo haciendo en cada loop? Si no es necesario ¿En qué casos crees que esto puede ser útil?**
 
+Pensaría que no es necesario porque al fin de al cabo es un loop entonces no veo la necesidad de además de escribirlo en el loop hacerlo al principio. Puede ser útil quizás cuando se escriben muchas instrucciones para evitar errores y asegurarse de que el programa funcione correctamente.
+
 **12. Finalmente, recuerda lo que hace glfwSwapBuffers(mainWindow); ¿Por qué crees que es importante? ¿Qué pasaría si no lo llamas? ¿Cómo explicas lo que pasa si no lo llamas? (experimenta)**
+
+glfwSwapBuffers(mainWindow) es importante porque muestra lo que se hizo en framebuffer que OpenGL acaba de renderizar. Borré la línea y al hacerlo no se ve el triángulo, la pestaña sale en blanco.
+
+<img width="870" height="617" alt="image" src="https://github.com/user-attachments/assets/139c6b16-814b-41f1-80e5-332af997658b" />
 
 ---
 ## Actividad 04

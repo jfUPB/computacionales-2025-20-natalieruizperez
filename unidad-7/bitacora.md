@@ -97,7 +97,8 @@ glViewport(0, bufferHeight/2, bufferWidth/2, bufferHeight/2);
 
  **Realiza un resumen de lo que has aprendido hasta ahora, haciendo un diagrama conceptual o un mapa mental. Experimentando. ¿Cómo? Haciendo la pregunta mágica: ¿Qué pasaría si? ¿Qué pasaría si cambio el tamaño de la ventana? ¿Qué pasaría si cambio el tamaño del viewport? Entonces hagamos “digestión”: en tu bitácora, escribe un resumen de lo que has aprendido hasta ahora y piensa en un experimento del tipo ¿Qué pasaría si?**
 
- AAAAAAAAA
+Es necesario asegurarse de que el programa cuente con todos los elementos necesarios para poder hacer que el código funcione, o si no, no se ejecutará correctamente. GLFW es la biblioteca para crear la ventana eso hace que haya en donde dibujar. GLAD es una biblioteca que usamos para agregar a cosas de OpenGL, tengo que volver a revisar los conceptos porque no recuerdo el nombre de esas "cosas". GLM es una biblioteca de matemáticas que sirve para trabajar con operaciones más fácilmente. Los drivers de la GPU ejecutan las instrucciones de OpenGL. Cuando experimenté con glViewport, entendí que esa función define qué parte de la ventana se usará para renderizar la imagen. T
+
  ---
 
 c++
@@ -728,6 +729,6 @@ Rúbrica
 -Actividad 03: Completa (1.0)
 -Actividad 04: Completa (1.0)
 -Actividad 05: Completa (1.0)
--Actividad 06:
+-Actividad 06: Incompleta (0.0)
 
 

@@ -94,11 +94,29 @@ Ambas capturas de pantalla fueron tomadas mientras que apretaba la tecla de espa
 
 **Analiza el código y estudia detenidamente su funcionamiento. En la fase de aplicación tendrás que retomar este código para resolver un reto.**
 
-Para cada pixel hay que hacer el cálculo de lalgortimo y tomar cada uno y hacer un algoitmo interacti
+Para cada pixel hay que hacer el cálculo de algoritmo.
 
 **Experimenta modificando, PERO, no olvides cómo investigamos en este curso: Realiza cambios pequeños y específicos. Lanza una hipótesis sobre lo que crees que va a pasar. Ejecuta el código y observa lo que ocurre. ¿Tu hipótesis era correcta? ¿Por qué crees que ocurre esto? Te dejo una idea para comenzar a experimentar: ¿Qué ocurre si cambias el número de hilos? ¿Por qué crees que ocurre esto?**
 
-Creo que si cambio el número de hilos aumentándolos los fps no bajarán tanto dado que habrán varios trabajando en paralelo para llevar a cabo ese proceso, en cambio si disminuyo el número de hilos ocnsidero que la aplicación podría demorarse muchísimo más en lanzar la imagen.
+Creo que si cambio el número de hilos aumentándolos los fps no bajarán tanto dado que habrán varios trabajando en paralelo para llevar a cabo ese proceso, en cambio si disminuyo el número de hilos considero que la aplicación podría demorarse muchísimo más en lanzar la imagen.
+
+**1 hilo**
+<img width="1012" height="758" alt="image" src="https://github.com/user-attachments/assets/6de1c704-161b-4fad-9158-799e7deee983" />
+
+**8 hilos**
+<img width="1017" height="756" alt="image" src="https://github.com/user-attachments/assets/abddd24c-742c-4ee6-9f11-a5a0f4e173cf" />
+
+**16 hilos**
+<img width="1009" height="760" alt="image" src="https://github.com/user-attachments/assets/2e03c4c9-90ab-4692-ab0d-80d38313f7f4" />
+
+**32 hilos**
+<img width="1015" height="766" alt="image" src="https://github.com/user-attachments/assets/dd0af58d-5141-4fc8-842b-a73d96e12984" />
+
+
+**100 hilos**
+<img width="1012" height="758" alt="image" src="https://github.com/user-attachments/assets/45bc4925-17d1-48ac-986f-50bf1747933e" />
+
+Al observar los resultados obtenidos me doy cuenta de que efectivamente al tener un solo hilo tarda más en producir la imagen. El de 32 hilos es mucho más rápido que el del 100 hilos esto es porque a los 100 hilos ocurre concurrencia porque el computador no puede llevar esas tareas en paralelo. 32 hilos que es la capacidad máxima que puede generar el computador para que ocurra paralelismo es por esto que aquí es donde hay menor tiempo.
 
 ---
 ## Actividad 04 
@@ -154,6 +172,6 @@ Notas de clase: Un proceso es un programa. La concurrencia es diferente al paral
 
 -Actividad 01: Completa (1.0)
 -Actividad 02: Completa (1.0)
--Actividad 03: 
+-Actividad 03: Completa (1.0)
 -Actividad 04: 
 

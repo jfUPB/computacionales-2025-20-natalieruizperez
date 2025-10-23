@@ -81,7 +81,16 @@ Al ejecutar el código veo que cada vez que apreto r con el candado el contador 
 ## Actividad 03
 
 **1. Ejecuta el código y observa el resultado.**
-Al apretar espacio se demora más tiempo a medida que aumento las iteracaciones. Se observa una especie de . En la versión paralela aunque este en muchas iteraciones es más estable y más rápido al usar los 16 hilos.
+En el secuencial observo que al apretar espacio se demora más tiempo a medida que aumenta las iteracaciones. En cambio, en la versión paralela aunque este en muchas iteraciones es más estable y más rápido al usar los 16 hilos.
+
+Ambas capturas de pantalla fueron tomadas mientras que apretaba la tecla de espacio muchas veces.
+
+**Secuencial**
+<img width="1016" height="761" alt="image" src="https://github.com/user-attachments/assets/aa7e44f6-c717-47df-9cd7-1f874d7faf01" />
+
+**Paralela**
+<img width="1012" height="758" alt="image" src="https://github.com/user-attachments/assets/dc80f1fa-4022-4a77-978a-5168a47952a5" />
+
 
 **Analiza el código y estudia detenidamente su funcionamiento. En la fase de aplicación tendrás que retomar este código para resolver un reto.**
 
@@ -89,6 +98,9 @@ Para cada pixel hay que hacer el cálculo de lalgortimo y tomar cada uno y hacer
 
 **Experimenta modificando, PERO, no olvides cómo investigamos en este curso: Realiza cambios pequeños y específicos. Lanza una hipótesis sobre lo que crees que va a pasar. Ejecuta el código y observa lo que ocurre. ¿Tu hipótesis era correcta? ¿Por qué crees que ocurre esto? Te dejo una idea para comenzar a experimentar: ¿Qué ocurre si cambias el número de hilos? ¿Por qué crees que ocurre esto?**
 
+Creo que si cambio el número de hilos aumentándolos los fps no bajarán tanto dado que habrán varios trabajando en paralelo para llevar a cabo ese proceso, en cambio si disminuyo el número de hilos ocnsidero que la aplicación podría demorarse muchísimo más en lanzar la imagen.
+
+---
 ## Actividad 04 
 
 **Observa ambos códigos y responde a las siguientes preguntas:**
@@ -118,17 +130,30 @@ Describe brevemente cómo reutilizaste la estructura de hilos de la versión Man
 ¿Cómo te aseguraste de que la imagen se recalculara cuando el mouse se movía?
 Incluye al menos dos capturas de pantalla que muestren diferentes fractales de Julia generados al mover el mouse en tu aplicación.
 ¿Encontraste algún desafío particular al implementar la interacción o modificar el cálculo?
+Aunque los locks aseguran la correctitud, ¿Puedes intuir por qué tener muchos hilos esperando para adquirir un lock sobre el mismo vector (alta contención) podría limitar el beneficio de rendimiento del paralelismo en este caso? Justifica tu respuesta.
 
 ---
 Notas de clase: Un proceso es un programa. La concurrencia es diferente al paralelismo. La ejecución es paralela cuando se le puede asignar a cada uno un core y estamos haciendo todo al mismo tiempo, en cambio la concurrencia es hacer un poco de cada cosa pero de forma muy rápida. La responsividad de la aplicación.
 
 ---
+**Rúbrica**
 
-Rúbrica
+5: realicé las 5 actividades completas y la autoevaluación.
 
+  4: realicé 4 actividades completas y la autoevaluación.
+
+  3: realicé 3 actividades completas y la autoevaluación.
+
+  2: realicé 2 actividades completas y la autoevaluación.
+
+  1: realicé 1 actividad completa y la autoevaluación.
+
+  0: no realicé ninguna actividad o no realicé la autoevaluación.
 ---
 ## Nota: 
 
 -Actividad 01: Completa (1.0)
+-Actividad 02: Completa (1.0)
+-Actividad 03: 
+-Actividad 04: 
 
-Aunque los locks aseguran la correctitud, ¿Puedes intuir por qué tener muchos hilos esperando para adquirir un lock sobre el mismo vector (alta contención) podría limitar el beneficio de rendimiento del paralelismo en este caso? Justifica tu respuesta.

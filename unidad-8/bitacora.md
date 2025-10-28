@@ -121,22 +121,68 @@ Al observar los resultados obtenidos me doy cuenta de que efectivamente al tener
 ---
 ## Actividad 04 
 
+**Flocking sin hilos**
+
+<img width="1016" height="800" alt="image" src="https://github.com/user-attachments/assets/fd39a5bf-98c3-4a6b-ab5d-f3991c2d0af4" />
+
+A medida que aumenta la cantidad de boids los fps bajan y el programa se pone mas lento.
+
+**Flocking con hilos**
+
+<img width="1021" height="793" alt="image" src="https://github.com/user-attachments/assets/bab8d0c7-5193-4847-a697-715dc166df7b" />
+
+Tienen una cantidad similar de boids pero el programa, corre a mas fps y se siente un poco mas fluidos pero no veo mucha diferencia.
+
 **Observa ambos códigos y responde a las siguientes preguntas:**
 
-Para la versión de un solo hilo que es altamente paralelizable a medida que se crean agentes los fps se van colapsando, cuando ya son muchos los fps caen. Eso es porque el algoritmo cálcula como se comporta con respecto a las demás y eso lo tiene que hacer para cada una. En el segundo código que trabaja con más hilos al subir las criaturas pero como no es altamente paralelizable no hay mucha ganancia. 
+Nota de clase: Para la versión de un solo hilo que es altamente paralelizable a medida que se crean agentes los fps se van colapsando, cuando ya son muchos los fps caen. Eso es porque el algoritmo cálcula como se comporta con respecto a las demás y eso lo tiene que hacer para cada una. En el segundo código que trabaja con más hilos al subir las criaturas pero como no es altamente paralelizable no hay mucha ganancia. 
 
 **1. ¿Cuál es la estructura de datos principal que contiene la información de todos los boids y que es accedida por múltiples hilos (el hilo principal para dibujar, el hilo trabajador para actualizar)?**
 
+La estructura de datos principal que contiene la información de todos los boids y que es accedida por múltiples hilos es la clase flock : public ofThread que llama a varias funciones y también esta std::vector<Boid> boids; que es donde se guardan.
+
 **2. Observa la función Flock::threadedFunction() donde el hilo trabajador calcula el movimiento. ¿Qué operaciones realizan sobre el vector de boids compartido?**
+
+El vector de boids compartidos realiza varias operaciones entre ellas el sistema de lock para que los hilos no accedan al mismo tiempo para que así no ocurra una condición de carrera. También hay un puntero que recorre los voids y sleep que es para que haya un tiempo entre acción y acción, evitando que se sobrelapen.
 
 **3. Observa la función ofApp::draw(). ¿Qué operación realiza sobre el vector compartido?**
 
+Veo que dibuja el fondo, y el vector compartido llama a la función draw que cuenta con varios aspectos de los voids como el color, posición, rotación, y también hace 3 operaciones diferentes que asumo que se encargan de que haya separación, alineación y cohesión en el sistema.
+
 **4. Observa Flock::addBoid() y ofApp::mouseDragged(). ¿Qué operación realizan?**
+
+addBoid se encarga de crear un nuevo ente el el programa, también cuenta con unas funciones de lock y unlock y mouse dragged hace que se creen esos boids en la posición del mouse a medida que es arrastrado.
 
 **5. Describe un escenario específico y concreto donde la falta de sincronización podría causar un problema. Por ejemplo: “El Hilo X está recorriendo el vector para calcular la separación (leyendo posiciones). Al mismo tiempo, el Hilo Y (llamado desde mouseDragged) intenta añadir un nuevo boid al final del vector. ¿Qué podría pasarle al iterador del Hilo X o al tamaño del vector que está usando?”
 Localiza todas las llamadas a lock() y unlock() dentro de la clase Flock (o donde se acceda al vector compartido).
 
+En ese ejemplo en el que un hilo recorre el vector para calcular la separación e intenta añadir un vector al final podría causar crasheos, la solución sería poner el lock en las funciones donde se agregan los boids, se dibujan y de donde se manejan todos los threads, al final desbloquearlos para que funcionen correctamente y se puedan acceder una vez ya haya terminado de usarlo algun hilo.
+
 Justificación: para uno de los escenarios problemáticos que describiste arriba, explica cómo las llamadas a lock()/unlock() en las secciones de código relevantes evitan que ocurra ese problema específico.
+
+**¿Qué pasaría si tuviéramos varios hilos que calculan el movimiento de los boids? ¿Cómo podrías implementar esto? ¿Qué problemas crees que podrían surgir? ¿Cómo podrías solucionarlos?**
+
+Si tuvieramos varios hilos que calculan el movimiento de los boids sería necesario añadir lock() y unlock() para que no hayan crasheos y tampoco errores condiciones de carrera donde los hilos acceden al movimiento de los voids y los calculan simultáneamente haciendo que haya una sobreposición de datos. La solución sería la que mencioné, asegurarse de bloquear y desbloquear  las funciones para que no cambien los calculos ya hechos si no que puedan trabajar en conjunto, es decir que haya paralelismo y concurrencia.
+
+**1. Analiza el código del Flocking sin hilos y el Flocking con hilos. ¿Qué diferencias encuentras? ¿Por qué crees que es importante la sincronización en el segundo caso?**
+
+Al inicio de la actividad había escrito de forma más detallada el análisis de los códigos, creo que es importante la sincronización en el segundo caso porque a pesar de que no hay gran diferencia en cuanto a fps, el programa en el segundo caso se nota más fluido.
+
+**2. ¿Por qué al añadir un nuevo boid la simulación se ralentiza? ¿Qué ocurre si añades muchos boids?**
+
+Esto sucede porque no estamos usando hilos para que procesen la información.
+
+**3. Notaste que la versión con hilos tiene un sleep(5) en el hilo trabajador. ¿Por qué crees que se ha añadido? ¿Qué pasaría si lo eliminamos?**
+
+Esto ya lo había mencionado cuando analicé el código pero creo que el propósito es que haya un tiempo de pausa entre boid y boid para que el sistema pueda "descansar" y no solo eso si no también seguir un orden. Si se elimina ocurrirían errores.
+
+**4. Compara el rendimiento de ambos enfoques. ¿Cuál crees que es más eficiente? ¿Por qué?**
+
+El más eficiente es el segundo porque usa hilos para evitar que se ralentice el sistema.
+
+**5. El uso de lock y unlock en la versión con hilos es crucial para evitar condiciones de carrera. ¿Qué pasaría si no se usaran? ¿Cómo afectaría esto al comportamiento del programa? (No olvides por favor que las condiciones de carrera son difíciles de reproducir, así que no te preocupes si no puedes verlas en acción).**
+
+Si no se usaran el programa se crashearía y afectaría al programa haciendo que los valores se reemplacen unos a otros ya que estarían trabajando los hilos sin seguir un orden específico.
 
 ---
 ## Actividad 05
@@ -168,10 +214,11 @@ Notas de clase: Un proceso es un programa. La concurrencia es diferente al paral
 
   0: no realicé ninguna actividad o no realicé la autoevaluación.
 ---
-## Nota: 
+## Nota: 4.0
 
 -Actividad 01: Completa (1.0)
 -Actividad 02: Completa (1.0)
 -Actividad 03: Completa (1.0)
--Actividad 04: 
+-Actividad 04: Completa (1.0)
+-Actividad 05: No realizada (0.0)
 
